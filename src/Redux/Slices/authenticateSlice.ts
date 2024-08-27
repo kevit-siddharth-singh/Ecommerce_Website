@@ -4,11 +4,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 type AuthenticateState = {
   isAuthenticate: Boolean;
   name: string;
+  email: string;
 };
 
 const initialState: AuthenticateState = {
   isAuthenticate: false,
   name: "",
+  email: "",
 };
 
 const authenticateSlice = createSlice({
@@ -17,10 +19,15 @@ const authenticateSlice = createSlice({
   reducers: {
     setAuthentication: (
       state,
-      action: PayloadAction<{ isAuthenticate: Boolean; name: string }>
+      action: PayloadAction<{
+        isAuthenticate: Boolean;
+        name: string;
+        email: string;
+      }>
     ) => {
       (state.isAuthenticate = action.payload.isAuthenticate),
         (state.name = action.payload.name);
+      state.email = action.payload.email;
     },
   },
 });
