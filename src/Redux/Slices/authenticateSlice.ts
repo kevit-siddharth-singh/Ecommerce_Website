@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
-type AuthenticateState = {
+export type AuthenticateState = {
   isAuthenticate: Boolean;
   name: string;
   email: string;
