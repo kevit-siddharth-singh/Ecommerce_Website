@@ -20,8 +20,14 @@ const ProductList = () => {
   return (
     <div>
       <Header />
-      <Sidebar />
-      <Product />
+      <div className="flex">
+        <div className="sidebar-wrapper  bg-red-500 w-1/6">
+          <Sidebar />
+        </div>
+        <div className="product-wrapper  bg-blue-500 w-5/6">
+          <Product />
+        </div>
+      </div>
     </div>
   );
 };

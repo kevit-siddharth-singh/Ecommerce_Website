@@ -2,7 +2,11 @@
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <div>
+        {/* Category Section */}
+        {/* Price Section */}
+        {/* Category Section */}
+    </div>
   )
 }
 
