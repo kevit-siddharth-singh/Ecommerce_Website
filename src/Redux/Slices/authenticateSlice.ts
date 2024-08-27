@@ -5,12 +5,14 @@ export type AuthenticateState = {
   isAuthenticate: Boolean;
   name: string;
   email: string;
+  password: string;
 };
 
 const initialState: AuthenticateState = {
   isAuthenticate: false,
   name: "",
   email: "",
+  password: "",
 };
 
 const authenticateSlice = createSlice({
@@ -23,11 +25,17 @@ const authenticateSlice = createSlice({
         isAuthenticate: Boolean;
         name: string;
         email: string;
+        password: string;
       }>
     ) => {
       (state.isAuthenticate = action.payload.isAuthenticate),
         (state.name = action.payload.name);
       state.email = action.payload.email;
+      state.password = action.payload.password;
+    },
+
+    setLogin: (state, action: PayloadAction<{ isAuthenticate: Boolean }>) => {
+      state.isAuthenticate = action.payload.isAuthenticate;
     },
   },
 });

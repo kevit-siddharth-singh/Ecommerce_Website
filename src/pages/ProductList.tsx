@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useAppSelector } from "../Redux/store";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import Sidebar from "./../components/Sidebar";
+import Product from "./../components/Product";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -15,9 +17,13 @@ const ProductList = () => {
     }
   });
 
-  return <div>
-    <Header/>
-  </div>;
+  return (
+    <div>
+      <Header />
+      <Sidebar />
+      <Product />
+    </div>
+  );
 };
 
 export default ProductList;

@@ -59,8 +59,9 @@ const SignUpForm: React.FC = () => {
       dispatch(
         authActions.setAuthentication({
           email: formValues.email,
-          isAuthenticate: true,
+          isAuthenticate: false,
           name: formValues.firstName,
+          password: formValues.password,
         })
       );
 
@@ -79,7 +80,7 @@ const SignUpForm: React.FC = () => {
     } else {
       setErrors(validationErrors);
     }
-    navigate('/product');
+    navigate("/Login");
   };
   console.log({ data });
   return (
@@ -154,7 +155,10 @@ const SignUpForm: React.FC = () => {
           </button>
           <p className="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-400">
             Already have an account?
-            <a href="#" className="text-gray-700 underline dark:text-gray-200">
+            <a
+              className="text-gray-700 underline dark:text-gray-200"
+              onClick={() => navigate("/login")}
+            >
               Log in
             </a>
             .
