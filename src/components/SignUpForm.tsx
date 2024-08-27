@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { authActions } from "../Redux/Slices/authenticateSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm: React.FC = () => {
   // State to store form values
@@ -19,6 +20,8 @@ const SignUpForm: React.FC = () => {
   // Access Redux state and dispatch function
   const data = useAppSelector((state) => state.authentication);
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   // Handle input changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,6 +79,7 @@ const SignUpForm: React.FC = () => {
     } else {
       setErrors(validationErrors);
     }
+    navigate('/product');
   };
   console.log({ data });
   return (
