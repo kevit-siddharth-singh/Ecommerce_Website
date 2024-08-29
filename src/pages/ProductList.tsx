@@ -18,7 +18,7 @@ const ProductList = () => {
 
   if (data) {
     content = (
-      <ul className="grid grid-cols-5 place-items-center m-2 p-5 gap-10 ">
+      <ul className="grid grid-cols-5 place-items-center m-2 p-5  gap-10 ">
         {data.map((product: ProductType) => (
           <li className="cursor-pointer ">
             <Product product={product} />
@@ -46,7 +46,7 @@ const ProductList = () => {
         <div className="sidebar-wrapper w-1/6 ">
           <Sidebar />
         </div>
-        <div className="product-wrapper w-5/6  overflow-y-auto">{content}</div>
+        <div className="product-wrapper w-5/6  ">{content}</div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="sticky z-[999] top-0">
+    <div className="sticky z-[999] top-0 ">
       <div className="navbar bg-base-300 ">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">Sky-Shop</a>

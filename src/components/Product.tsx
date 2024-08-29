@@ -21,7 +21,9 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
           <p className="text-sm">({props.product.rating.count})</p>
         </div>
 
-        <p className="text-black capitalize text-[0.9rem]  truncate ">{props.product.description}</p>
+        <p className="text-black capitalize text-[0.9rem]  truncate ">
+          {props.product.description}
+        </p>
 
         <div className="flex justify-between  pr-1">
           <p className="text-purple-500 font-bold">
@@ -33,7 +35,9 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         </div>
       </div>
 
-      <button className="bg-green-500 p-2 rounded-md text-white">Add to cart</button>
+      <button className="bg-green-500 p-2 rounded-md text-white">
+        Add to cart
+      </button>
     </div>
   );
 };
