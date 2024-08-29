@@ -4,7 +4,7 @@ import Rating from "./Rating.tsx";
 const Product: React.FC<{ product: ProductType }> = (props) => {
   // console.log(props.product);
   return (
-    <div className="flex flex-col w-[16rem] h-[21rem] p-2 rounded-box bg-white  items-center ">
+    <div className="flex flex-col w-[16rem] h-[21rem] p-2 rounded-box bg-white  items-center  ">
       <img
         className="h-[9rem] w-[10rem]  rounded-box"
         src={props.product.image}

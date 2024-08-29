@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div>
+    <div className="sticky z-[999] top-0">
       <div className="navbar bg-base-300 ">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">Sky-Shop</a>
@@ -60,7 +60,6 @@ const Header = () => {
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
-              
             >
               <div className="w-10 rounded-full">
                 <img

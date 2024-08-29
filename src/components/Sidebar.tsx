@@ -6,6 +6,9 @@ const Sidebar = () => {
         {/* Category Section */}
         {/* Price Section */}
         {/* Category Section */}
+
+
+        
     </div>
   )
 }
