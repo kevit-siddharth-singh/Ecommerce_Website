@@ -1,11 +1,10 @@
-import { fetchProduct, ProductType } from "../utils/ProductFetch";
+import { ProductType } from "../utils/ProductFetch";
 
-const Product = () => {
-  const data = fetchProduct();
-  console.log({ data });
+const Product: React.FC<{ product: ProductType }> = (props) => {
   return (
-    <div>
-      <h1>Recommended</h1>
+    <div className="flex flex-col w-10">
+      <img src={props.product.image} alt="img"  />
+      <h1>{props.product.title}</h1>
     </div>
   );
 };

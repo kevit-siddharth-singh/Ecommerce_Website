@@ -13,7 +13,12 @@ export async function fetchProduct() {
   const res = await axios.get("https://fakestoreapi.com/products");
 
   if (res.status === 200) {
-    return res.data;
+    const { data } = res;
+    // console.log(data);
+    return data;
   }
-  return null;
+  if (res.status !== 200) {
+    const error = new Error("An Error occurred !");
+    return error;
+  }
 }
