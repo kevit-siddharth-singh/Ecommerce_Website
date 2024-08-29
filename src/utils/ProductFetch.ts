@@ -7,6 +7,7 @@ export type ProductType = {
   image: string;
   rating: { rate: number; count: number };
   title: string;
+  price: number;
 };
 
 export async function fetchProduct() {
