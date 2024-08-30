@@ -1,10 +1,13 @@
 import { authActions } from "../Redux/Slices/authenticateSlice";
 import { useAppDispatch } from "../Redux/store";
+import Dialog from "./Dialog";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   return (
     <div className="sticky z-[999] top-0 ">
+      {/* Modal / Dialog */}
+      <Dialog />
       <div className="navbar bg-base-300 gap-10">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">Sky-Shop</a>
@@ -77,7 +80,12 @@ const Header = () => {
               className="menu menu-sm dropdown-content bg-base-300  rounded-box z-[1] mt-3 mr-1 w-52 p-2 shadow-[0_10px_20px_rgba(0,_0,_0,_0.7)]"
             >
               <li className="hover:text-emerald-400">
-                <a className="justify-between">
+                <a
+                  className="justify-between"
+                  onClick={() =>
+                    document.getElementById("my_modal_1").showModal()
+                  }
+                >
                   Profile
                   <span className="badge text-emerald-400 bg-slate-700">
                     New
