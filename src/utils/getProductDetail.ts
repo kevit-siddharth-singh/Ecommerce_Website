@@ -6,7 +6,7 @@ export async function getProductDetail(id: string) {
   if (res.status === 200) {
     const { data } = res;
 
-    console.log(data);
+    // console.log(data);
     return data;
   }
   if (res.status !== 200) {

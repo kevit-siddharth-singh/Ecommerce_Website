@@ -16,13 +16,13 @@ const ProductList = () => {
   });
 
   let content = <Loading />;
-
-  if (data) {
+  // console.log(data);
+  if (data !== null && data !== undefined) {
     content = (
       <ul className="grid grid-cols-5 place-items-center m-2 p-5  gap-10 ">
         {data.map((product: ProductType) => (
           <li key={product.id} className="cursor-pointer ">
-            <Product product={product}  />
+            <Product product={product} />
           </li>
         ))}
       </ul>
