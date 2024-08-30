@@ -1,12 +1,30 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import { useNavigate } from "react-router-dom";
 import { authActions } from "../Redux/Slices/authenticateSlice";
 
+// Importing React-Toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const LoginForm: React.FC = () => {
+  // Initializing Toast
+  const SignUpSuccess = () =>
+    toast.success("Signup Successfully!", {
+      position: "bottom-right",
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
   const userData = useAppSelector((state) => state.authentication);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   // State for form inputs
   const [formValues, setFormValues] = useState({
     email: "",
@@ -21,6 +39,12 @@ const LoginForm: React.FC = () => {
 
   // State for password visibility
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (userData.email) {
+      SignUpSuccess();
+    }
+  });
 
   // Handle input changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -88,133 +112,149 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mb-0 mt-6 bg-base-300 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
-    >
-      <p className="text-center text-lg font-medium">Sign in to your account</p>
-
-      <div>
-        <label htmlFor="email" className="sr-only">
-          Email
-        </label>
-        <div className="relative">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formValues.email}
-            onChange={handleChange}
-            className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm bg-base-200"
-            placeholder="Enter email"
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email}</p>
-          )}
-          <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-4 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-              />
-            </svg>
-          </span>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="password" className="sr-only">
-          Password
-        </label>
-        <div className="relative">
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            name="password"
-            value={formValues.password}
-            onChange={handleChange}
-            className="w-full rounded-lg bg-base-200 border-gray-200 p-4 pe-12 text-sm shadow-sm"
-            placeholder="Enter password"
-          />
-          <span
-            className="absolute inset-y-0 end-0 grid place-content-center px-4 cursor-pointer"
-            onClick={togglePasswordVisibility}
-          >
-            {showPassword ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-4 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-4 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                />
-              </svg>
-            )}
-          </span>
-          {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password}</p>
-          )}
-        </div>
-      </div>
-
-      <button
-        type="submit"
-        className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+    <>
+      {/* Toast Component */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        theme="colored"
+      />
+      <form
+        onSubmit={handleSubmit}
+        className="mb-0 mt-6 bg-base-300 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
       >
-        Sign in
-      </button>
+        <p className="text-center text-lg font-medium">
+          Sign in to your account
+        </p>
 
-      <p className="text-center text-sm text-gray-500">
-        No account?
-        <a
-          className="underline ml-2 text-indigo-600"
-          onClick={() => navigate("/signup")}
+        <div>
+          <label htmlFor="email" className="sr-only">
+            Email
+          </label>
+          <div className="relative">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formValues.email}
+              onChange={handleChange}
+              className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm bg-base-200"
+              placeholder="Enter email"
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email}</p>
+            )}
+            <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="size-4 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="password" className="sr-only">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              autoComplete="true"
+              value={formValues.password}
+              onChange={handleChange}
+              className="w-full rounded-lg bg-base-200 border-gray-200 p-4 pe-12 text-sm shadow-sm"
+              placeholder="Enter password"
+            />
+            <span
+              className="absolute inset-y-0 end-0 grid place-content-center px-4 cursor-pointer"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="size-4 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="size-4 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+              )}
+            </span>
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password}</p>
+            )}
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white "
         >
-          Sign up
-        </a>
-      </p>
-    </form>
+          Sign in
+        </button>
+
+        <p className="text-center text-sm text-gray-500">
+          No account?
+          <a
+            className="underline ml-2 text-indigo-600 font-semibold cursor-pointer"
+            onClick={() => navigate("/signup")}
+          >
+            Sign up
+          </a>
+        </p>
+      </form>
+    </>
   );
 };
 

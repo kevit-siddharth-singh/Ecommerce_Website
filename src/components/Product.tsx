@@ -4,9 +4,9 @@ import Rating from "./Rating.tsx";
 const Product: React.FC<{ product: ProductType }> = (props) => {
   // console.log(props.product);
   return (
-    <div className="flex flex-col w-[16rem] h-[21rem] p-2 rounded-box bg-white  items-center  ">
+    <div className="flex flex-col w-[16rem] h-[21rem] p-2 rounded-box bg-white  items-center hover:translate-y-[-10px] transition ease-in-out">
       <img
-        className="h-[9rem] w-[10rem]  rounded-box"
+        className="h-[9rem] w-[10rem] p-1 rounded-box hover:scale-105 transition ease-in-out hover:drop-shadow-2xl"
         src={props.product.image}
         alt="img"
       />
@@ -35,7 +35,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         </div>
       </div>
 
-      <button className="bg-green-500 p-2 rounded-md text-white">
+      <button className="bg-green-500 p-2 rounded-md text-white transition ease-in-out hover:bg-green-600 ">
         Add to cart
       </button>
     </div>

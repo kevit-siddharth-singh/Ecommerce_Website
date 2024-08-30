@@ -7,6 +7,7 @@ import Product from "./../components/Product";
 
 import { fetchProduct, ProductType } from "../utils/ProductFetch";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../components/Loading";
 
 const ProductList = () => {
   const { data } = useQuery({
@@ -14,7 +15,7 @@ const ProductList = () => {
     queryFn: fetchProduct,
   });
 
-  let content;
+  let content = <Loading />;
 
   if (data) {
     content = (

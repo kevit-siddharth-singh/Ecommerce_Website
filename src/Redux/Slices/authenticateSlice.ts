@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
 export type AuthenticateState = {
-  isAuthenticate: Boolean;
+  isAuthenticate: boolean;
   name: string;
   email: string;
   password: string;
@@ -22,7 +22,7 @@ const authenticateSlice = createSlice({
     setAuthentication: (
       state,
       action: PayloadAction<{
-        isAuthenticate: Boolean;
+        isAuthenticate: boolean;
         name: string;
         email: string;
         password: string;
@@ -34,8 +34,11 @@ const authenticateSlice = createSlice({
       state.password = action.payload.password;
     },
 
-    setLogin: (state, action: PayloadAction<{ isAuthenticate: Boolean }>) => {
+    setLogin: (state, action: PayloadAction<{ isAuthenticate: boolean }>) => {
       state.isAuthenticate = action.payload.isAuthenticate;
+    },
+    setLogout: (state) => {
+      state.isAuthenticate = false;
     },
   },
 });

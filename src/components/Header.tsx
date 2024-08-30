@@ -1,4 +1,8 @@
+import { authActions } from "../Redux/Slices/authenticateSlice";
+import { useAppDispatch } from "../Redux/store";
+
 const Header = () => {
+  const dispatch = useAppDispatch();
   return (
     <div className="sticky z-[999] top-0 ">
       <div className="navbar bg-base-300 ">
@@ -82,7 +86,7 @@ const Header = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={() => dispatch(authActions.setLogout())}>Logout</a>
               </li>
             </ul>
           </div>

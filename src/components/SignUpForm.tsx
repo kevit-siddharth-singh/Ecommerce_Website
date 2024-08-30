@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { authActions } from "../Redux/Slices/authenticateSlice";
-import { useAppDispatch, useAppSelector } from "../Redux/store";
+import { useAppDispatch } from "../Redux/store";
 import { useNavigate } from "react-router-dom";
 
 const SignUpForm: React.FC = () => {
@@ -10,6 +10,7 @@ const SignUpForm: React.FC = () => {
     email: "",
     password: "",
   });
+
   // State to store form errors
   const [errors, setErrors] = useState({
     firstName: "",
@@ -18,9 +19,7 @@ const SignUpForm: React.FC = () => {
   });
 
   // Access Redux state and dispatch function
-  const data = useAppSelector((state) => state.authentication);
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
   // Handle input changes
@@ -29,6 +28,12 @@ const SignUpForm: React.FC = () => {
     setFormValues((prevValues) => ({
       ...prevValues,
       [name]: value,
+    }));
+
+    // Reset errors for the field being modified
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
     }));
   };
 
@@ -46,12 +51,15 @@ const SignUpForm: React.FC = () => {
     if (!formValues.password) newErrors.password = "Password is required";
     else if (formValues.password.length < 6)
       newErrors.password = "Password must be at least 6 characters long";
+
+    setErrors(newErrors);
     return newErrors;
   };
 
   // Handle form submission
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
     const validationErrors = validate();
     if (Object.values(validationErrors).every((error) => error === "")) {
       // No validation errors
@@ -71,18 +79,19 @@ const SignUpForm: React.FC = () => {
         email: "",
         password: "",
       });
+
       // Optionally reset form values after submission
       setFormValues({
         firstName: "",
         email: "",
         password: "",
       });
-    } else {
-      setErrors(validationErrors);
+
+      // Navigate after successful submission
+      navigate("/Login");
     }
-    navigate("/Login");
   };
-  console.log({ data });
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
@@ -136,6 +145,7 @@ const SignUpForm: React.FC = () => {
           <input
             type="password"
             id="Password"
+            autoComplete="true"
             name="password"
             value={formValues.password}
             onChange={handleChange}
@@ -156,7 +166,7 @@ const SignUpForm: React.FC = () => {
           <p className="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-400">
             Already have an account?
             <a
-              className="text-gray-700 underline dark:text-gray-200"
+              className="text-gray-700 underline dark:text-gray-200 ml-1 cursor-pointer hover:text-blue-400 font-semibold"
               onClick={() => navigate("/login")}
             >
               Log in
