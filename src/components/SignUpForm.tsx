@@ -63,7 +63,7 @@ const SignUpForm: React.FC = () => {
     const validationErrors = validate();
     if (Object.values(validationErrors).every((error) => error === "")) {
       // No validation errors
-      console.log("Form submitted:", formValues);
+
       dispatch(
         authActions.setAuthentication({
           email: formValues.email,
