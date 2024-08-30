@@ -21,8 +21,8 @@ const ProductList = () => {
     content = (
       <ul className="grid grid-cols-5 place-items-center m-2 p-5  gap-10 ">
         {data.map((product: ProductType) => (
-          <li className="cursor-pointer ">
-            <Product product={product} />
+          <li key={product.id} className="cursor-pointer ">
+            <Product product={product}  />
           </li>
         ))}
       </ul>

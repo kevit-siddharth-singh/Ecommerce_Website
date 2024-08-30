@@ -4,7 +4,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   return (
     <>
-      <div className="absolute  product-image bg-red-500 backdrop-blur-sm">
+      <div className="product-image  ">
         <img src="" alt="" />
         <p>hey im sid {id}</p>
       </div>

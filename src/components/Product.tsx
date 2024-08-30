@@ -1,14 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { ProductType } from "../utils/ProductFetch";
 import Rating from "./Rating.tsx";
 
 const Product: React.FC<{ product: ProductType }> = (props) => {
-  // console.log(props.product);
-  function print() {
-    console.log(props.product.id);
-  }
+  const navigate = useNavigate();
   return (
     <div
-      onClick={print}
+      onClick={() => navigate(`/product/${props.product.id}`)}
       className="flex flex-col w-[16rem] h-[21rem] p-2 rounded-box bg-white  items-center hover:translate-y-[-10px] transition ease-in-out "
     >
       <img
