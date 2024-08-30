@@ -70,6 +70,7 @@ const SignUpForm: React.FC = () => {
           isAuthenticate: false,
           name: formValues.firstName,
           password: formValues.password,
+          signupsuccess: true,
         })
       );
 

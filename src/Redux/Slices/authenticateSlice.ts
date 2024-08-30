@@ -6,6 +6,7 @@ export type AuthenticateState = {
   name: string;
   email: string;
   password: string;
+  signupsuccess: boolean;
 };
 
 const initialState: AuthenticateState = {
@@ -13,6 +14,7 @@ const initialState: AuthenticateState = {
   name: "",
   email: "",
   password: "",
+  signupsuccess: false,
 };
 
 const authenticateSlice = createSlice({
@@ -26,12 +28,14 @@ const authenticateSlice = createSlice({
         name: string;
         email: string;
         password: string;
+        signupsuccess: boolean;
       }>
     ) => {
-      (state.isAuthenticate = action.payload.isAuthenticate),
-        (state.name = action.payload.name);
+      state.isAuthenticate = action.payload.isAuthenticate;
+      state.name = action.payload.name;
       state.email = action.payload.email;
       state.password = action.payload.password;
+      state.signupsuccess = action.payload.signupsuccess;
     },
 
     setLogin: (state, action: PayloadAction<{ isAuthenticate: boolean }>) => {
@@ -39,6 +43,7 @@ const authenticateSlice = createSlice({
     },
     setLogout: (state) => {
       state.isAuthenticate = false;
+      state.signupsuccess = false;
     },
   },
 });

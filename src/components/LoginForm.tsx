@@ -41,10 +41,11 @@ const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    if (userData.email) {
+    if (userData.signupsuccess && userData.email) {
       SignUpSuccess();
     }
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle input changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
