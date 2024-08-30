@@ -47,6 +47,7 @@ const ProductList = () => {
         <div className="sidebar-wrapper w-1/6 ">
           <Sidebar />
         </div>
+
         <div className="product-wrapper w-5/6  ">{content}</div>
       </div>
     </div>

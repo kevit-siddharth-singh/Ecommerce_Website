@@ -3,8 +3,14 @@ import Rating from "./Rating.tsx";
 
 const Product: React.FC<{ product: ProductType }> = (props) => {
   // console.log(props.product);
+  function print() {
+    console.log(props.product.id);
+  }
   return (
-    <div className="flex flex-col w-[16rem] h-[21rem] p-2 rounded-box bg-white  items-center hover:translate-y-[-10px] transition ease-in-out">
+    <div
+      onClick={print}
+      className="flex flex-col w-[16rem] h-[21rem] p-2 rounded-box bg-white  items-center hover:translate-y-[-10px] transition ease-in-out "
+    >
       <img
         className="h-[9rem] w-[10rem] p-1 rounded-box hover:scale-105 transition ease-in-out hover:drop-shadow-2xl"
         src={props.product.image}
