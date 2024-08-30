@@ -49,10 +49,10 @@ const Header = () => {
               className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
             >
               <div className="card-body bg-base-300 rounded-box">
-                <span className="text-lg font-bold">8 Items</span>
+                <span className="text-lg font-bold text-white">8 Items</span>
                 <span className="text-info">Subtotal: $999</span>
                 <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
+                  <button className="btn btn-primary text-white btn-block">
                     View cart
                   </button>
                 </div>
@@ -76,16 +76,16 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-300 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              <li>
+              <li className="hover:text-emerald-400">
                 <a className="justify-between">
                   Profile
-                  <span className="badge">New</span>
+                  <span className="badge text-emerald-400 bg-slate-700">New</span>
                 </a>
               </li>
-              <li>
+              <li className="hover:text-emerald-400">
                 <a>Settings</a>
               </li>
-              <li>
+              <li className="hover:text-emerald-400">
                 <a onClick={() => dispatch(authActions.setLogout())}>Logout</a>
               </li>
             </ul>
