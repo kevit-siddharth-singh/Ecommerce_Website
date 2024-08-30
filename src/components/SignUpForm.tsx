@@ -89,7 +89,7 @@ const SignUpForm: React.FC = () => {
       });
 
       // Navigate after successful submission
-      navigate("/Login");
+      navigate("/Login", { replace: true });
     }
   };
 
