@@ -5,7 +5,7 @@ const Header = () => {
   const dispatch = useAppDispatch();
   return (
     <div className="sticky z-[999] top-0 ">
-      <div className="navbar bg-base-300 ">
+      <div className="navbar bg-base-300 gap-10">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">Sky-Shop</a>
         </div>
@@ -18,7 +18,7 @@ const Header = () => {
             className="input input-bordered w-24 md:w-auto"
           />
         </div>
-        <div className="flex-none">
+        <div className="flex-none flex gap-5">
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -65,7 +65,7 @@ const Header = () => {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
+              <div className="w-10 rounded-full ">
                 <img
                   alt="Tailwind CSS Navbar component"
                   src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
@@ -74,12 +74,14 @@ const Header = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-300 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-300  rounded-box z-[1] mt-3 mr-1 w-52 p-2 shadow-[0_10px_20px_rgba(0,_0,_0,_0.7)]"
             >
               <li className="hover:text-emerald-400">
                 <a className="justify-between">
                   Profile
-                  <span className="badge text-emerald-400 bg-slate-700">New</span>
+                  <span className="badge text-emerald-400 bg-slate-700">
+                    New
+                  </span>
                 </a>
               </li>
               <li className="hover:text-emerald-400">
