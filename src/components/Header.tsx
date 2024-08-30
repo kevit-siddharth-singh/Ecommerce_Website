@@ -82,9 +82,12 @@ const Header = () => {
               <li className="hover:text-emerald-400">
                 <a
                   className="justify-between"
-                  onClick={() =>
-                    document.getElementById("my_modal_2").showModal()
-                  }
+                  onClick={() => {
+                    const dialog: HTMLDialogElement = document.getElementById(
+                      "my_modal_2"
+                    ) as HTMLDialogElement;
+                    dialog.showModal();
+                  }}
                 >
                   Profile
                   <span className="badge text-emerald-400 bg-slate-700">
