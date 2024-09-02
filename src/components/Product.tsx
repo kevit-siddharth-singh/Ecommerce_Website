@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "../utils/ProductFetch";
 import Rating from "./Rating.tsx";
+import { useAppDispatch } from "../Redux/store.ts";
+import { cartActions } from "../Redux/Slices/cartSlice.ts";
 
 const Product: React.FC<{ product: ProductType }> = (props) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   return (
     <div
       onClick={() => navigate(`/product/${props.product.id}`)}
@@ -42,7 +46,14 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
       <button
         onClick={(e) => {
           e.stopPropagation();
-          navigate("/product/cart");
+          dispatch(
+            cartActions.addItemToCart({
+              id: props.product.id,
+              name: props.product.title,
+              price: props.product.price,
+              quantity: 1,
+            })
+          );
         }}
         className="bg-green-500 p-2 rounded-md text-white transition ease-in-out hover:bg-green-600 "
       >

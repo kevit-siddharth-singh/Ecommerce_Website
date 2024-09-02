@@ -13,7 +13,7 @@ const ProductDetail = () => {
     queryKey: ["products", { productId: id }],
     queryFn: () => getProductDetail(id!),
   });
-  console.log(data);
+  // console.log(data);
   return data ? (
     <div className="m-10  flex justify-center  gap-24  ">
       {/* Can use Slice Method here for getting desired length String for Product title */}
@@ -49,7 +49,12 @@ const ProductDetail = () => {
             <p>₹ {data.price}</p>
           </div>
         </div>
-        <CartActionBtns />
+        <CartActionBtns
+          id={data.id}
+          name={data.title}
+          price={data.price}
+          quantity={1}
+        />
       </div>
     </div>
   ) : (

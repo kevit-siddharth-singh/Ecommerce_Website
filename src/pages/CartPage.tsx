@@ -10,7 +10,7 @@ const CartPage = () => {
       onClick={() => {
         dispatch(
           cartActions.addItemToCart({
-            id: "3",
+            id: 1,
             name: "siddhu",
             price: 30,
             quantity: 0,
