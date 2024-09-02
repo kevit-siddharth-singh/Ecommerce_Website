@@ -5,6 +5,7 @@ import Loading from "../components/Loading";
 import { getProductDetail } from "../utils/getProductDetail";
 import BreadCrumbs from "../components/BreadCrumbs";
 import Rating from "../components/Rating";
+import CartActionBtns from "../components/CartActionBtns";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -49,6 +50,7 @@ const ProductDetail = () => {
             <p>₹ {data.price}</p>
           </div>
         </div>
+          <CartActionBtns />
       </div>
     </div>
   ) : (
