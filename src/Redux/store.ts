@@ -2,6 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authenticateReducer from "./Slices/authenticateSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
+import cartReducer from "./Slices/cartSlice";
+
 // Redux Persist import
 import {
   persistReducer,
@@ -23,6 +25,7 @@ const persistConfig = {
 // Combine Reducer
 const reducer = combineReducers({
   authentication: authenticateReducer,
+  cart: cartReducer,
 });
 
 // Persisted Reducer

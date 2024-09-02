@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { authActions } from "../Redux/Slices/authenticateSlice";
-import { useAppDispatch } from "../Redux/store";
+import { useAppDispatch, useAppSelector } from "../Redux/store";
 import Dialog from "./Dialog";
 
 const Header = () => {
+  const { totalQuantity, totalAmount } = useAppSelector((state) => state.cart);
+  // console.log(totalAmount, totalQuantity);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   return (
     <div className="sticky z-[999] top-0 ">
       {/* Modal / Dialog */}
@@ -43,7 +47,9 @@ const Header = () => {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-                <span className="badge badge-xs indicator-item ">99</span>
+                <span className="badge badge-xs indicator-item ">
+                  {totalQuantity}
+                </span>
               </div>
             </div>
 
@@ -52,10 +58,15 @@ const Header = () => {
               className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
             >
               <div className="card-body bg-base-300 rounded-box">
-                <span className="text-lg font-bold text-white">8 Items</span>
-                <span className="text-info">Subtotal: $999</span>
+                <span className="text-lg font-bold text-white">
+                  {totalQuantity} Items
+                </span>
+                <span className="text-info">Subtotal : ₹{totalAmount} </span>
                 <div className="card-actions">
-                  <button className="btn btn-primary text-white btn-block">
+                  <button
+                    onClick={() => navigate("/product/cart")}
+                    className="btn btn-primary text-white btn-block"
+                  >
                     View cart
                   </button>
                 </div>

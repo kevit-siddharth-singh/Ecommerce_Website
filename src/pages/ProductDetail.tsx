@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-
 import Loading from "../components/Loading";
 import { getProductDetail } from "../utils/getProductDetail";
 import BreadCrumbs from "../components/BreadCrumbs";
@@ -37,7 +36,7 @@ const ProductDetail = () => {
           <p className=" text-white text-2xl font-semibold">Category :</p>
           <li className="text-emerald-400">{data.category}</li>
         </div>
-        <div className="specification flex  justify-between bg-neutral-900 p-4 rounded-md">
+        <div className="specification flex  justify-between bg-zinc-900 p-4 rounded-md">
           <div className="color">
             <p className="color text-white text-2xl font-semibold">Color</p>
             <p className="">White</p>
@@ -50,7 +49,7 @@ const ProductDetail = () => {
             <p>₹ {data.price}</p>
           </div>
         </div>
-          <CartActionBtns />
+        <CartActionBtns />
       </div>
     </div>
   ) : (
