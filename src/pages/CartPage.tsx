@@ -1,24 +1,19 @@
-import { cartActions } from "../Redux/Slices/cartSlice";
-import { useAppDispatch, useAppSelector } from "../Redux/store";
+import CartItems from "../components/CartItems";
+import { useAppSelector } from "../Redux/store";
 
 const CartPage = () => {
-  const dispatch = useAppDispatch();
-  const cartData = useAppSelector((state) => state.cart);
-  console.log(cartData);
+  // const dispatch = useAppDispatch();
+  const { items, totalAmount, totalQuantity } = useAppSelector(
+    (state) => state.cart
+  );
+
   return (
-    <div
-      onClick={() => {
-        dispatch(
-          cartActions.addItemToCart({
-            id: 1,
-            name: "siddhu",
-            price: 30,
-            quantity: 0,
-          })
-        );
-      }}
-    >
-      CartPage
+    <div className="cartItem-wrapper">
+      <CartItems
+        items={items}
+        totalAmount={totalAmount}
+        totalQuantity={totalQuantity}
+      />
     </div>
   );
 };

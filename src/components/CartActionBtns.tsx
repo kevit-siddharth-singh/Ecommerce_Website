@@ -8,7 +8,8 @@ const CartActionBtns: React.FC<{
   name: string;
   price: number;
   quantity: number;
-}> = ({ id, name, price, quantity }) => {
+  image: string;
+}> = ({ id, name, price, quantity, image }) => {
   const dispatch = useAppDispatch();
 
   // console.log(id, name, price, quantity);
@@ -24,6 +25,7 @@ const CartActionBtns: React.FC<{
               name,
               price,
               quantity,
+              image,
             })
           )
         }
