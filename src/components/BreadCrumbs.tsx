@@ -1,4 +1,4 @@
-const BreadCrumbs = () => {
+const BreadCrumbs: React.FC<{ product: string }> = ({ product }) => {
   return (
     <>
       <div className="breadcrumbs text-sm">
@@ -7,9 +7,9 @@ const BreadCrumbs = () => {
             <a>Home</a>
           </li>
           <li>
-            <a>Documents</a>
+            <a>Products</a>
           </li>
-          <li>Add Document</li>
+          <li>{product}</li>
         </ul>
       </div>
     </>

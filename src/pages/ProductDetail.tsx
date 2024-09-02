@@ -12,10 +12,11 @@ const ProductDetail = () => {
     queryKey: ["products", { productId: id }],
     queryFn: () => getProductDetail(id!),
   });
-
+  console.log(data);
   return data ? (
-    <div className="p-2">
-      <BreadCrumbs />
+    <div className="p-2 flex justify-center items-center  ">
+      {/* Can use Slice Method here for getting desired length String for Product title */}
+      <BreadCrumbs product={data.title} />
       <div className="product-image ">
         <img src={""} alt="" />
       </div>
