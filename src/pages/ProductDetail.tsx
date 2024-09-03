@@ -13,7 +13,9 @@ const ProductDetail = () => {
     queryKey: ["products", { productId: id }],
     queryFn: () => getProductDetail(id!),
   });
-  console.log(data);
+  if (data) {
+    console.log(data.image);
+  }
   return data ? (
     <div className="m-10  flex justify-center  gap-24  ">
       {/* Can use Slice Method here for getting desired length String for Product title */}

@@ -51,6 +51,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
               id: props.product.id,
               name: props.product.title,
               price: props.product.price,
+              image: props.product.image,
               quantity: 1,
             })
           );
