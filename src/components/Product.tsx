@@ -35,7 +35,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         <div className="flex  justify-between  pr-1">
           <p className="flex  text-black text-3xl font-bold">
             <strong>₹</strong> {props.product.price}
-            <p className="text-sm line-through">
+            <p className="text-sm line-through text-red-500 mx-2">
               ₹{(props.product.price + Math.random() * 100).toFixed(2)}
             </p>
           </p>
