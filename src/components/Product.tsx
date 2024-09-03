@@ -64,7 +64,13 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
           </p>
         </button>
 
-        <button className="flex justify-center bg-orange-500 w-1/4   p-[0.35rem] px-10 rounded-md text-white  transition ease-in-out hover:bg-orange-600 ">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate("/checkout");
+          }}
+          className="flex justify-center bg-orange-500 w-1/4   p-[0.35rem] px-10 rounded-md text-white  transition ease-in-out hover:bg-orange-600 "
+        >
           Buy
         </button>
       </div>

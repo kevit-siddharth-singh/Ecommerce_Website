@@ -5,6 +5,7 @@ export type AuthenticateState = {
   isAuthenticate: boolean;
   name: string;
   email: string;
+  profile: string;
   password: string;
   signupsuccess: boolean;
 };
@@ -13,6 +14,7 @@ const initialState: AuthenticateState = {
   isAuthenticate: false,
   name: "",
   email: "",
+  profile: "",
   password: "",
   signupsuccess: false,
 };
@@ -44,6 +46,9 @@ const authenticateSlice = createSlice({
     setLogout: (state) => {
       state.isAuthenticate = false;
       state.signupsuccess = false;
+    },
+    setProfile: (state, action: PayloadAction<{ profile: string }>) => {
+      state.profile = action.payload.profile;
     },
   },
 });

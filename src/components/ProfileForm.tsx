@@ -1,7 +1,8 @@
 import { useAppSelector } from "../Redux/store";
+import UserImage from "./UserImage";
 
 const ProfileForm = () => {
-  const { name:username } = useAppSelector((state) => state.authentication);
+  const { name: username } = useAppSelector((state) => state.authentication);
 
   return (
     <>
@@ -10,7 +11,7 @@ const ProfileForm = () => {
           <h1 className="text-center text-4xl font-bold text-green-600 sm:text-4xl">
             Profile
           </h1>
-
+          <UserImage />
           <form action="#" className=" space-y-4 rounded-lg p-4  sm:p-6 lg:p-1">
             <p className="text-center text-lg font-medium">
               Enter below to edit your name

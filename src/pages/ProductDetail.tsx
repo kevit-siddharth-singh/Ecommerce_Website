@@ -5,10 +5,10 @@ import { getProductDetail } from "../utils/getProductDetail";
 import BreadCrumbs from "../components/BreadCrumbs";
 import Rating from "../components/Rating";
 import CartActionBtns from "../components/CartActionBtns";
-import ErrorPage from "./ErrorPage";
-
+ 
 const ProductDetail = () => {
   const { id } = useParams();
+  console.log(id);
   const { data } = useQuery({
     queryKey: ["products", { productId: id }],
     queryFn: () => getProductDetail(id!),
