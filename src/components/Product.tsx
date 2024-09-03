@@ -4,6 +4,9 @@ import Rating from "./Rating.tsx";
 import { useAppDispatch } from "../Redux/store.ts";
 import { cartActions } from "../Redux/Slices/cartSlice.ts";
 
+// React Icons
+import { MdOutlineShoppingCart } from "react-icons/md";
+
 const Product: React.FC<{ product: ProductType }> = (props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -11,7 +14,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
   return (
     <div
       onClick={() => navigate(`/product/${props.product.id}`)}
-      className="flex flex-col w-[16rem] h-[21rem] p-2 rounded-box bg-white  items-center hover:translate-y-[-10px] transition ease-in-out "
+      className="flex flex-col w-[16rem] h-[21rem] p-2 px-4  rounded-box bg-white  items-center hover:translate-y-[-10px] transition ease-in-out "
     >
       <img
         className="h-[9rem] w-[10rem] p-1 rounded-box hover:scale-105 transition ease-in-out hover:drop-shadow-2xl "
@@ -19,7 +22,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         alt="img"
       />
       <div className="product-data flex flex-col w-[14rem] gap-2 m-2">
-        <h1 className=" text-black font-bold  text-left truncate">
+        <h1 className=" text-black text-lg  text-left truncate">
           {props.product.title}
         </h1>
 
@@ -29,16 +32,12 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
           <p className="text-sm">({props.product.rating.count})</p>
         </div>
 
-        <p className="text-black capitalize text-[0.9rem]  truncate ">
-          {props.product.description}
-        </p>
-
-        <div className="flex justify-between  pr-1">
-          <p className="text-purple-500 font-bold">
+        <div className="flex  justify-between  pr-1">
+          <p className="flex  text-black text-3xl font-bold">
             <strong>₹</strong> {props.product.price}
-          </p>
-          <p className="text-red-500 font-bold capitalize">
-            {props.product.category}
+            <p className="text-sm line-through">
+              ₹{(props.product.price + Math.random() * 100).toFixed(2)}
+            </p>
           </p>
         </div>
       </div>
@@ -56,9 +55,12 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
             })
           );
         }}
-        className="bg-green-500 p-2 rounded-md text-white transition ease-in-out hover:bg-green-600 "
+        className="bg-green-500 w-full p-2 rounded-md text-white transition ease-in-out hover:bg-green-600 "
       >
-        Add to cart
+        <p className="flex justify-center items-center gap-2 text-xl">
+          <MdOutlineShoppingCart />
+          <p className="text-base">Add to cart</p>
+        </p>
       </button>
     </div>
   );

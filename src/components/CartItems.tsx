@@ -65,7 +65,7 @@ const CartItems: React.FC<{
                       <FaPlus />
                     </button>
                   </div>
-                  <p className="text-right text-yellow-300">₹{item.price}</p>
+                  <p className="text-right text-yellow-300">₹ {item.price}</p>
                 </div>
               </div>
               <div className="divider"></div>
