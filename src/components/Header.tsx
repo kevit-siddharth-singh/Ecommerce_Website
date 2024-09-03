@@ -5,6 +5,7 @@ import Dialog from "./Dialog";
 
 const Header = () => {
   const { totalQuantity, totalAmount } = useAppSelector((state) => state.cart);
+  const profile = useAppSelector((state) => state.authentication.profile);
   // console.log(totalAmount, totalQuantity);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -61,7 +62,9 @@ const Header = () => {
                 <span className="text-lg font-bold text-white">
                   {totalQuantity} Items
                 </span>
-                <span className="text-info">Subtotal : ₹{totalAmount.toFixed(2)} </span>
+                <span className="text-info">
+                  Subtotal : ₹{totalAmount.toFixed(2)}{" "}
+                </span>
                 <div className="card-actions">
                   <button
                     onClick={() => navigate("/product/cart")}
@@ -82,7 +85,10 @@ const Header = () => {
               <div className="w-10 rounded-full ">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  src={
+                    profile ? profile :
+                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  }
                 />
               </div>
             </div>

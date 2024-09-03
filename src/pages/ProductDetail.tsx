@@ -5,7 +5,7 @@ import { getProductDetail } from "../utils/getProductDetail";
 import BreadCrumbs from "../components/BreadCrumbs";
 import Rating from "../components/Rating";
 import CartActionBtns from "../components/CartActionBtns";
- 
+
 const ProductDetail = () => {
   const { id } = useParams();
   console.log(id);
