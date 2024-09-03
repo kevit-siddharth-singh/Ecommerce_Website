@@ -5,17 +5,15 @@ import { getProductDetail } from "../utils/getProductDetail";
 import BreadCrumbs from "../components/BreadCrumbs";
 import Rating from "../components/Rating";
 import CartActionBtns from "../components/CartActionBtns";
+import ErrorPage from "./ErrorPage";
 
 const ProductDetail = () => {
   const { id } = useParams();
-
   const { data } = useQuery({
     queryKey: ["products", { productId: id }],
     queryFn: () => getProductDetail(id!),
   });
-  if (data) {
-    console.log(data.image);
-  }
+
   return data ? (
     <div className="m-10  flex justify-center  gap-24  ">
       {/* Can use Slice Method here for getting desired length String for Product title */}

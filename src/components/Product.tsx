@@ -42,26 +42,32 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         </div>
       </div>
 
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          dispatch(
-            cartActions.addItemToCart({
-              id: props.product.id,
-              name: props.product.title,
-              price: props.product.price,
-              image: props.product.image,
-              quantity: 1,
-            })
-          );
-        }}
-        className="bg-green-500 w-full p-2 rounded-md text-white transition ease-in-out hover:bg-green-600 "
-      >
-        <p className="flex justify-center items-center gap-2 text-xl">
-          <MdOutlineShoppingCart />
-          <p className="text-base">Add to cart</p>
-        </p>
-      </button>
+      <div className="product-btn flex  w-full justify-between">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(
+              cartActions.addItemToCart({
+                id: props.product.id,
+                name: props.product.title,
+                price: props.product.price,
+                image: props.product.image,
+                quantity: 1,
+              })
+            );
+          }}
+          className="bg-green-500 w-2/4 p-[0.37rem] rounded-md text-white transition ease-in-out hover:bg-green-600 "
+        >
+          <p className="flex justify-center items-center gap-1 text-base">
+            <MdOutlineShoppingCart />
+            <p className="">Add to cart</p>
+          </p>
+        </button>
+
+        <button className="flex justify-center bg-orange-500 w-1/4   p-[0.35rem] px-10 rounded-md text-white  transition ease-in-out hover:bg-orange-600 ">
+          Buy
+        </button>
+      </div>
     </div>
   );
 };
