@@ -1,18 +1,21 @@
 // React - Icons Import
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
-import { CartItem } from "../Redux/Slices/cartSlice";
+import { cartActions, CartItem } from "../Redux/Slices/cartSlice";
 import EmptyCartCard from "./EmptyCartCard";
+import { useAppDispatch } from "../Redux/store";
 
 const CartItems: React.FC<{
   items: CartItem[];
   totalAmount: number;
   totalQuantity: number;
 }> = ({ items, totalAmount, totalQuantity }) => {
-  
+  // Redux App Dispatch
+  const dispatch = useAppDispatch();
+
   return (
     <div className="flex  justify-center">
-      {items.length !==0 ? (
+      {items.length !== 0 ? (
         <ul className="flex flex-col gap-2 p-10 w-4/5">
           {items.map((item) => (
             <li key={item.id} className="flex flex-col    ">
@@ -26,13 +29,31 @@ const CartItems: React.FC<{
                 <div className="item-data flex flex-col gap-4  w-full">
                   <p className="font-semibold text-white">{item.name}</p>
                   <div className="flex items-center gap-3">
-                    <button className="flex justify-center  bg-red-500  w-[3rem] text-white p-2 rounded">
+                    <button
+                      onClick={() =>
+                        dispatch(cartActions.removeItemFromCart(item.id))
+                      }
+                      className="flex justify-center  bg-red-500  w-[3rem] text-white p-2 rounded"
+                    >
                       <FaMinus />
                     </button>
                     <p className=" flex justify-center text-white text-xl font-medium border w-[2rem] rounded">
                       {item.quantity}
                     </p>
-                    <button className="flex justify-center  bg-emerald-400 w-[3rem]  text-white p-2 rounded ">
+                    <button
+                      onClick={() =>
+                        dispatch(
+                          cartActions.addItemToCart({
+                            id: item.id,
+                            image: item.image,
+                            name: item.name,
+                            price: item.price,
+                            quantity: item.quantity,
+                          })
+                        )
+                      }
+                      className="flex justify-center  bg-emerald-400 w-[3rem]  text-white p-2 rounded "
+                    >
                       <FaPlus />
                     </button>
                   </div>
@@ -43,7 +64,10 @@ const CartItems: React.FC<{
             </li>
           ))}
           <div className="flex justify-between">
-            <button className="border border-red-600 rounded p-3 text-red-500 ">
+            <button
+              onClick={() => dispatch(cartActions.clearCart())}
+              className="border border-red-600 rounded p-3 text-red-500   hover:bg-red-500 hover:text-white  "
+            >
               Empty Cart
             </button>
 
@@ -55,12 +79,14 @@ const CartItems: React.FC<{
             </div>
             <div className="text-right">
               <p className="text-white font-semibold">Total Amount</p>
-              <p className="text-emerald-500 font-semibold">₹ {totalAmount}</p>
+              <p className="text-emerald-500 font-semibold">
+                ₹ {totalAmount.toFixed(2)}
+              </p>
             </div>
           </div>
         </ul>
       ) : (
-        <EmptyCartCard/>
+        <EmptyCartCard />
       )}
     </div>
   );

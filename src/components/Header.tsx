@@ -61,7 +61,7 @@ const Header = () => {
                 <span className="text-lg font-bold text-white">
                   {totalQuantity} Items
                 </span>
-                <span className="text-info">Subtotal : ₹{totalAmount} </span>
+                <span className="text-info">Subtotal : ₹{totalAmount.toFixed(2)} </span>
                 <div className="card-actions">
                   <button
                     onClick={() => navigate("/product/cart")}
