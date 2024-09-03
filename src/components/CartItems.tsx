@@ -1,9 +1,11 @@
 // React - Icons Import
+import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 import { cartActions, CartItem } from "../Redux/Slices/cartSlice";
 import EmptyCartCard from "./EmptyCartCard";
 import { useAppDispatch } from "../Redux/store";
+import { useNavigate } from "react-router-dom";
 
 const CartItems: React.FC<{
   items: CartItem[];
@@ -12,11 +14,17 @@ const CartItems: React.FC<{
 }> = ({ items, totalAmount, totalQuantity }) => {
   // Redux App Dispatch
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   return (
-    <div className="flex  justify-center">
+    <div className="flex justify-center ">
       {items.length !== 0 ? (
-        <ul className="flex flex-col gap-2 p-10 w-4/5">
+        <ul className="flex flex-col gap-2 p-10 w-4/5 relative">
+          <button
+            onClick={() => navigate("/product")}
+            className="absolute right-9 flex  bg-red-500 active:bg-red-600 p-2 h-12 w-12 text-white justify-center items-center rounded-full"
+          >
+            <ImCross />
+          </button>
           {items.map((item) => (
             <li key={item.id} className="flex flex-col    ">
               <div className="flex gap-10">
@@ -57,7 +65,7 @@ const CartItems: React.FC<{
                       <FaPlus />
                     </button>
                   </div>
-                  <p className="text-right">₹{item.price}</p>
+                  <p className="text-right text-yellow-300">₹{item.price}</p>
                 </div>
               </div>
               <div className="divider"></div>
