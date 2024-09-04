@@ -25,6 +25,7 @@ const ProductList = () => {
   let content = <Loading />;
   // Logic for Making the Parent Container Div to be Relative or not
   let isRelative = undefined;
+
   if (search.length > 0) {
     isRelative = "relative";
   }
@@ -55,8 +56,7 @@ const ProductList = () => {
           ))}
         </ul>
       );
-    }
-    if (search.length > 0) {
+    } else {
       content = (
         <div className="absolute top-[50%] left-[40%] flex flex-col justify-center items-center">
           <img
@@ -75,8 +75,6 @@ const ProductList = () => {
           </button>
         </div>
       );
-    } else {
-      content = <Loading />;
     }
   }
 
@@ -98,7 +96,11 @@ const ProductList = () => {
         <div className="sidebar-wrapper w-1/6">
           <Sidebar />
         </div>
-        <div className="product-wrapper w-5/6">{content}</div>
+        {search === "" && !data ? (
+          <Loading />
+        ) : (
+          <div className="product-wrapper w-5/6">{content}</div>
+        )}
       </div>
     </div>
   );
