@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { authActions } from "../Redux/Slices/authenticateSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import Dialog from "./Dialog";
@@ -7,14 +8,26 @@ import { searchActions } from "../Redux/Slices/SearchSlice";
 const Header = () => {
   const { totalQuantity, totalAmount } = useAppSelector((state) => state.cart);
   const profile = useAppSelector((state) => state.authentication.profile);
-  // console.log(totalAmount, totalQuantity);
   const searchTerm = useAppSelector((state) => state.search.search);
+
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+   
+    const handler = setTimeout(() => {
+      dispatch(searchActions.setSearchTerm(debouncedSearchTerm));
+    }, 300); // Adjust the delay as needed (e.g., 300ms)
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [debouncedSearchTerm, dispatch]);
+
   return (
     <div className="sticky z-[999] top-0 ">
-      {/* Modal / Dialog */}
       <Dialog />
       <div className="navbar bg-base-300 gap-10">
         <div className="flex-1">
@@ -24,14 +37,12 @@ const Header = () => {
         {/* Search Bar */}
         <div className="form-control">
           <input
-            onChange={(e) =>
-              dispatch(searchActions.setSearchTerm(e.target.value))
-            }
+            onChange={(e) => setDebouncedSearchTerm(e.target.value)}
             type="text"
             placeholder={
               searchTerm.length !== 0 ? searchTerm : "Search Products"
             }
-            value={searchTerm}
+            value={debouncedSearchTerm}
             className="input input-bordered w-24 md:w-auto"
           />
         </div>

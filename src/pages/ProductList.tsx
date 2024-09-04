@@ -72,7 +72,7 @@ const ProductList = () => {
             onClick={() => dispatch(searchActions.setSearchTerm(""))}
             className="m-2 border border-purple-500 rounded p-2 text-purple-400 hover:bg-purple-500 hover:text-white"
           >
-            Clear Search
+            Clear Result
           </button>
         </div>
       );
