@@ -1,7 +1,9 @@
 <---- ToDo ---->  
 
 1.Pagination Feature
-2.Search Feature
+
+2.Search Feature -- Done ,But need more optimization like when users stop typing then it will start searching till than show Loading Screen 
+
 3.Filter Feature
 4.Logout Functionality -- Done
 
@@ -16,6 +18,10 @@
  -> profile url
  -> validation
 
- 9. Checkout Page UI -- currently working  
+ 9. Checkout Page UI --   
 
  10. Product Detail Page : Carousel
+
+
+
+ # There's issue in the header Profile section fix it , Today ! ASAP

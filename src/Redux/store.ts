@@ -4,6 +4,8 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import cartReducer from "./Slices/cartSlice";
 
+import searchReducer from "./Slices/SearchSlice";
+
 // Redux Persist import
 import {
   persistReducer,
@@ -26,6 +28,7 @@ const persistConfig = {
 const reducer = combineReducers({
   authentication: authenticateReducer,
   cart: cartReducer,
+  search: searchReducer,
 });
 
 // Persisted Reducer

@@ -33,12 +33,12 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         </div>
 
         <div className="flex  justify-between  pr-1">
-          <p className="flex  text-black text-3xl font-bold">
+          <div className="flex  text-black text-3xl font-bold">
             <strong>₹</strong> {props.product.price}
             <p className="text-sm line-through text-red-500 mx-2">
               ₹{(props.product.price + Math.random() * 100).toFixed(2)}
             </p>
-          </p>
+          </div>
         </div>
       </div>
 
@@ -58,10 +58,10 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
           }}
           className="bg-green-500 w-2/4 p-[0.37rem] rounded-md text-white transition ease-in-out hover:bg-green-600 "
         >
-          <p className="flex justify-center items-center gap-1 text-base">
+          <div className="flex justify-center items-center gap-1 text-base">
             <MdOutlineShoppingCart />
             <p className="">Add to cart</p>
-          </p>
+          </div>
         </button>
 
         <button

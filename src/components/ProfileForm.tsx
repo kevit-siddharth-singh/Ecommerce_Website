@@ -1,8 +1,11 @@
-import { useAppSelector } from "../Redux/store";
+import { authActions } from "../Redux/Slices/authenticateSlice";
+import { useAppDispatch, useAppSelector } from "../Redux/store";
 import UserImage from "./UserImage";
 
 const ProfileForm = () => {
+  const dispatch = useAppDispatch();
   const { name: username } = useAppSelector((state) => state.authentication);
+  // console.log(username);
 
   return (
     <>
@@ -24,6 +27,9 @@ const ProfileForm = () => {
 
               <div className="relative">
                 <input
+                  onChange={(e) =>
+                    dispatch(authActions.setName(e.target.value))
+                  }
                   id="name"
                   type="text"
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
@@ -53,7 +59,7 @@ const ProfileForm = () => {
               type="button"
               className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
             >
-              Change
+              Tap anywhere to close
             </button>
           </form>
         </div>

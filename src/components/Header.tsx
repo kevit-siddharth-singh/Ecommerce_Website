@@ -2,11 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { authActions } from "../Redux/Slices/authenticateSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import Dialog from "./Dialog";
+import { searchActions } from "../Redux/Slices/SearchSlice";
 
 const Header = () => {
   const { totalQuantity, totalAmount } = useAppSelector((state) => state.cart);
   const profile = useAppSelector((state) => state.authentication.profile);
   // console.log(totalAmount, totalQuantity);
+  const searchTerm = useAppSelector((state) => state.search.search);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   return (
@@ -21,8 +24,14 @@ const Header = () => {
         {/* Search Bar */}
         <div className="form-control">
           <input
+            onChange={(e) =>
+              dispatch(searchActions.setSearchTerm(e.target.value))
+            }
             type="text"
-            placeholder="Search Products"
+            placeholder={
+              searchTerm.length !== 0 ? searchTerm : "Search Products"
+            }
+            value={searchTerm}
             className="input input-bordered w-24 md:w-auto"
           />
         </div>
@@ -86,8 +95,9 @@ const Header = () => {
                 <img
                   alt="Tailwind CSS Navbar component"
                   src={
-                    profile ? profile :
-                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    profile
+                      ? profile
+                      : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                   }
                 />
               </div>
