@@ -102,7 +102,7 @@ const ProductList = () => {
         ) : (
           <div className="product-wrapper flex flex-col w-5/6 items-center">
             {content}
-            <PaginationComponent />
+            {search.length === 0 ? <PaginationComponent /> : undefined}
           </div>
         )}
       </div>
