@@ -3,8 +3,10 @@
 1.Pagination Feature -- Currently working : now update util product logic for handling pagination...
 
 2.Search Feature -- Done ,But need more optimization like when users stop typing then it will start searching till than show Loading Screen .
+-> Add Debouncing 
 
 3.Filter Feature -- Remaining
+
 
 
 4.Logout Functionality -- Done
@@ -24,6 +26,6 @@
 
  10. Product Detail Page : Carousel -- Remaining
 
-
+ 11. Add Responsive Design 
 
  # There's issue in the header Profile section fix it , Today ! ASAP -- Tried

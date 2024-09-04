@@ -1,6 +1,21 @@
+import { useEffect } from "react";
 import SignUpForm from "../components/SignUpForm.tsx";
+import { useAppSelector } from "../Redux/store.ts";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const isAuthenticated = useAppSelector(
+    (state) => state.authentication.isAuthenticate
+  );
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log(isAuthenticated);
+      navigate("/product");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
