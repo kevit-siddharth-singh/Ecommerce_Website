@@ -3,8 +3,8 @@ import authenticateReducer from "./Slices/authenticateSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import cartReducer from "./Slices/cartSlice";
-
 import searchReducer from "./Slices/SearchSlice";
+import pageReducer from "./Slices/PaginationSlice";
 
 // Redux Persist import
 import {
@@ -29,6 +29,7 @@ const reducer = combineReducers({
   authentication: authenticateReducer,
   cart: cartReducer,
   search: searchReducer,
+  pagination: pageReducer,
 });
 
 // Persisted Reducer

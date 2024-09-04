@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Sidebar from "./../components/Sidebar";
 import Product from "./../components/Product";
-
 import { fetchProduct, ProductType } from "../utils/ProductFetch";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
-
 import NoProductFoundImg from "/noproductfound.png";
 import { searchActions } from "../Redux/Slices/SearchSlice";
+import PaginationComponent from "../components/PaginationComponent";
 
 const ProductList = () => {
   const { data } = useQuery({
@@ -19,10 +18,12 @@ const ProductList = () => {
   });
 
   const dispatch = useAppDispatch();
+
   // SearchTerm Logic
   const search = useAppSelector((state) => state.search.search);
-  console.log(search);
+
   let content = <Loading />;
+
   // Logic for Making the Parent Container Div to be Relative or not
   let isRelative = undefined;
 
@@ -99,7 +100,10 @@ const ProductList = () => {
         {search === "" && !data ? (
           <Loading />
         ) : (
-          <div className="product-wrapper w-5/6">{content}</div>
+          <div className="product-wrapper flex flex-col w-5/6 items-center">
+            {content}
+            <PaginationComponent />
+          </div>
         )}
       </div>
     </div>

@@ -1,10 +1,12 @@
 <---- ToDo ---->  
 
-1.Pagination Feature
+1.Pagination Feature -- Currently working
 
-2.Search Feature -- Done ,But need more optimization like when users stop typing then it will start searching till than show Loading Screen 
+2.Search Feature -- Done ,But need more optimization like when users stop typing then it will start searching till than show Loading Screen .
 
 3.Filter Feature
+
+
 4.Logout Functionality -- Done
 
 5.Product Detail Page -- Done

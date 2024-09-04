@@ -7,7 +7,9 @@ const UserImage: React.FC = () => {
   const profile = useAppSelector((state) => state.authentication.profile);
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
+
   // console.log(profile);
+
   function UploadProfile(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.files && e.target.files.length > 0) {
       const img = URL.createObjectURL(e.target.files[0]);

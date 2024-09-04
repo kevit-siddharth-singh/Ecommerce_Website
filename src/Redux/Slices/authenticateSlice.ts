@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import userImage from "/defaultProfileImage.png";
-
 // Define a type for the slice state
 export type AuthenticateState = {
   isAuthenticate: boolean;
@@ -16,7 +14,7 @@ const initialState: AuthenticateState = {
   isAuthenticate: false,
   name: "",
   email: "",
-  profile: userImage,
+  profile: "",
   password: "",
   signupsuccess: false,
 };
@@ -43,6 +41,8 @@ const authenticateSlice = createSlice({
     },
 
     setLogin: (state, action: PayloadAction<{ isAuthenticate: boolean }>) => {
+      console.log(state.profile);
+
       state.isAuthenticate = action.payload.isAuthenticate;
     },
     setLogout: (state) => {
