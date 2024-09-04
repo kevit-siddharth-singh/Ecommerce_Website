@@ -4,7 +4,7 @@
 
 2.Search Feature -- Done ,But need more optimization like when users stop typing then it will start searching till than show Loading Screen .
 
-3.Filter Feature
+3.Filter Feature -- Remaining
 
 
 4.Logout Functionality -- Done
@@ -13,17 +13,17 @@
 
 6.Cart Page -- Done
 
-7. Make All Routes Protected.
+7. Make All Routes Protected -- Remaining
 
-8. Profile Page - CRUD 
+8. Profile Page - [Done Partially]
  -> Name
  -> profile url
  -> validation
 
- 9. Checkout Page UI --   
+ 9. Checkout Page UI -- Remaining  
 
- 10. Product Detail Page : Carousel
+ 10. Product Detail Page : Carousel -- Remaining
 
 
 
- # There's issue in the header Profile section fix it , Today ! ASAP
+ # There's issue in the header Profile section fix it , Today ! ASAP -- Tried
