@@ -17,6 +17,9 @@ const ProductList = () => {
     queryFn: fetchProduct,
   });
 
+  // Category data
+  const categories = useAppSelector((state) => state.category.selectedCategory);
+
   const dispatch = useAppDispatch();
 
   // SearchTerm Logic
