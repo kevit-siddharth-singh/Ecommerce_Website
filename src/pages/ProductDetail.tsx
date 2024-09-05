@@ -6,6 +6,7 @@ import BreadCrumbs from "../components/BreadCrumbs";
 import Rating from "../components/Rating";
 import CartActionBtns from "../components/CartActionBtns";
 import { FiShoppingCart } from "react-icons/fi";
+import ProductCarousel from "../components/ProductCarousel";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -19,7 +20,8 @@ const ProductDetail = () => {
     <div className="m-10  flex justify-center  gap-24  ">
       {/* Can use Slice Method here for getting desired length String for Product title */}
       <div className="product-image h-[50rem] w-[40rem]  p-5 ">
-        <img className=" rounded-box  h-full w-full" src={data.image} alt="" />
+        {/* <img className=" rounded-box  h-full w-full" src={data.image} alt="" /> */}
+        <ProductCarousel img={data.image} />
       </div>
       <div className="w-[45rem] product-data flex flex-col gap-5">
         <div className="flex justify-between items-center">
