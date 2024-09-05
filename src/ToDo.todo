@@ -1,6 +1,6 @@
 <---- ToDo ---->  
 
-1.Pagination Feature --  : write logic for handling pagination...
+1.Pagination Feature --  : write logic for handling  pagination with infinite scroll...
 
 2.Search Feature -- Done ,But need more optimization like when users stop typing then it will start searching till than show Loading Screen .
 -> Add Debouncing  -- Done
@@ -26,6 +26,11 @@
  10. Product Detail Page : Carousel -- Remaining
 
  11. Add Responsive Design 
+
+
+ 10. Toast on  Every add to cart button
+
+
 
  # There's issue in the header Profile section fix it , Today ! ASAP -- Tried
 
