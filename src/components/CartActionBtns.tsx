@@ -5,8 +5,9 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 
 // React Toast import
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { notify } from "../utils/ToastNotify";
 
 const CartActionBtns: React.FC<{
   id: number;
@@ -17,13 +18,22 @@ const CartActionBtns: React.FC<{
 }> = ({ id, name, price, quantity, image }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // console.log(id, name, price, quantity);
-  const notify = () => toast("Item added +1");
 
   return (
     <div className="btn-wrapper my-3 text-white flex gap-10">
       {/* React Toast Component */}
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <button
         className="bg-emerald-500 flex justify-center items-center gap-3 py-3 px-10 rounded text-xl font-medium active:bg-emerald-600"
         onClick={() => {

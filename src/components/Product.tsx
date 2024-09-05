@@ -4,8 +4,12 @@ import Rating from "./Rating.tsx";
 import { useAppDispatch } from "../Redux/store.ts";
 import { cartActions } from "../Redux/Slices/cartSlice.ts";
 
+// React Toast import
+import { ToastContainer } from "react-toastify";
+
 // React Icons
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { notify } from "../utils/ToastNotify.ts";
 
 const Product: React.FC<{ product: ProductType }> = (props) => {
   const navigate = useNavigate();
@@ -16,6 +20,20 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
       onClick={() => navigate(`/product/${props.product.id}`)}
       className="flex flex-col w-[16rem] h-[21rem] p-2 px-4  rounded-box bg-white  items-center hover:translate-y-[-10px] transition ease-in-out "
     >
+      {/* React Toast Component */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
       <img
         className="h-[9rem] w-[10rem] p-1 rounded-box hover:scale-105 transition ease-in-out hover:drop-shadow-2xl "
         src={props.product.image}
@@ -46,6 +64,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         <button
           onClick={(e) => {
             e.stopPropagation();
+            notify();
             dispatch(
               cartActions.addItemToCart({
                 id: props.product.id,
