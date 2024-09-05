@@ -94,7 +94,7 @@ const ProductList = () => {
     <div>
       <Header />
       <div className={`flex  ${isRelative}`}>
-        <div className="sidebar-wrapper w-1/6">
+        <div className="sidebar-wrapper w-1/6 ">
           <Sidebar />
         </div>
         {search === "" && !data ? (

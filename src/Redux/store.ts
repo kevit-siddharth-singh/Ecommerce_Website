@@ -5,6 +5,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import cartReducer from "./Slices/cartSlice";
 import searchReducer from "./Slices/SearchSlice";
 import pageReducer from "./Slices/PaginationSlice";
+import categoryReducer from "./Slices/CategorySlice";
 
 // Redux Persist import
 import {
@@ -30,6 +31,7 @@ const reducer = combineReducers({
   cart: cartReducer,
   search: searchReducer,
   pagination: pageReducer,
+  category: categoryReducer,
 });
 
 // Persisted Reducer

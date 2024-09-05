@@ -1,13 +1,12 @@
 <---- ToDo ---->  
 
-1.Pagination Feature -- Currently working : now update util product logic for handling pagination...
+1.Pagination Feature --  : now update util product logic for handling pagination...
 
 2.Search Feature -- Done ,But need more optimization like when users stop typing then it will start searching till than show Loading Screen .
--> Add Debouncing 
+-> Add Debouncing  -- Done
 
 3.Filter Feature -- Remaining
-
-
+-- Currently Working..
 
 4.Logout Functionality -- Done
 

@@ -10,6 +10,7 @@ const PaginationComponent = () => {
       dispatch(paginationActions.nextPage());
     }
   }
+
   function handlePrev() {
     if (currPage > 1) {
       dispatch(paginationActions.prevPage());
