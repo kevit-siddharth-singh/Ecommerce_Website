@@ -1,8 +1,7 @@
-import { FaRegHeart } from "react-icons/fa6";
 import { LuShoppingCart } from "react-icons/lu";
 import { useAppDispatch } from "../Redux/store";
 import { cartActions } from "../Redux/Slices/cartSlice";
-
+import { TbTruckDelivery } from "react-icons/tb";
 const CartActionBtns: React.FC<{
   id: number;
   name: string;
@@ -35,8 +34,8 @@ const CartActionBtns: React.FC<{
       </button>
       <div>
         <button className="bg-red-500 flex justify-center items-center gap-3  py-3 px-10 rounded text-xl font-medium active:bg-red-600">
-          <FaRegHeart />
-          Add to wishlist
+          <TbTruckDelivery />
+          Buy now
         </button>
       </div>
     </div>
