@@ -3,6 +3,11 @@ import { useAppDispatch } from "../Redux/store";
 import { cartActions } from "../Redux/Slices/cartSlice";
 import { TbTruckDelivery } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
+
+// React Toast import
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const CartActionBtns: React.FC<{
   id: number;
   name: string;
@@ -13,12 +18,16 @@ const CartActionBtns: React.FC<{
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   // console.log(id, name, price, quantity);
+  const notify = () => toast("Item added +1");
 
   return (
     <div className="btn-wrapper my-3 text-white flex gap-10">
+      {/* React Toast Component */}
+      <ToastContainer />
       <button
         className="bg-emerald-500 flex justify-center items-center gap-3 py-3 px-10 rounded text-xl font-medium active:bg-emerald-600"
-        onClick={() =>
+        onClick={() => {
+          notify();
           dispatch(
             cartActions.addItemToCart({
               id,
@@ -27,8 +36,8 @@ const CartActionBtns: React.FC<{
               quantity,
               image,
             })
-          )
-        }
+          );
+        }}
       >
         <LuShoppingCart />
         Add to cart

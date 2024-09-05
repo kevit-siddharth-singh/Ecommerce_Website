@@ -17,8 +17,6 @@ const ProductList = () => {
     queryFn: fetchProduct,
   });
 
-  
-
   const dispatch = useAppDispatch();
 
   // SearchTerm Logic
@@ -61,7 +59,7 @@ const ProductList = () => {
       );
     } else {
       content = (
-        <div className="absolute top-[50%] left-[40%] flex flex-col justify-center items-center">
+        <div className="absolute  top-[5%]  flex flex-col justify-center items-center">
           <img
             className="w-[35rem]"
             src={NoProductFoundImg}
