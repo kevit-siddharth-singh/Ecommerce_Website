@@ -16,7 +16,6 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-   
     const handler = setTimeout(() => {
       dispatch(searchActions.setSearchTerm(debouncedSearchTerm));
     }, 300); // Adjust the delay as needed (e.g., 300ms)
