@@ -2,6 +2,7 @@ import { LuShoppingCart } from "react-icons/lu";
 import { useAppDispatch } from "../Redux/store";
 import { cartActions } from "../Redux/Slices/cartSlice";
 import { TbTruckDelivery } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 const CartActionBtns: React.FC<{
   id: number;
   name: string;
@@ -10,7 +11,7 @@ const CartActionBtns: React.FC<{
   image: string;
 }> = ({ id, name, price, quantity, image }) => {
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   // console.log(id, name, price, quantity);
 
   return (
@@ -33,7 +34,10 @@ const CartActionBtns: React.FC<{
         Add to cart
       </button>
       <div>
-        <button className="bg-red-500 flex justify-center items-center gap-3  py-3 px-10 rounded text-xl font-medium active:bg-red-600">
+        <button
+          onClick={() => navigate(`/checkout/${id}`)}
+          className="bg-red-500 flex justify-center items-center gap-3  py-3 px-10 rounded text-xl font-medium active:bg-red-600"
+        >
           <TbTruckDelivery />
           Buy now
         </button>

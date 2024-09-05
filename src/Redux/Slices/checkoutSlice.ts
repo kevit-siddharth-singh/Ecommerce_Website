@@ -11,7 +11,7 @@ const initialState: checkoutType = {
   address: "",
   modeofpayment: "",
   name: "",
-  phn: '',
+  phn: "",
 };
 
 const checkoutSlice = createSlice({
@@ -29,6 +29,12 @@ const checkoutSlice = createSlice({
     },
     changePhn: (state, action: PayloadAction<string>) => {
       state.phn = action.payload;
+    },
+    reset: (state) => {
+      state.address = "";
+      state.modeofpayment = "";
+      state.name = "";
+      state.phn = "";
     },
   },
 });

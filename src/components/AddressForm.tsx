@@ -23,8 +23,8 @@ const AddressForm = () => {
 
   return (
     <>
-      <div className="section-1 border border-white/60 p-3 rounded flex justify-around gap-5">
-        <div className="flex flex-col gap-2 p-5">
+      <div className="section-1 border border-white/60 p-3 rounded flex justify-around gap-5 ">
+        <div className="flex flex-col gap-2 p-5 w-full">
           <p className="text-white text-lg font-semibold">
             *Shipping address :
           </p>
@@ -44,7 +44,7 @@ const AddressForm = () => {
             func={handlePhn}
           />
         </div>
-        <div className="payment-mode  p-5">
+        <div className="payment-mode  p-5 w-full">
           <p className="mb-2 text-orange-400 text-lg font-semibold">
             *Select Payment mode :
           </p>

@@ -18,7 +18,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/product/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/checkout" element={<CheckOutPage />} />
+        <Route path="/checkout/:Pid" element={<CheckOutPage />} />
         <Route path="" element={""} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

@@ -67,7 +67,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            navigate("/checkout");
+            navigate(`/checkout/${props.product.id}`);
           }}
           className="flex justify-center bg-orange-500 w-1/4   p-[0.35rem] px-10 rounded-md text-white  transition ease-in-out hover:bg-orange-600 "
         >
