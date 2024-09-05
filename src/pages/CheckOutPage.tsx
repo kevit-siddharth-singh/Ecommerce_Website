@@ -1,8 +1,12 @@
 import AddressForm from "../components/AddressForm";
 import CheckoutItemDetails from "../components/CheckoutItemDetails";
 import OrderSummary from "../components/OrderSummary";
+import { useAppSelector } from "../Redux/store";
 
 const CheckOutPage = () => {
+  const checkoutData = useAppSelector((state) => state.checkout);
+  console.log(checkoutData);
+
   return (
     <div className="flex flex-col items-center px-4 py-1 ">
       <h1 className="text-orange-500 text-5xl font-semibold mt-[2rem]">

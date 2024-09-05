@@ -1,7 +1,26 @@
+import { checkoutActions } from "../Redux/Slices/checkoutSlice";
+import { useAppDispatch, useAppSelector } from "../Redux/store";
 import DropDown from "./DropDown";
 import Input from "./Input";
 
 const AddressForm = () => {
+  const dispatch = useAppDispatch();
+  const checkoutData = useAppSelector((state) => state.checkout);
+  console.log(checkoutData);
+
+  function handleAddress(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    dispatch(checkoutActions.changeAddress(e.target.value));
+  }
+  function handleName(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch(checkoutActions.changeName(e.target.value));
+  }
+  function handlePhn(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch(checkoutActions.changePhn(e.target.value));
+  }
+  function handleModeOfPayment(e: React.ChangeEvent<HTMLSelectElement>) {
+    dispatch(checkoutActions.changeModeOfPayment(e.target.value));
+  }
+
   return (
     <>
       <div className="section-1 border border-white/60 p-3 rounded flex justify-around gap-5">
@@ -10,21 +29,26 @@ const AddressForm = () => {
             *Shipping address :
           </p>
           <textarea
+            onChange={(e) => handleAddress(e)}
             required
             name="address"
             id="address"
             className="bg-transparent border p-1  text-white border-white/60 rounded"
           ></textarea>
           <p className="text-white text-lg font-semibold">*Name :</p>
-          <Input placeholder="Type your name" type={"text"} />
+          <Input placeholder="Type your name" type={"text"} func={handleName} />
           <p className="text-white text-lg font-semibold">*Phn no :</p>
-          <Input placeholder="Enter phone number" type={"tel"} />
+          <Input
+            placeholder="Enter phone number"
+            type={"tel"}
+            func={handlePhn}
+          />
         </div>
         <div className="payment-mode  p-5">
           <p className="mb-2 text-orange-400 text-lg font-semibold">
             *Select Payment mode :
           </p>
-          <DropDown />
+          <DropDown func={handleModeOfPayment} />
         </div>
       </div>
     </>

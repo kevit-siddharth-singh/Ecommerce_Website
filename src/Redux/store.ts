@@ -6,6 +6,7 @@ import cartReducer from "./Slices/cartSlice";
 import searchReducer from "./Slices/SearchSlice";
 import pageReducer from "./Slices/PaginationSlice";
 import categoryReducer from "./Slices/CategorySlice";
+import checkoutReducer from "./Slices/checkoutSlice";
 
 // Redux Persist import
 import {
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   search: searchReducer,
   pagination: pageReducer,
   category: categoryReducer,
+  checkout: checkoutReducer,
 });
 
 // Persisted Reducer
