@@ -19,7 +19,7 @@
 
 8. Profile Page -- Done
  -> Name
- -> profile Pic
+ -> profile Pic -- [Find a way to store img in redux store]
  -> validation
 
  9. Checkout Page UI -- Currently working... 
