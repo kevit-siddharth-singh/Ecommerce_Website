@@ -6,8 +6,12 @@ import { useAppSelector } from "../Redux/store";
 import { getProductDetail } from "../utils/getProductDetail";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
+import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 
 const CheckOutPage = () => {
+  // Custom hook for Auth Check
+  useAuthCheckerHook();
+
   const checkoutData = useAppSelector((state) => state.checkout);
   console.log(checkoutData);
 

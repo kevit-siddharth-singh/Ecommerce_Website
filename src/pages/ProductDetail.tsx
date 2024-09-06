@@ -8,8 +8,12 @@ import CartActionBtns from "../components/CartActionBtns";
 import { FiShoppingCart } from "react-icons/fi";
 import ProductCarousel from "../components/ProductCarousel";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
+import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 
 const ProductDetail = () => {
+  // Custom hook For Auth Check
+  useAuthCheckerHook();
+
   const { id } = useParams();
   const navigate = useNavigate();
   const { data } = useQuery({

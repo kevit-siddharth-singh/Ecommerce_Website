@@ -1,8 +1,12 @@
 import CartItems from "../components/CartItems";
+import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 import { useAppSelector } from "../Redux/store";
 
 const CartPage = () => {
+  // Custom hook for Auth Check
+  useAuthCheckerHook();
+
   // Custom Hook For Changing Title
   useTitleChangeHook({ title: "Cart " });
 
