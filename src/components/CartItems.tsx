@@ -35,35 +35,44 @@ const CartItems: React.FC<{
                   alt={item.name}
                 />
 
-                <div className="item-data flex flex-col gap-4  w-full">
+                <div className="item-data flex flex-col gap-2  w-full">
                   <p className="font-semibold text-white">{item.name}</p>
-                  <div className="flex items-center gap-3">
+
+                  <div className="btn-grp">
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() =>
+                          dispatch(cartActions.removeItemFromCart(item.id))
+                        }
+                        className="flex justify-center  bg-red-500  w-[3rem] text-white p-2 rounded"
+                      >
+                        <FaMinus />
+                      </button>
+                      <p className=" flex justify-center text-white text-xl font-medium border w-[2rem] rounded">
+                        {item.quantity}
+                      </p>
+                      <button
+                        onClick={() =>
+                          dispatch(
+                            cartActions.addItemToCart({
+                              id: item.id,
+                              image: item.image,
+                              name: item.name,
+                              price: item.price,
+                              quantity: item.quantity,
+                            })
+                          )
+                        }
+                        className="flex justify-center  bg-emerald-400 w-[3rem]  text-white p-2 rounded "
+                      >
+                        <FaPlus />
+                      </button>
+                    </div>
                     <button
-                      onClick={() =>
-                        dispatch(cartActions.removeItemFromCart(item.id))
-                      }
-                      className="flex justify-center  bg-red-500  w-[3rem] text-white p-2 rounded"
+                      onClick={() => navigate("/checkout/" + item.id)}
+                      className="my-2 bg-blue-500 font-semibold text-white p-1 w-[9.5rem] rounded active:bg-blue-600"
                     >
-                      <FaMinus />
-                    </button>
-                    <p className=" flex justify-center text-white text-xl font-medium border w-[2rem] rounded">
-                      {item.quantity}
-                    </p>
-                    <button
-                      onClick={() =>
-                        dispatch(
-                          cartActions.addItemToCart({
-                            id: item.id,
-                            image: item.image,
-                            name: item.name,
-                            price: item.price,
-                            quantity: item.quantity,
-                          })
-                        )
-                      }
-                      className="flex justify-center  bg-emerald-400 w-[3rem]  text-white p-2 rounded "
-                    >
-                      <FaPlus />
+                      Buy
                     </button>
                   </div>
                   <p className="text-right text-yellow-300">₹ {item.price}</p>
