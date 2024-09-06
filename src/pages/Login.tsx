@@ -1,6 +1,10 @@
 import LoginForm from "../components/LoginForm";
+import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 
 const Login = () => {
+  // Custom Hook For Changing Title
+  useTitleChangeHook({ title: "Login" });
+
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 h-screen  flex items-center">
       <div className="mx-auto max-w-lg">

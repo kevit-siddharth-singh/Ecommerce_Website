@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 
 const ErrorPage = () => {
+  // Custom Hook For Changing Title
+  useTitleChangeHook({title: "Error !"});
   const navigate = useNavigate();
   return (
     <div>

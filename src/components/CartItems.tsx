@@ -29,7 +29,8 @@ const CartItems: React.FC<{
             <li key={item.id} className="flex flex-col    ">
               <div className="flex gap-10">
                 <img
-                  className="w-[5rem] h-[6rem] rounded"
+                  onClick={() => navigate("/product/" + item.id)}
+                  className="w-[5rem] h-[6rem] cursor-pointer rounded hover:scale-105 transition-all ease-in-out"
                   src={item.image}
                   alt={item.name}
                 />

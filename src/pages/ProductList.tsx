@@ -10,8 +10,12 @@ import Loading from "../components/Loading";
 import NoProductFoundImg from "/noproductfound.png";
 import { searchActions } from "../Redux/Slices/SearchSlice";
 import PaginationComponent from "../components/PaginationComponent";
+import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 
 const ProductList = () => {
+  // Custom Hook For Changing Title
+  useTitleChangeHook({ title: "S K Y - S H O P" });
+
   const { data } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProduct,

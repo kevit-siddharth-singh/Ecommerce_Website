@@ -1,7 +1,11 @@
 import CartItems from "../components/CartItems";
+import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 import { useAppSelector } from "../Redux/store";
 
 const CartPage = () => {
+  // Custom Hook For Changing Title
+  useTitleChangeHook({ title: "Cart " });
+
   // const dispatch = useAppDispatch();
   const { items, totalAmount, totalQuantity } = useAppSelector(
     (state) => state.cart
