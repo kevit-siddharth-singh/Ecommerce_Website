@@ -19,7 +19,12 @@ const PaginationComponent = () => {
 
   return (
     <div className="join mb-3 flex justify-center w-[20%]  ">
-      <button onClick={handlePrev} className="join-item btn w-1/3">
+      <button
+        onClick={handlePrev}
+        className={`join-item btn w-1/3 ${
+          currPage === 1 ? "cursor-not-allowed" : "undefined"
+        }`}
+      >
         «
       </button>
       <div className="join-item btn w-2/3">Page {currPage}</div>
