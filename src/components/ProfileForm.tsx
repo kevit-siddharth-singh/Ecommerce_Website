@@ -7,10 +7,8 @@ const ProfileForm = () => {
   const dispatch = useAppDispatch();
 
   const { name: username } = useAppSelector((state) => state.authentication);
-  console.log("Redux : " + username);
 
   const [localUsername, setLocalUsername] = useState("");
-  console.log("local : " + localUsername);
 
   const [isError, setIsError] = useState(false);
 
