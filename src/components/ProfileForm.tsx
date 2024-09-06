@@ -1,11 +1,28 @@
+import { useState } from "react";
 import { authActions } from "../Redux/Slices/authenticateSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import UserImage from "./UserImage";
 
 const ProfileForm = () => {
   const dispatch = useAppDispatch();
+
   const { name: username } = useAppSelector((state) => state.authentication);
-  // console.log(username);
+  console.log("Redux : " + username);
+
+  const [localUsername, setLocalUsername] = useState("");
+  console.log("local : " + localUsername);
+
+  const [isError, setIsError] = useState(false);
+
+  // Name Validation
+  function usernameValidation() {
+    if (localUsername.length >= 6) {
+      dispatch(authActions.setName(localUsername));
+    } else {
+      console.log("Error");
+      setIsError(true);
+    }
+  }
 
   return (
     <>
@@ -27,13 +44,16 @@ const ProfileForm = () => {
 
               <div className="relative">
                 <input
-                  onChange={(e) =>
-                    dispatch(authActions.setName(e.target.value))
-                  }
+                  onChange={(e) => {
+                    setIsError(false);
+                    setLocalUsername(e.target.value);
+                  }}
                   id="name"
                   type="text"
-                  className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                  placeholder={`${username}`}
+                  className={`w-full rounded-lg border ${
+                    isError ? "border-red-500" : "border-transparent "
+                  } p-4 pe-12 text-md shadow-sm`}
+                  placeholder={username}
                 />
 
                 <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -54,12 +74,17 @@ const ProfileForm = () => {
                 </span>
               </div>
             </div>
-
+            {isError && (
+              <span className="error-area p-1 text-red-500 text-md">
+                Invalid username
+              </span>
+            )}
             <button
+              onClick={usernameValidation}
               type="button"
               className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
             >
-              Tap anywhere to close
+              Change
             </button>
           </form>
         </div>

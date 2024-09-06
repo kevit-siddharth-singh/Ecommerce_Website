@@ -7,7 +7,7 @@ const ProductCarousel: React.FC<{ img: string }> = ({ img }) => {
         </div>
         <div id="item2" className="carousel-item w-full">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+            src="https://avatars.githubusercontent.com/u/85176765?v=4"
             className="w-full"
           />
         </div>
