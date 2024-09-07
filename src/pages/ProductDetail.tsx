@@ -7,7 +7,7 @@ import Rating from "../components/Rating";
 import CartActionBtns from "../components/CartActionBtns";
 import { FiShoppingCart } from "react-icons/fi";
 import ProductCarousel from "../components/ProductCarousel";
-import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
+
 import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 
 const ProductDetail = () => {
@@ -21,8 +21,9 @@ const ProductDetail = () => {
     queryFn: () => getProductDetail(id!),
   });
 
-  // Custom Hook For Changing Title
-  useTitleChangeHook({ title: data.title });
+  if (data) {
+    document.title = data.title;
+  }
 
   return data ? (
     <div className="m-10  flex justify-center  gap-24  ">
