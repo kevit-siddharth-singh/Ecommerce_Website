@@ -12,9 +12,15 @@ const UserImage: React.FC = () => {
 
   function UploadProfile(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.files && e.target.files.length > 0) {
-      const img = URL.createObjectURL(e.target.files[0]);
+      const reader = new FileReader();
+      // const img = URL.createObjectURL(e.target.files[0]);
+      // Convert the image to a base64 string
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        dispatch(authActions.setProfile({ profile: base64String }));
+      };
       // console.log(img);
-      dispatch(authActions.setProfile({ profile: img }));
+      reader.readAsDataURL(e.target.files[0]);
     } else {
       dispatch(authActions.setProfile({ profile: defaultImage }));
     }
