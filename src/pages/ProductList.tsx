@@ -21,10 +21,28 @@ const ProductList = () => {
     queryFn: fetchProduct,
   });
 
+  const selectedCategory = useAppSelector(
+    (state) => state.category.selectedCategory
+  );
+
+  const search = useAppSelector((state) => state.search.search);
+
   const dispatch = useAppDispatch();
 
-  // SearchTerm Logic
-  const search = useAppSelector((state) => state.search.search);
+  // Logic for Filtering Products based on Selected Category and Search Term
+  const filteredData = data?.filter((product: ProductType) => {
+    // Check if the product's category matches the selected categories (if any)
+    const matchesCategory =
+      selectedCategory.length === 0 ||
+      selectedCategory.includes(product.category);
+
+    // Check if the product title matches the search term
+    const matchesSearch = product.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
 
   let content = <Loading />;
 
@@ -35,52 +53,35 @@ const ProductList = () => {
     isRelative = "relative";
   }
 
-  if (data !== null && data !== undefined && search.length === 0) {
+  if (filteredData && filteredData.length > 0) {
     content = (
-      <ul className="grid grid-cols-5 place-items-center m-2 p-5 gap-10 ">
-        {data.map((product: ProductType) => (
-          <li key={product.id} className="cursor-pointer ">
+      <ul className="grid grid-cols-5 place-items-center m-2 p-5 gap-10">
+        {filteredData.map((product: ProductType) => (
+          <li key={product.id} className="cursor-pointer">
             <Product product={product} />
           </li>
         ))}
       </ul>
     );
   } else {
-    // Search term logic
-    const filteredData = data?.filter((product: ProductType) =>
-      product.title.toLowerCase().includes(search.toLowerCase())
+    content = (
+      <div className="absolute top-[5%] flex flex-col justify-center items-center">
+        <img
+          className="w-[35rem]"
+          src={NoProductFoundImg}
+          alt="No Product Found"
+        />
+        <p className="text-orange-500 text-3xl">
+          No products found matching "{search}".
+        </p>
+        <button
+          onClick={() => dispatch(searchActions.setSearchTerm(""))}
+          className="m-2 border border-purple-500 rounded p-2 text-purple-400 hover:bg-purple-500 hover:text-white"
+        >
+          Clear Result
+        </button>
+      </div>
     );
-
-    if (filteredData && filteredData.length > 0) {
-      content = (
-        <ul className="grid grid-cols-5 place-items-center m-2 p-5 gap-10">
-          {filteredData.map((product: ProductType) => (
-            <li key={product.id} className="cursor-pointer">
-              <Product product={product} />
-            </li>
-          ))}
-        </ul>
-      );
-    } else {
-      content = (
-        <div className="absolute  top-[5%]  flex flex-col justify-center items-center">
-          <img
-            className="w-[35rem]"
-            src={NoProductFoundImg}
-            alt="No Product Found"
-          />
-          <p className="text-orange-500 text-3xl">
-            No products found matching "{search}".
-          </p>
-          <button
-            onClick={() => dispatch(searchActions.setSearchTerm(""))}
-            className="m-2 border border-purple-500 rounded p-2 text-purple-400 hover:bg-purple-500 hover:text-white"
-          >
-            Clear Result
-          </button>
-        </div>
-      );
-    }
   }
 
   const navigate = useNavigate();
@@ -97,8 +98,8 @@ const ProductList = () => {
   return (
     <div>
       <Header />
-      <div className={`flex  ${isRelative}`}>
-        <div className="sidebar-wrapper w-1/6 ">
+      <div className={`flex ${isRelative}`}>
+        <div className="sidebar-wrapper w-1/6">
           <Sidebar />
         </div>
         {search === "" && !data ? (

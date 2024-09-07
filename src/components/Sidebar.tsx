@@ -1,12 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { productCategory } from "../utils/getProductsCategory";
 import Checkboxes from "./Checkboxes";
+import { useAppSelector } from "./../Redux/store";
 
 const Sidebar = () => {
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: productCategory,
   });
+
+  // const selectedCategory = useAppSelector(
+  //   (state) => state.category.selectedCategory
+  // );
+
+  // console.log(selectedCategory);
 
   let content = (
     <p className=" flex justify-center items-center mt-5  ">

@@ -25,7 +25,6 @@ const Checkboxes: React.FC<{ category: string }> = ({ category }) => {
 
   return (
     <div className="m-4 text-white">
-      
       <fieldset>
         <legend className="sr-only">Checkboxes</legend>
 
