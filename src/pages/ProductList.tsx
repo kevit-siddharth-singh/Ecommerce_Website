@@ -96,7 +96,7 @@ const ProductList = () => {
   });
 
   return (
-    <div>
+    <div className="w-full overflow-hidden">
       <Header />
       <div className={`flex ${isRelative}`}>
         <div className="sidebar-wrapper w-1/6">

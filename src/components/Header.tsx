@@ -26,15 +26,16 @@ const Header = () => {
   }, [debouncedSearchTerm, dispatch]);
 
   return (
-    <div className="sticky z-[999] top-0 ">
+    <div className="sticky z-[999] top-0 w-full overflow-hidden ">
       <Dialog />
-      <div className="navbar bg-base-300 gap-10">
-        <div className="flex-1">
+      <div className="navbar bg-base-300 max-sm:px-3 gap-0 md:gap-2 w-full">
+        {/* Logo */}
+        <div className="flex-1  max-md:hidden">
           <a className="btn btn-ghost text-xl">Sky-Shop</a>
         </div>
 
         {/* Search Bar */}
-        <div className="form-control">
+        <div className="form-control w-full md:m-3 my-3 ">
           <input
             onChange={(e) => setDebouncedSearchTerm(e.target.value)}
             type="text"
@@ -42,10 +43,10 @@ const Header = () => {
               searchTerm.length !== 0 ? searchTerm : "Search Products"
             }
             value={debouncedSearchTerm}
-            className="input input-bordered w-24 md:w-auto"
+            className="input input-bordered md:w-1/2 lg:w-[45%] xl:w-1/3 w-full md:ml-auto"
           />
         </div>
-        <div className="flex-none flex gap-5">
+        <div className="flex-none flex gap-5 ">
           <div className="dropdown dropdown-end ">
             <div
               tabIndex={0}
