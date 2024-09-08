@@ -20,7 +20,7 @@ const CartActionBtns: React.FC<{
   const navigate = useNavigate();
 
   return (
-    <div className="btn-wrapper w-full   lg:my-3 text-white flex lg:gap-10  max-md:justify-between ">
+    <div className="btn-wrapper w-full   lg:my-3 text-white flex   max-md:justify-between md:gap-10 ">
       {/* React Toast Component */}
       <div className="absolute">
         <ToastContainer
@@ -37,7 +37,7 @@ const CartActionBtns: React.FC<{
         />
       </div>
       <button
-        className="bg-emerald-500 flex justify-center items-center max-md:px-4 max-md:gap-2 max-md:py-2 lg:gap-3 lg:py-3 lg:px-10 rounded lg:text-xl font-medium active:bg-emerald-600"
+        className="bg-emerald-500 flex justify-center items-center max-md:px-4 max-md:gap-2 max-md:py-2 md:p-3  lg:gap-3 lg:py-3 lg:px-10 rounded lg:text-xl font-medium active:bg-emerald-600"
         onClick={() => {
           notify();
           dispatch(
@@ -57,7 +57,7 @@ const CartActionBtns: React.FC<{
       <div>
         <button
           onClick={() => navigate(`/checkout/${id}`)}
-          className="bg-red-500 flex justify-center items-center max-md:px-4 max-md:gap-2 max-md:py-2 lg:gap-3  lg:py-3 lg:px-10 rounded lg:text-xl font-medium active:bg-red-600"
+          className="bg-red-500 flex justify-center items-center max-md:px-4 max-md:gap-2 max-md:py-2 md:p-3  lg:gap-3  lg:py-3 lg:px-10 rounded lg:text-xl font-medium active:bg-red-600"
         >
           <TbTruckDelivery />
           <p className="max-md:text-sm">Buy now</p>

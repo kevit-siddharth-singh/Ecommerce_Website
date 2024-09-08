@@ -26,7 +26,7 @@ const ProductDetail = () => {
   }
 
   return data ? (
-    <div className="max-md:p-2 max-md:flex-col  md:m-10  flex justify-center  md:gap-24  w-full max-md:items-center   max-md:overflow-hidden">
+    <div className="w-full h-full   max-md:p-2 max-md:flex-col  md:p-2 lg:p-10 flex justify-center md:gap-5  lg:gap-5 xl:gap-24   max-md:items-center   max-md:overflow-hidden ">
       <div className=" md:hidden my-2 mb-5 w-full  flex flex-col-reverse justify-between items-center ">
         <BreadCrumbs product={data.title} />
         <div className="flex justify-between  items-center w-full px-5">
@@ -41,7 +41,7 @@ const ProductDetail = () => {
       </div>
 
       {/* Can use Slice Method here for getting desired length String for Product title */}
-      <div className="product-image md:h-[50rem] max-md:w-4/5 max-sm:w-4/5  md:w-[40rem]   md:p-5 w-full ">
+      <div className="product-image md:w-[45rem]  md:h-[30rem] lg:w-[25rem] lg:h-[30rem] xl:w-[30rem]   xl:h-[40rem]   max-md:w-4/5 max-sm:w-4/5     md:p-5 w-full ">
         {/* <img className=" rounded-box  h-full w-full" src={data.image} alt="" /> */}
         <ProductCarousel img={data.image} />
       </div>
@@ -51,9 +51,9 @@ const ProductDetail = () => {
           <BreadCrumbs product={data.title} />
           <button
             onClick={() => navigate("/product/cart")}
-            className="text-white text-2xl  bg-red-500 p-2 px-4  active:bg-red-600 rounded"
+            className="text-white text-2xl  bg-red-500 md:px-3 md:py-2 lg:p-2 lg:px-4  active:bg-red-600 rounded"
           >
-            <FiShoppingCart />
+            <FiShoppingCart className="md:h-5 lg:h-6" />
           </button>
         </div>
         <div className="product-title cursor-pointer text-white md:text-5xl max-md:text-3xl max-md:mt-5 lg:text-5xl lg:p-1 font-bold   ">
