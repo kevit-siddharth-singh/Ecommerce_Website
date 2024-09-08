@@ -65,18 +65,20 @@ const ProductList = () => {
     );
   } else {
     content = (
-      <div className="absolute top-[5%] flex flex-col justify-center items-center">
-        <img
-          className="w-[35rem]"
-          src={NoProductFoundImg}
-          alt="No Product Found"
-        />
-        <p className="text-orange-500 text-3xl">
+      <div className="flex flex-col w-full overflow-hidden  justify-center items-center h-full ">
+        <div className="img w-1/4  ">
+          <img
+            className="w-full cover"
+            src={NoProductFoundImg}
+            alt="No Product Found"
+          />
+        </div>
+        <p className="text-orange-500 text-3xl shrink-0">
           No products found matching "{search}".
         </p>
         <button
           onClick={() => dispatch(searchActions.setSearchTerm(""))}
-          className="m-2 border border-purple-500 rounded p-2 text-purple-400 hover:bg-purple-500 hover:text-white"
+          className="m-2 border  border-purple-500 rounded p-2 text-purple-400 hover:bg-purple-500 hover:text-white shrink-0"
         >
           Clear Result
         </button>
@@ -96,16 +98,16 @@ const ProductList = () => {
   });
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full h-screen overflow-hidden  ">
       <Header />
-      <div className={`flex ${isRelative}`}>
-        <div className="sidebar-wrapper w-1/6">
+      <div className={`flex ${isRelative} max-md:flex-col h-full w-full`}>
+        <div className="sidebar-wrapper md:w-1/6 w-full max-md:flex">
           <Sidebar />
         </div>
         {search === "" && !data ? (
           <Loading />
         ) : (
-          <div className="product-wrapper flex flex-col w-5/6 items-center">
+          <div className="product-wrapper flex flex-col w-5/6  items-center  relative">
             {content}
             {search.length === 0 ? <PaginationComponent /> : undefined}
           </div>
