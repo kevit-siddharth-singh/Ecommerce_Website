@@ -26,7 +26,7 @@ const Header = () => {
   }, [debouncedSearchTerm, dispatch]);
 
   return (
-    <div className="sticky z-[999] top-0 w-full overflow-hidden ">
+    <div className="sticky z-[999] top-0 w-full  ">
       <Dialog />
       <div className="navbar bg-base-300 max-sm:px-3 gap-0 md:gap-2 w-full">
         {/* Logo */}

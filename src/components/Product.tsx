@@ -18,7 +18,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
   return (
     <div
       onClick={() => navigate(`/product/${props.product.id}`)}
-      className="flex flex-col w-[16rem] h-[21rem] p-2 px-4  rounded-box bg-white  items-center hover:translate-y-[-10px] transition ease-in-out "
+      className="flex flex-col p-2 px-4  rounded-box bg-white  items-center hover:translate-y-[-10px] max-md:w-full max-md:h-full max-md:mx-32 max-sm:mx-5 transition ease-in-out cursor-pointer"
     >
       {/* React Toast Component */}
       <ToastContainer

@@ -18,7 +18,7 @@ const ProductList = () => {
   const currentPage = useAppSelector((state) => state.pagination.currentPage);
 
   const { data } = useQuery({
-    queryKey: ["products",currentPage],
+    queryKey: ["products", currentPage],
     queryFn: () => fetchProduct(currentPage),
   });
 
@@ -56,13 +56,11 @@ const ProductList = () => {
 
   if (filteredData && filteredData.length > 0) {
     content = (
-      <ul className="grid grid-cols-5 place-items-center m-2 p-5 gap-10">
+      <div className="flex flex-wrap md:gap-10 max-sm:gap-10 gap-14 w-full my-5 justify-center items-center">
         {filteredData.map((product: ProductType) => (
-          <li key={product.id} className="cursor-pointer">
-            <Product product={product} />
-          </li>
+          <Product key={product.id} product={product} />
         ))}
-      </ul>
+      </div>
     );
   } else {
     content = (
@@ -101,16 +99,16 @@ const ProductList = () => {
   return (
     <div className="w-full h-screen overflow-hidden  ">
       <Header />
-      <div className={`flex ${isRelative} max-md:flex-col h-full w-full`}>
+      <div className={`flex ${isRelative} max-md:flex-col h-full w-full `}>
         <div className="sidebar-wrapper md:w-1/6 w-full max-md:flex">
           <Sidebar />
         </div>
         {search === "" && !data ? (
           <Loading />
         ) : (
-          <div className="product-wrapper flex flex-col w-5/6 gap-2 items-center">
+          <div className="product-wrapper flex flex-col md:w-5/6 w-full gap-2 items-center">
             <div className="w-full h-4/5 overflow-y-scroll overflow-hidden">
-            {content}
+              {content}
             </div>
             {search.length === 0 ? <PaginationComponent /> : undefined}
           </div>
