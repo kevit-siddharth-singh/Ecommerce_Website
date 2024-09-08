@@ -15,10 +15,11 @@ import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 const ProductList = () => {
   // Custom Hook For Changing Title
   useTitleChangeHook({ title: "S K Y - S H O P" });
+  const currentPage = useAppSelector((state) => state.pagination.currentPage);
 
   const { data } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProduct,
+    queryKey: ["products",currentPage],
+    queryFn: () => fetchProduct(currentPage),
   });
 
   const selectedCategory = useAppSelector(
@@ -65,7 +66,7 @@ const ProductList = () => {
     );
   } else {
     content = (
-      <div className="flex flex-col w-full overflow-hidden  justify-center items-center h-full ">
+      <div className="flex flex-col w-full overflow-hidden justify-center items-center h-full ">
         <div className="img w-1/4  ">
           <img
             className="w-full cover"
@@ -107,8 +108,10 @@ const ProductList = () => {
         {search === "" && !data ? (
           <Loading />
         ) : (
-          <div className="product-wrapper flex flex-col w-5/6  items-center  relative">
+          <div className="product-wrapper flex flex-col w-5/6 gap-2 items-center">
+            <div className="w-full h-4/5 overflow-y-scroll overflow-hidden">
             {content}
+            </div>
             {search.length === 0 ? <PaginationComponent /> : undefined}
           </div>
         )}

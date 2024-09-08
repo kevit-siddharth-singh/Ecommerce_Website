@@ -6,7 +6,7 @@ const PaginationComponent = () => {
   const currPage = useAppSelector((state) => state.pagination.currentPage);
 
   function handleNext() {
-    if (currPage < 10) {
+    if (currPage < 4) {
       dispatch(paginationActions.nextPage());
     }
   }
@@ -28,7 +28,12 @@ const PaginationComponent = () => {
         «
       </button>
       <div className="join-item btn w-2/3">Page {currPage}</div>
-      <button onClick={handleNext} className="join-item btn w-1/3">
+      <button
+        onClick={handleNext}
+        className={`join-item btn w-1/3 ${
+          currPage === 4 ? "cursor-not-allowed" : "undefined"
+        }`}
+      >
         »
       </button>
     </div>

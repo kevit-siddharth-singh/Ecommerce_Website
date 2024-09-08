@@ -10,8 +10,10 @@ export type ProductType = {
   price: number;
 };
 
-export async function fetchProduct() {
-  const res = await axios.get("https://fakestoreapi.com/products");
+export async function fetchProduct(currentPage: number) {
+  const res = await axios.get(
+    `https://fakestoreapi.com/products?limit=${currentPage * 5}`
+  );
 
   if (res.status === 200) {
     const { data } = res;
