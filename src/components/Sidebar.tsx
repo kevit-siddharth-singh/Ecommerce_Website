@@ -23,7 +23,7 @@ const Sidebar = () => {
 
   if (categories) {
     content = (
-      <ul className="max-md:flex max-md:w-full max-md:overflow-hidden">
+      <ul className=" max-sm:flex-wrap  max-md:flex max-md:w-full max-md:overflow-hidden max-sm:p-1    sm:p-3 sm:justify-between ">
         {categories.map((category: string, idx: number) => (
           <li key={idx}>
             <Checkboxes category={category} />
@@ -43,11 +43,13 @@ const Sidebar = () => {
         </p>
         {content}
       </div>
-      {/* Price Section */}
-      <p className="m-4 text-xl text-orange-500 max-md:hidden">
-        Select Price :{" "}
-      </p>
-      <p className="m-4 max-md:hidden">Data....</p>
+      <div className="hidden">
+        {/* Price Section */}
+        <p className="m-4 text-xl text-orange-500 max-md:hidden ">
+          Select Price :{" "}
+        </p>
+        <p className="m-4 max-md:hidden">Data....</p>
+      </div>
     </div>
   );
 };
