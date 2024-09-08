@@ -6,7 +6,7 @@ const Rating: React.FC<{ rating: number }> = (props) => {
       {Array(props.rating)
         .fill(0)
         .map((_, index) => (
-          <img key={index} className="w-[1.2rem] " src={star} alt="star" />
+          <img key={index} className="max-md:w-4 max-md:mt-1  lg:w-[1.2rem] " src={star} alt="star" />
         ))}
     </div>
   );

@@ -20,22 +20,24 @@ const CartActionBtns: React.FC<{
   const navigate = useNavigate();
 
   return (
-    <div className="btn-wrapper my-3 text-white flex gap-10">
+    <div className="btn-wrapper w-full   lg:my-3 text-white flex lg:gap-10  max-md:justify-between ">
       {/* React Toast Component */}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <div className="absolute">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </div>
       <button
-        className="bg-emerald-500 flex justify-center items-center gap-3 py-3 px-10 rounded text-xl font-medium active:bg-emerald-600"
+        className="bg-emerald-500 flex justify-center items-center max-md:px-4 max-md:gap-2 max-md:py-2 lg:gap-3 lg:py-3 lg:px-10 rounded lg:text-xl font-medium active:bg-emerald-600"
         onClick={() => {
           notify();
           dispatch(
@@ -50,15 +52,15 @@ const CartActionBtns: React.FC<{
         }}
       >
         <LuShoppingCart />
-        Add to cart
+        <p className="max-md:text-sm">Add to cart</p>
       </button>
       <div>
         <button
           onClick={() => navigate(`/checkout/${id}`)}
-          className="bg-red-500 flex justify-center items-center gap-3  py-3 px-10 rounded text-xl font-medium active:bg-red-600"
+          className="bg-red-500 flex justify-center items-center max-md:px-4 max-md:gap-2 max-md:py-2 lg:gap-3  lg:py-3 lg:px-10 rounded lg:text-xl font-medium active:bg-red-600"
         >
           <TbTruckDelivery />
-          Buy now
+          <p className="max-md:text-sm">Buy now</p>
         </button>
       </div>
     </div>
