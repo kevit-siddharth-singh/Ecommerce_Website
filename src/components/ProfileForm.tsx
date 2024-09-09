@@ -80,7 +80,10 @@ const ProfileForm = () => {
             <button
               onClick={usernameValidation}
               type="button"
-              className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+              className={`block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white select-none  ${
+                localUsername.length === 0 ? "cursor-not-allowed " : "undefined"
+              }`}
+              disabled={localUsername.length === 0}
             >
               Change
             </button>
