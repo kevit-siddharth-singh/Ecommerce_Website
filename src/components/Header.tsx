@@ -30,8 +30,18 @@ const Header = () => {
       <Dialog />
       <div className="navbar bg-base-300 max-sm:px-3 gap-0 md:gap-2 w-full">
         {/* Logo */}
-        <div className="flex-1  max-md:hidden">
-          <a className="btn btn-ghost text-xl">Sky-Shop</a>
+        <div
+          className="flex max-md:hidden cursor-pointer 
+        
+          "
+        >
+          <a
+            href="https://github.com/siddhu1919"
+            target="_blank"
+            className="btn btn-ghost text-2xl text-white "
+          >
+            S K Y - S H O P
+          </a>
         </div>
 
         {/* Search Bar */}
