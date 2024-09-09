@@ -90,7 +90,10 @@ const ProfileForm = () => {
             >
               Change
             </button>
-            <div className="flex justify-center"> {localUsername.length > 1 ? "Tap anywhere to exit" : ""}</div>
+            <div className="flex justify-center">
+              {" "}
+              {localUsername.length > 1 ? "Tap anywhere to exit" : ""}
+            </div>
           </form>
         </div>
       </div>
