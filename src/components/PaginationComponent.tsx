@@ -18,19 +18,19 @@ const PaginationComponent = () => {
   }
 
   return (
-    <div className="join mb-3 flex justify-center w-[20%]  ">
+    <div className="join m-3  flex justify-center w-[20%]  ">
       <button
         onClick={handlePrev}
-        className={`join-item btn w-1/3 ${
+        className={`join-item btn w-1/3 bg-blue-500 hover:bg-blue-600 text-white  ${
           currPage === 1 ? "cursor-not-allowed" : "undefined"
         }`}
       >
         «
       </button>
-      <div className="join-item btn w-2/3">Page {currPage}</div>
+      <div className="join-item btn w-2/3 bg-blue-500 hover:bg-blue-600 text-white ">Page {currPage}</div>
       <button
         onClick={handleNext}
-        className={`join-item btn w-1/3 ${
+        className={`join-item btn w-1/3 bg-blue-500 hover:bg-blue-600 text-white ${
           currPage === 4 ? "cursor-not-allowed" : "undefined"
         }`}
       >
