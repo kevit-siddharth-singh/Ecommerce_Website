@@ -18,7 +18,12 @@ const ProductOrderPage = () => {
           <div key={product.id} className=" flex justify-between">
             <div className="flex gap-3">
               <div className="md:w-[6rem] rounded overflow-hidden">
-                <img src={product.image} alt={product.image} />
+                <img
+                  onClick={() => navigate("/product/" + product.id)}
+                  className="cursor-pointer"
+                  src={product.image}
+                  alt={product.image}
+                />
               </div>
               <div className="">
                 <p className="text-xl font-semibold text-white">
@@ -45,7 +50,7 @@ const ProductOrderPage = () => {
             <div>
               <button
                 onClick={() => navigate(`/checkout/${product.id}`)}
-                className="flex text-white rounded p-2 bg-orange-500"
+                className="flex text-white rounded p-2 font-semibold bg-orange-500 hover:bg-orange-600"
               >
                 Buy again
               </button>
