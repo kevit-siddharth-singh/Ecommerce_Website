@@ -12,8 +12,8 @@ export const notify = () =>
     progress: undefined,
     theme: "light",
   });
-export const orderSuccessFullNotify = () =>
-  toast.success("Order placed successfully", {
+export const SuccessFullNotify = (msg:string) =>
+  toast.success(msg, {
     position: "bottom-right",
     autoClose: 2000,
     hideProgressBar: false,

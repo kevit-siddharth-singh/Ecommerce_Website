@@ -10,19 +10,24 @@ import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { orderSuccessFullNotify } from "../utils/ToastNotify";
+import { SuccessFullNotify } from "../utils/ToastNotify";
+import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 const CheckOutPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.orderedProducts.products);
-  console.log({ products });
+
+  const checkoutData = useAppSelector((state) => state.checkout);
+
+  // Local State
   const [localProductQuantity, setLocalProductQuantity] = useState(1);
   const [issuccessfullorder, setIsSuccessfullorder] = useState(false);
+
   function AddProducts() {
     if (localProductQuantity < 10) {
       setLocalProductQuantity((state) => (state += 1));
     }
   }
+
   function RemoveProducts() {
     if (localProductQuantity > 1) {
       setLocalProductQuantity((state) => (state -= 1));
@@ -31,6 +36,8 @@ const CheckOutPage = () => {
 
   // Custom hook for Auth Check
   useAuthCheckerHook();
+  // Custom hook for Title Change
+  useTitleChangeHook({ title: "checkout page" });
 
   const { Pid } = useParams();
 
@@ -40,16 +47,26 @@ const CheckOutPage = () => {
   });
 
   // Handler to add product to order
+
   const handleAddProduct = () => {
-    dispatch(
-      orderedProductsActions.addProduct({
-        id: data.id,
-        image: data.image,
-        price: data.price,
-        quantity: localProductQuantity,
-        title: data.title, // Assuming title is also needed
-      })
-    );
+    if (
+      checkoutData.address.length > 10 &&
+      checkoutData.name.length > 6 &&
+      checkoutData.phn.length > 9 &&
+      checkoutData.modeofpayment === "cod"
+    ) {
+      dispatch(
+        orderedProductsActions.addProduct({
+          id: data.id,
+          image: data.image,
+          price: data.price,
+          quantity: localProductQuantity,
+          title: data.title, // Assuming title is also needed
+        })
+      );
+      setIsSuccessfullorder(true);
+      SuccessFullNotify("Order placed successfully");
+    }
   };
 
   let content = <Loading />;
@@ -70,8 +87,8 @@ const CheckOutPage = () => {
           pauseOnHover
           theme="light"
         />
-        <h1 className="text-orange-500 text-5xl font-semibold mt-[2rem] mb-[3rem]">
-          Checkout Page
+        <h1 className="text-orange-500 text-5xl font-semibold tracking-wide mt-[2rem] mb-[3rem]">
+          CHECKOUT - PAGE
         </h1>
 
         <div className="reviewProduct   flex flex-col   justify-between   ">
@@ -103,8 +120,6 @@ const CheckOutPage = () => {
             <button
               onClick={() => {
                 handleAddProduct();
-                setIsSuccessfullorder(true);
-                orderSuccessFullNotify();
               }}
               className="bg-orange-500 text-white font-semibold p-3  rounded active:bg-orange-600"
             >

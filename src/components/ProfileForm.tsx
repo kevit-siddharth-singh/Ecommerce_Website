@@ -2,6 +2,7 @@ import { useState } from "react";
 import { authActions } from "../Redux/Slices/authenticateSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import UserImage from "./UserImage";
+import { SuccessFullNotify } from "../utils/ToastNotify";
 
 const ProfileForm = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ const ProfileForm = () => {
   function usernameValidation() {
     if (localUsername.length >= 6) {
       dispatch(authActions.setName(localUsername));
+      SuccessFullNotify("username changed");
     } else {
       console.log("Error");
       setIsError(true);
