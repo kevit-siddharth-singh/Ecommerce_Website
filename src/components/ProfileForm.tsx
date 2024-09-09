@@ -28,9 +28,10 @@ const ProfileForm = () => {
     <>
       <div className="mx-auto max-w-screen-xl px-4 py-0 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg">
-          <h1 className="text-center text-4xl font-bold text-green-600 sm:text-4xl">
+          <h1 className="text-center  text-4xl font-bold text-green-600 sm:text-4xl">
             Profile
           </h1>
+
           <UserImage />
           <form action="#" className=" space-y-4 rounded-lg p-4  sm:p-6 lg:p-1">
             <p className="text-center text-lg font-medium">
@@ -82,13 +83,14 @@ const ProfileForm = () => {
             <button
               onClick={usernameValidation}
               type="button"
-              className={`block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white select-none  ${
+              className={` block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white select-none  ${
                 localUsername.length === 0 ? "cursor-not-allowed " : "undefined"
               }`}
               disabled={localUsername.length === 0}
             >
               Change
             </button>
+            <div className="flex justify-center"> {localUsername.length > 1 ? "Tap anywhere to exit" : ""}</div>
           </form>
         </div>
       </div>
