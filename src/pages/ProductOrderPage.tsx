@@ -15,30 +15,40 @@ const ProductOrderPage = () => {
     content = (
       <div className="h-full w-full flex flex-col gap-5 ">
         {orderedProducts.map((product) => (
-          <div key={product.id} className=" flex gap-3">
-            <div className="md:w-[6rem] rounded overflow-hidden">
-              <img src={product.image} alt={product.image} />
-            </div>
-            <div className="">
-              <p className="text-xl font-semibold text-white">
-                {product.title}
-              </p>
-              <p className="font-semibold">
-                Price :
-                <span className="text-emerald-400"> ₹{product.price}</span>
-              </p>
-              <p className=" font-semibold ">
-                Total items :
-                <span className="text-emerald-400"> {product.quantity}</span>
-              </p>
+          <div key={product.id} className=" flex justify-between">
+            <div className="flex gap-3">
+              <div className="md:w-[6rem] rounded overflow-hidden">
+                <img src={product.image} alt={product.image} />
+              </div>
+              <div className="">
+                <p className="text-xl font-semibold text-white">
+                  {product.title}
+                </p>
+                <p className="font-semibold">
+                  Price :
+                  <span className="text-emerald-400"> ₹{product.price}</span>
+                </p>
+                <p className=" font-semibold ">
+                  Total items :
+                  <span className="text-emerald-400"> {product.quantity}</span>
+                </p>
 
-              <p className="font-semibold">
-                Total Price :
-                <span className="text-emerald-400">
-                  {" "}
-                  ₹{product.price * product.quantity}
-                </span>
-              </p>
+                <p className="font-semibold">
+                  Total Price :
+                  <span className="text-emerald-400">
+                    {" "}
+                    ₹{product.price * product.quantity}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div>
+              <button
+                onClick={() => navigate(`/checkout/${product.id}`)}
+                className="flex text-white rounded p-2 bg-orange-500"
+              >
+                Buy again
+              </button>
             </div>
           </div>
         ))}

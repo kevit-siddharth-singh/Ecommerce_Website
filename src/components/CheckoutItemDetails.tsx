@@ -31,7 +31,7 @@ const CheckoutItemDetails: React.FC<{
             >
               <FaMinus />
             </button>
-            <p className="flex justify-center text-white lg:text-sm lg:p-[0.1rem] font-medium border lg:w-1/5 rounded">
+            <p className="flex justify-center text-white lg:text-sm lg:p-[0.1rem] font-medium border lg:w-1/6 rounded">
               {localProductQuantity}
             </p>
             <button

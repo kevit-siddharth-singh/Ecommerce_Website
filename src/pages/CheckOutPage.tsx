@@ -9,13 +9,15 @@ import Loading from "../components/Loading";
 import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import { orderSuccessFullNotify } from "../utils/ToastNotify";
 const CheckOutPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.orderedProducts.products);
   console.log({ products });
   const [localProductQuantity, setLocalProductQuantity] = useState(1);
-
+  const [issuccessfullorder, setIsSuccessfullorder] = useState(false);
   function AddProducts() {
     if (localProductQuantity < 10) {
       setLocalProductQuantity((state) => (state += 1));
@@ -55,6 +57,19 @@ const CheckOutPage = () => {
   if (data) {
     content = (
       <div className="flex flex-col items-center  px-4 py-1 ">
+        {/* React Toast Component */}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <h1 className="text-orange-500 text-5xl font-semibold mt-[2rem] mb-[3rem]">
           Checkout Page
         </h1>
@@ -78,7 +93,9 @@ const CheckOutPage = () => {
           </div>
           <div className="flex justify-center md:mt-4 md:gap-4">
             <button
-              onClick={() => navigate("/product")}
+              onClick={() => {
+                navigate("/product");
+              }}
               className="bg-blue-500 text-white font-semibold p-3  rounded active:bg-blue-600"
             >
               Go to products
@@ -86,12 +103,21 @@ const CheckOutPage = () => {
             <button
               onClick={() => {
                 handleAddProduct();
-                navigate("/orders");
+                setIsSuccessfullorder(true);
+                orderSuccessFullNotify();
               }}
               className="bg-orange-500 text-white font-semibold p-3  rounded active:bg-orange-600"
             >
               Order now
             </button>
+            {issuccessfullorder && (
+              <button
+                onClick={() => navigate("/order")}
+                className="bg-emerald-500 text-white font-semibold p-3  rounded active:bg-emerald-600"
+              >
+                Go to orders
+              </button>
+            )}
           </div>
         </div>
       </div>
