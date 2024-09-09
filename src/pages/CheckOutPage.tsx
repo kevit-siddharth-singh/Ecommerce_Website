@@ -2,26 +2,53 @@ import { useQuery } from "@tanstack/react-query";
 import AddressForm from "../components/AddressForm";
 import CheckoutItemDetails from "../components/CheckoutItemDetails";
 import OrderSummary from "../components/OrderSummary";
-import { useAppSelector } from "../Redux/store";
+import { useAppDispatch, useAppSelector } from "../Redux/store";
 import { getProductDetail } from "../utils/getProductDetail";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
-
+import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
+import { useState } from "react";
 const CheckOutPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => state.orderedProducts.products);
+  console.log({ products });
+  const [localProductQuantity, setLocalProductQuantity] = useState(1);
+
+  function AddProducts() {
+    if (localProductQuantity < 10) {
+      setLocalProductQuantity((state) => (state += 1));
+    }
+  }
+  function RemoveProducts() {
+    if (localProductQuantity > 1) {
+      setLocalProductQuantity((state) => (state -= 1));
+    }
+  }
+
   // Custom hook for Auth Check
   useAuthCheckerHook();
 
-  const checkoutData = useAppSelector((state) => state.checkout);
-  console.log(checkoutData);
-
   const { Pid } = useParams();
-  console.log(Pid);
 
   const { data } = useQuery({
     queryKey: ["Checkout", { productId: Pid }],
     queryFn: () => getProductDetail(Pid!),
   });
+
+  // Handler to add product to order
+  const handleAddProduct = () => {
+    dispatch(
+      orderedProductsActions.addProduct({
+        id: data.id,
+        image: data.image,
+        price: data.price,
+        quantity: localProductQuantity,
+        title: data.title, // Assuming title is also needed
+      })
+    );
+  };
 
   let content = <Loading />;
 
@@ -38,14 +65,31 @@ const CheckOutPage = () => {
           <div className="container  flex gap-5">
             <div className="demographic-info flex flex-col gap-3 ">
               <AddressForm />
-              <CheckoutItemDetails data={data} />
+              <CheckoutItemDetails
+                data={data}
+                AddProducts={AddProducts}
+                RemoveProducts={RemoveProducts}
+                localProductQuantity={localProductQuantity}
+              />
             </div>
             <div className="ProductDetail border border-white/60 p-3 rounded ">
               <OrderSummary data={data} />
             </div>
           </div>
-          <div className="flex justify-center mt-4">
-            <button className="bg-orange-500 text-white font-semibold p-3  rounded active:bg-orange-600">
+          <div className="flex justify-center md:mt-4 md:gap-4">
+            <button
+              onClick={() => navigate("/product")}
+              className="bg-blue-500 text-white font-semibold p-3  rounded active:bg-blue-600"
+            >
+              Go to products
+            </button>
+            <button
+              onClick={() => {
+                handleAddProduct();
+                navigate("/orders");
+              }}
+              className="bg-orange-500 text-white font-semibold p-3  rounded active:bg-orange-600"
+            >
               Order now
             </button>
           </div>

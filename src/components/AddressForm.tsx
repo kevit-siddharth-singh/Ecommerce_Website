@@ -1,12 +1,10 @@
 import { checkoutActions } from "../Redux/Slices/checkoutSlice";
-import { useAppDispatch, useAppSelector } from "../Redux/store";
+import { useAppDispatch } from "../Redux/store";
 import DropDown from "./DropDown";
 import Input from "./Input";
 
 const AddressForm = () => {
   const dispatch = useAppDispatch();
-  const checkoutData = useAppSelector((state) => state.checkout);
-  console.log(checkoutData);
 
   function handleAddress(e: React.ChangeEvent<HTMLTextAreaElement>) {
     dispatch(checkoutActions.changeAddress(e.target.value));
