@@ -75,7 +75,11 @@ const CartItems: React.FC<{
                       Buy
                     </button>
                   </div>
-                  <p className="text-right text-yellow-300">₹ {item.price}</p>
+                  <p className="text-right text-yellow-300">
+                    ₹ {item.price}{" "}
+                    <span className="text-red-500 font-semibold">X</span>{" "}
+                    {item.quantity}
+                  </p>
                 </div>
               </div>
               <div className="divider"></div>
