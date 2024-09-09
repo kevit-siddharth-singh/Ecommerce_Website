@@ -134,7 +134,7 @@ const Header = () => {
                 </a>
               </li>
               <li className="hover:text-emerald-400">
-                <a>Settings</a>
+                <a onClick={() => navigate("/order")}>Orders</a>
               </li>
               <li className="hover:text-emerald-400">
                 <a onClick={() => dispatch(authActions.setLogout())}>Logout</a>
