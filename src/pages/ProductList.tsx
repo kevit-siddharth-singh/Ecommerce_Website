@@ -64,15 +64,15 @@ const ProductList = () => {
     );
   } else {
     content = (
-      <div className="flex flex-col w-full overflow-hidden justify-center items-center h-full ">
-        <div className="img w-1/4  ">
+      <div className="flex flex-col w-full h-full overflow-hidden  justify-center items-center max-sm:gap-4 ">
+        <div className="img md:w-1/4  max-sm:w-4/5 ">
           <img
             className="w-full cover"
             src={NoProductFoundImg}
             alt="No Product Found"
           />
         </div>
-        <p className="text-orange-500 text-3xl shrink-0">
+        <p className="text-orange-500 text-center max-sm:text-lg max-sm:font-semibold md:text-3xl  sm:shrink-0">
           No products found matching "{search}".
         </p>
         <button
@@ -97,20 +97,24 @@ const ProductList = () => {
   });
 
   return (
-    <div className="w-full h-screen overflow-hidden  ">
+    <div className="w-full sm:h-screen max-sm:h-screen h-full overflow-hidden  ">
       <Header />
-      <div className={`flex ${isRelative} max-md:flex-col h-full w-full `}>
-        <div className="sidebar-wrapper md:w-1/6 w-full max-md:flex">
+      <div
+        className={`flex ${isRelative} max-sm:justify-between   max-md:flex-col h-full w-full `}
+      >
+        <div className="sidebar-wrapper max-sm:w-full  md:w-1/6 w-full sm:flex">
           <Sidebar />
         </div>
         {search === "" && !data ? (
           <Loading />
         ) : (
-          <div className="product-wrapper flex flex-col md:w-5/6 w-full gap-2 items-center">
-            <div className="w-full h-4/5 overflow-y-scroll overflow-hidden">
+          <div className="product-wrapper flex flex-col md:w-5/6 w-full h-full  items-center sm:gap-5   ">
+            <div className="w-full flex items-start  md:h-[80%] max-sm:h-[70%] overflow-y-scroll  ">
               {content}
             </div>
-            {search.length === 0 ? <PaginationComponent /> : undefined}
+            <div className="w-full  flex justify-center items-center">
+              {search.length === 0 ? <PaginationComponent /> : undefined}
+            </div>
           </div>
         )}
       </div>

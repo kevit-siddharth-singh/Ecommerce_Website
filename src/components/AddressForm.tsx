@@ -36,11 +36,7 @@ const AddressForm = () => {
           <p className="text-white text-lg font-semibold">*Name :</p>
           <Input placeholder="Type your name" type={"text"} func={handleName} />
           <p className="text-white text-lg font-semibold">*Phn no :</p>
-          <Input
-            placeholder="Enter phone number"
-            type={"tel"}
-            func={handlePhn}
-          />
+          <Input placeholder="Enter phone number" type="tel" func={handlePhn} />
         </div>
         <div className="payment-mode  p-5 w-full">
           <p className="mb-2 text-orange-400 text-lg font-semibold">

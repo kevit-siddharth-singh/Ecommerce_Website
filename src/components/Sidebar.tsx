@@ -23,7 +23,7 @@ const Sidebar = () => {
 
   if (categories) {
     content = (
-      <ul className=" max-sm:flex-wrap  max-md:flex max-md:w-full max-md:overflow-hidden max-sm:p-1    sm:p-3 sm:justify-between ">
+      <ul className=" max-sm:flex-wrap  max-md:flex max-md:w-full max-md:overflow-hidden    sm:p-3 sm:justify-between ">
         {categories.map((category: string, idx: number) => (
           <li key={idx}>
             <Checkboxes category={category} />

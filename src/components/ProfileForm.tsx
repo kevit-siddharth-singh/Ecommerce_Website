@@ -26,20 +26,23 @@ const ProfileForm = () => {
 
   return (
     <>
-      <div className="mx-auto max-w-screen-xl px-4 py-0 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl max-sm:w-full  max-sm:p-0  py-0 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg">
-          <h1 className="text-center  text-4xl font-bold text-green-600 sm:text-4xl">
+          <h1 className="text-center  text-4xl font-bold text-green-600 max-sm:text-3xl ">
             Profile
           </h1>
 
           <UserImage />
-          <form action="#" className=" space-y-4 rounded-lg p-4  sm:p-6 lg:p-1">
-            <p className="text-center text-lg font-medium">
+          <form
+            action="#"
+            className=" sm:space-y-4  max-sm:space-y-3 rounded-lg   sm:p-6 lg:p-1"
+          >
+            <p className="text-center max-sm:m-1 sm:text-lg font-medium">
               Enter below to edit your name
             </p>
 
             <div>
-              <label htmlFor="name" className="sr-only">
+              <label htmlFor="name" className="sr-only sm:">
                 Name
               </label>
 
@@ -53,7 +56,7 @@ const ProfileForm = () => {
                   type="text"
                   className={`w-full rounded-lg border ${
                     isError ? "border-red-500" : "border-transparent "
-                  } p-4 pe-12 text-md shadow-sm`}
+                  } max-sm:p-2 sm:p-4 pe-12  sm:text-md shadow-sm`}
                   placeholder={username}
                 />
 
@@ -76,14 +79,14 @@ const ProfileForm = () => {
               </div>
             </div>
             {isError && (
-              <span className="error-area p-1 text-red-500 text-md">
+              <span className="error-area  sm:p-1 text-red-500 text-md">
                 Invalid username
               </span>
             )}
             <button
               onClick={usernameValidation}
               type="button"
-              className={` block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white select-none  ${
+              className={` block w-full rounded-lg bg-indigo-600 max-sm:px-2 max-sm:py-2    sm:px-5 sm:py-3 text-sm font-medium text-white select-none  ${
                 localUsername.length === 0 ? "cursor-not-allowed " : "undefined"
               }`}
               disabled={localUsername.length === 0}

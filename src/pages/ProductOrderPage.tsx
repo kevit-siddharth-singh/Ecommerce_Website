@@ -13,11 +13,14 @@ const ProductOrderPage = () => {
 
   if (orderedProducts) {
     content = (
-      <div className="h-full w-full flex flex-col gap-5 ">
+      <div className="h-full w-full flex flex-col max-sm:gap-8 sm:gap-5 ">
         {orderedProducts.map((product) => (
-          <div key={product.id} className=" flex justify-between">
-            <div className="flex gap-3">
-              <div className="md:w-[6rem] rounded overflow-hidden">
+          <div
+            key={product.id}
+            className=" flex justify-between max-sm:flex-col max-sm:gap-3"
+          >
+            <div className="flex max-sm:gap-4 sm:gap-3">
+              <div className="max-sm:w-1/4 max-sm:h-1/4   md:w-[6rem] rounded overflow-hidden">
                 <img
                   onClick={() => navigate("/product/" + product.id)}
                   className="cursor-pointer"
@@ -25,20 +28,20 @@ const ProductOrderPage = () => {
                   alt={product.image}
                 />
               </div>
-              <div className="">
-                <p className="text-xl font-semibold text-white">
+              <div className=" max-sm:w-[70%] ">
+                <p className="max-sm:text-sm max-sm:truncate sm:text-xl font-semibold text-white ">
                   {product.title}
                 </p>
-                <p className="font-semibold">
+                <p className="font-semibold max-sm:text-sm  max-sm:hidden">
                   Price :
                   <span className="text-emerald-400"> ₹{product.price}</span>
                 </p>
-                <p className=" font-semibold ">
+                <p className="max-sm:text-sm  font-semibold ">
                   Total items :
                   <span className="text-emerald-400"> {product.quantity}</span>
                 </p>
 
-                <p className="font-semibold">
+                <p className="max-sm:text-sm font-semibold ">
                   Total Price :
                   <span className="text-emerald-400">
                     {" "}
@@ -47,10 +50,13 @@ const ProductOrderPage = () => {
                 </p>
               </div>
             </div>
-            <div>
+            <div className=" max-sm:flex max-sm:justify-between">
+              <button className="flex text-white rounded sm:hidden max-sm:p-1 max-sm:text-sm sm:p-2 font-semibold bg-emerald-500 hover:bg-emerald-600">
+                ₹ {product.price}
+              </button>
               <button
                 onClick={() => navigate(`/checkout/${product.id}`)}
-                className="flex text-white rounded p-2 font-semibold bg-orange-500 hover:bg-orange-600"
+                className="flex text-white rounded max-sm:p-1 max-sm:text-sm sm:p-2 font-semibold bg-orange-500 hover:bg-orange-600"
               >
                 Buy again
               </button>
@@ -62,7 +68,7 @@ const ProductOrderPage = () => {
   }
 
   return (
-    <div className="h-full w-full  flex flex-col justify-center items-center py-5 px-10 overflow-hidden">
+    <div className="h-full w-full  flex flex-col justify-center items-center max-sm:py-3 max-sm:px-5  sm:py-5 sm:px-10 overflow-hidden">
       <div className="divider divider-neutral text-white">
         Y O U R - O R D E R S
       </div>
@@ -70,7 +76,7 @@ const ProductOrderPage = () => {
       <div>
         <button
           onClick={() => navigate("/product")}
-          className="bg-blue-500 text-white font-semibold p-2 rounded"
+          className="bg-blue-500 active:bg-blue-600 text-white font-semibold max-sm:text-sm max-sm:mt-10 p-2 rounded"
         >
           Go back to products
         </button>

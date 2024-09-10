@@ -36,13 +36,13 @@ const UserImage: React.FC = () => {
     <div className="flex justify-center">
       <input
         ref={inputRef}
-        className="invisible absolute w-20 h-20"
+        className="invisible absolute max-sm:w-16 max-sm:h-16  sm:sm:w-20 sm:h-20"
         type="file"
         onChange={UploadProfile}
       />
       <img
         onClick={tapOnHiddenInput}
-        className="w-20 h-20 cursor-pointer rounded-full"
+        className="max-sm:w-16 max-sm:h-16      sm:w-20 sm:h-20 cursor-pointer rounded-full"
         src={profile === "" ? defaultImage : profile}
         alt="User Profile"
       />
