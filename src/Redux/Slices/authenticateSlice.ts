@@ -41,7 +41,7 @@ const authenticateSlice = createSlice({
     },
 
     setLogin: (state, action: PayloadAction<{ isAuthenticate: boolean }>) => {
-      console.log(state.profile);
+      // console.log(state.profile);
 
       state.isAuthenticate = action.payload.isAuthenticate;
     },
