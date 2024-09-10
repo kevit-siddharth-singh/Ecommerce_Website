@@ -12,8 +12,20 @@ export const notify = () =>
     progress: undefined,
     theme: "light",
   });
-export const SuccessFullNotify = (msg:string) =>
+export const SuccessFullNotify = (msg: string) =>
   toast.success(msg, {
+    position: "bottom-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
+export const FailedNotify = (msg: string) =>
+  toast.error(msg, {
     position: "bottom-right",
     autoClose: 2000,
     hideProgressBar: false,

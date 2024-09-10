@@ -10,7 +10,7 @@ import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { SuccessFullNotify } from "../utils/ToastNotify";
+import { FailedNotify, SuccessFullNotify } from "../utils/ToastNotify";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 
 const CheckOutPage = () => {
@@ -22,6 +22,7 @@ const CheckOutPage = () => {
   // Local State
   const [localProductQuantity, setLocalProductQuantity] = useState(1);
   const [issuccessfullorder, setIsSuccessfullorder] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   function AddProducts() {
     if (localProductQuantity < 10) {
@@ -67,6 +68,8 @@ const CheckOutPage = () => {
       );
       setIsSuccessfullorder(true);
       SuccessFullNotify("Order placed successfully");
+    } else {
+      FailedNotify("Please fill all the details!");
     }
   };
 

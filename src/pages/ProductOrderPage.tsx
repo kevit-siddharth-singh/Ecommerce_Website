@@ -72,7 +72,7 @@ const ProductOrderPage = () => {
           onClick={() => navigate("/product")}
           className="bg-blue-500 text-white font-semibold p-2 rounded"
         >
-          Go Back
+          Go back to products
         </button>
       </div>
     </div>
