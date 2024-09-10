@@ -18,39 +18,40 @@ const CartItems: React.FC<{
   return (
     <div className="flex justify-center ">
       {items.length !== 0 ? (
-        <ul className="flex flex-col gap-2 p-10 w-4/5 relative">
+        <ul className="flex flex-col sm:gap-2 sm:p-10 sm:w-4/5 relative">
           <button
             onClick={() => navigate("/product")}
-            className="absolute right-9 flex  bg-red-500 active:bg-red-600 p-2 h-12 w-12 text-white justify-center items-center rounded-full"
+            className="absolute max-sm:right-0 max-sm:top-1 sm:right-9 flex  bg-red-500 active:bg-red-600  max-sm:p-2 sm:p-2   sm:h-12 sm:w-12 text-white justify-center items-center rounded-full"
           >
             <ImCross />
           </button>
           {items.map((item) => (
             <li key={item.id} className="flex flex-col    ">
-              <div className="flex gap-10">
+              <div className="flex  max-sm:p-3 max-sm:gap-2 sm:gap-10">
                 <img
                   onClick={() => navigate("/product/" + item.id)}
-                  className="w-[5rem] h-[6rem] cursor-pointer rounded hover:scale-105 transition-all ease-in-out"
+                  className="max-sm:w-[4rem] max-sm:h-[4.5rem] object-fill   sm:w-[5rem] sm:h-[6rem] cursor-pointer rounded hover:scale-105 transition-all ease-in-out"
                   src={item.image}
                   alt={item.name}
                 />
 
-                <div className="item-data flex flex-col gap-2  w-full">
-                  <p className="font-semibold text-white">{item.name}</p>
-
+                <div className="item-data flex flex-col sm:gap-2  w-full h-full max-sm:px-2">
+                  <p className="font-semibold text-white max-sm:text-sm">
+                    {item.name}
+                  </p>
                   <div className="btn-grp">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center sm:gap-3 max-sm:gap-2">
                       <button
                         onClick={() =>
                           dispatch(cartActions.removeItemFromCart(item.id))
                         }
-                        className="flex justify-center  bg-red-500  w-[3rem] text-white p-2 rounded"
+                        className="flex justify-center  max-sm:p-1  bg-red-500  sm:w-[3rem] text-white sm:p-2 rounded"
                       >
                         <FaMinus />
                       </button>
-                      <p className=" flex justify-center text-white text-xl font-medium border w-[2rem] rounded">
+                      <button className=" flex justify-center max-sm:p-1 max-sm:text-xs max-sm:font-semibold  text-white sm:text-xl font-medium border sm:w-[2rem] rounded">
                         {item.quantity}
-                      </p>
+                      </button>
                       <button
                         onClick={() =>
                           dispatch(
@@ -63,14 +64,14 @@ const CartItems: React.FC<{
                             })
                           )
                         }
-                        className="flex justify-center  bg-emerald-400 w-[3rem]  text-white p-2 rounded "
+                        className="flex justify-center  bg-emerald-400 max-sm:p-1 sm:w-[3rem]  text-white sm:p-2 rounded "
                       >
                         <FaPlus />
                       </button>
                     </div>
                     <button
                       onClick={() => navigate("/checkout/" + item.id)}
-                      className="my-2 bg-blue-500 font-semibold text-white p-1 w-[9.5rem] rounded active:bg-blue-600"
+                      className="max-sm:my-1 max-sm:text-sm max-sm:px-3  sm:my-2 bg-blue-500 font-semibold text-white  sm:p-1 sm:w-[9.5rem] rounded active:bg-blue-600"
                     >
                       Buy
                     </button>
@@ -85,17 +86,17 @@ const CartItems: React.FC<{
               <div className="divider"></div>
             </li>
           ))}
-          <div className="flex justify-between">
+          <div className="flex justify-between max-sm:p-2">
             <button
               onClick={() => dispatch(cartActions.clearCart())}
-              className="border border-red-600 rounded p-3 text-red-500   hover:bg-red-500 hover:text-white  "
+              className="max-sm:hidden border border-red-600 rounded   sm:p-3 text-red-500   hover:bg-red-500 hover:text-white  "
             >
               Empty Cart
             </button>
 
             <div className="text-center">
               <p className="text-white font-semibold">Total Quantity</p>
-              <p className="text-emerald-500 font-semibold">
+              <p className="text-emerald-500 font-semibold max-sm:text-start">
                 {totalQuantity} {totalQuantity !== 1 ? "Items" : "Item"}
               </p>
             </div>
@@ -106,6 +107,12 @@ const CartItems: React.FC<{
               </p>
             </div>
           </div>
+          <button
+            onClick={() => dispatch(cartActions.clearCart())}
+            className="border  mx-4 py-1 text-md font-semibold sm:hidden border-red-600 rounded text-red-500   hover:bg-red-500 hover:text-white  "
+          >
+            Empty Cart
+          </button>
         </ul>
       ) : (
         <EmptyCartCard />
