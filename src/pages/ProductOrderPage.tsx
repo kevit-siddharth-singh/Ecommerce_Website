@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { useAppSelector } from "../Redux/store";
+import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 
 const ProductOrderPage = () => {
+
+  useTitleChangeHook({title: "Ordered products"});
+
+
   const orderedProducts = useAppSelector(
     (state) => state.orderedProducts.products
   );
