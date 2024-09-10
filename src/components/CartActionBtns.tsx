@@ -37,6 +37,7 @@ const CartActionBtns: React.FC<{
         />
       </div>
       <button
+        title="Add to cart"
         className="bg-emerald-500 flex justify-center items-center max-md:px-4 max-md:gap-2 max-md:py-2 md:p-3  lg:gap-3 lg:py-3 lg:px-10 rounded lg:text-xl font-medium active:bg-emerald-600"
         onClick={() => {
           notify();
@@ -56,6 +57,7 @@ const CartActionBtns: React.FC<{
       </button>
       <div>
         <button
+          title="Buy now"
           onClick={() => navigate(`/checkout/${id}`)}
           className="bg-red-500 flex justify-center items-center max-md:px-4 max-md:gap-2 max-md:py-2 md:p-3  lg:gap-3  lg:py-3 lg:px-10 rounded lg:text-xl font-medium active:bg-red-600"
         >

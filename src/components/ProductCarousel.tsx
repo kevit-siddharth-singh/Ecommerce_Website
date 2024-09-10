@@ -2,8 +2,8 @@ const ProductCarousel: React.FC<{ img: string }> = ({ img }) => {
   return (
     <>
       <div className="carousel w-full h-full rounded-box bg-white">
-        <div id="item1" className="carousel-item w-full">
-          <img src={img} className="w-full  object-contain" />
+        <div id="item1" className="carousel-item w-full ">
+          <img title="product-image" src={img} className="w-full  object-contain" />
         </div>
         <div id="item2" className="carousel-item w-full">
           <img

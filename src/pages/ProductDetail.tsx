@@ -50,6 +50,7 @@ const ProductDetail = () => {
         <div className=" max-md:hidden  flex justify-between items-center">
           <BreadCrumbs product={data.title} />
           <button
+            title="Go to cart"
             onClick={() => navigate("/product/cart")}
             className="text-white text-2xl  bg-red-500 md:px-3 md:py-2 lg:p-2 lg:px-4  active:bg-red-600 rounded"
           >
