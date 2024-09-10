@@ -22,7 +22,6 @@ const CheckOutPage = () => {
   // Local State
   const [localProductQuantity, setLocalProductQuantity] = useState(1);
   const [issuccessfullorder, setIsSuccessfullorder] = useState(false);
-  const [isError, setIsError] = useState(false);
 
   function AddProducts() {
     if (localProductQuantity < 10) {
