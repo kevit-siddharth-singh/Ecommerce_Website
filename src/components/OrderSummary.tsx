@@ -17,9 +17,9 @@ const OrderSummary: React.FC<{ data: ProductType }> = ({ data }) => {
 
   if (data) {
     content = (
-      <div className="px-1">
-        <p className="text-white text-xl font-semibold mb-2">Order summary</p>
-        <div className=" text-xl">
+      <div className=" sm:px-1 border border-white/60 max-sm:p-1 h-full sm:p-3 rounded">
+        <p className="text-white max-sm:hidden sm:text-xl font-semibold sm:mb-2">Order summary</p>
+        <div className=" max-sm:text-sm">
           <p>
             Items : <span className="text-white">{data.title}</span>
           </p>

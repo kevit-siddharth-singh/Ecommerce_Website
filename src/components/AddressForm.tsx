@@ -21,9 +21,9 @@ const AddressForm = () => {
 
   return (
     <>
-      <div className="section-1 border border-white/60 p-3 rounded flex justify-around gap-5 ">
-        <div className="flex flex-col gap-2 p-5 w-full">
-          <p className="text-white text-lg font-semibold">
+      <div className="section-1 w-full max-sm:gap-2 border border-white/60 sm:p-3 rounded flex justify-around max-sm:p-2 max-sm:text-sm sm:gap-5 ">
+        <div className="flex flex-col max-sm:gap-2 sm:gap-2 sm:p-5 w-1/2">
+          <p className="text-white max-sm:text-sm  sm:text-lg font-semibold">
             *Shipping address :
           </p>
           <textarea
@@ -33,13 +33,13 @@ const AddressForm = () => {
             id="address"
             className="bg-transparent border p-1  text-white border-white/60 rounded"
           ></textarea>
-          <p className="text-white text-lg font-semibold">*Name :</p>
+          <p className="text-white max-sm:text-sm  sm:text-lg font-semibold">*Name :</p>
           <Input placeholder="Type your name" type={"text"} func={handleName} />
-          <p className="text-white text-lg font-semibold">*Phn no :</p>
+          <p className="text-white max-sm:text-sm  sm:text-lg font-semibold">*Phn no :</p>
           <Input placeholder="Enter phone number" type="tel" func={handlePhn} />
         </div>
-        <div className="payment-mode  p-5 w-full">
-          <p className="mb-2 text-orange-400 text-lg font-semibold">
+        <div className="payment-mode  max-sm:text-sm  sm:p-5 w-full">
+          <p className="sm:mb-2 text-orange-400 sm:text-lg font-semibold">
             *Select Payment mode :
           </p>
           <DropDown func={handleModeOfPayment} />

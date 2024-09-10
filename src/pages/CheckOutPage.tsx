@@ -76,7 +76,7 @@ const CheckOutPage = () => {
 
   if (data) {
     content = (
-      <div className="flex flex-col items-center  px-4 py-1 ">
+      <div className="flex flex-col items-center h-full w-full max-sm:justify-center max-sm:px-4 sm:px-4 sm:py-1 ">
         {/* React Toast Component */}
         <ToastContainer
           position="top-right"
@@ -90,16 +90,19 @@ const CheckOutPage = () => {
           pauseOnHover
           theme="light"
         />
-        <h1 className="text-orange-500 text-5xl font-semibold tracking-wide mt-[2rem] mb-[3rem]">
+        <h1 className="text-orange-500 max-sm:text-2xl max-sm:my-3 sm:text-5xl font-semibold tracking-wide sm:mt-[2rem] sm:mb-[3rem] ">
           CHECKOUT - PAGE
         </h1>
 
-        <div className="reviewProduct   flex flex-col   justify-between   ">
-          <p className="text-white text-3xl mb-2 ">Review your order</p>
+        <div className="reviewProduct w-full  flex flex-col items-center  max-sm:items-start  justify-between">
+          <p className="text-white max-sm:font-semibold  max-sm:text-lg max-sm:mb-1 sm:text-3xl sm:mb-2">
+            Review your order
+          </p>
 
-          <div className="container  flex gap-5">
-            <div className="demographic-info flex flex-col gap-3 ">
+          <div className="container max-sm:gap-3 flex sm:gap-5 max-sm:flex-col">
+            <div className="demographic-info flex flex-col max-sm:gap-2 justify-center items-center  sm:gap-3 ">
               <AddressForm />
+
               <CheckoutItemDetails
                 data={data}
                 AddProducts={AddProducts}
@@ -107,16 +110,19 @@ const CheckOutPage = () => {
                 localProductQuantity={localProductQuantity}
               />
             </div>
-            <div className="ProductDetail border border-white/60 p-3 rounded ">
+            <div className="ProductDetail  ">
+              <p className="text-white  sm:hidden  sm:text-xl font-semibold sm:mb-2">
+                Order summary
+              </p>
               <OrderSummary data={data} />
             </div>
           </div>
-          <div className="flex justify-center md:mt-4 md:gap-4">
+          <div className="flex  justify-center w-full  max-sm:gap-3 max-sm:mt-5 md:mt-4 md:gap-4  sm:gap-10 sm:mt-3">
             <button
               onClick={() => {
                 navigate("/product");
               }}
-              className="bg-blue-500 text-white font-semibold p-3  rounded active:bg-blue-600"
+              className="bg-blue-500 text-white max-sm:text-sm max-sm:p-1  font-semibold sm:p-3  rounded active:bg-blue-600"
             >
               Go to products
             </button>
@@ -124,14 +130,14 @@ const CheckOutPage = () => {
               onClick={() => {
                 handleAddProduct();
               }}
-              className="bg-orange-500 text-white font-semibold p-3  rounded active:bg-orange-600"
+              className="bg-orange-500 text-white max-sm:text-sm max-sm:p-1 font-semibold sm:p-3  rounded active:bg-orange-600"
             >
               Order now
             </button>
             {issuccessfullorder && (
               <button
                 onClick={() => navigate("/order")}
-                className="bg-emerald-500 text-white font-semibold p-3  rounded active:bg-emerald-600"
+                className="bg-emerald-500 text-white max-sm:text-sm max-sm:p-1 font-semibold sm:p-3  rounded active:bg-emerald-600"
               >
                 Go to orders
               </button>
