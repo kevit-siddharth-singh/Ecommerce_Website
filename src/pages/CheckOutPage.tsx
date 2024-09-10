@@ -76,7 +76,7 @@ const CheckOutPage = () => {
 
   if (data) {
     content = (
-      <div className="flex flex-col items-center h-full w-full max-sm:justify-center max-sm:px-4 sm:px-4 sm:py-1 ">
+      <div className="flex flex-col  items-center h-full w-full max-sm:justify-center max-sm:px-4 sm:px-4 sm:py-1 ">
         {/* React Toast Component */}
         <ToastContainer
           position="top-right"
@@ -94,12 +94,12 @@ const CheckOutPage = () => {
           CHECKOUT - PAGE
         </h1>
 
-        <div className="reviewProduct w-full  flex flex-col items-center  max-sm:items-start  justify-between">
+        <div className="reviewProduct w-full  flex flex-col items-center    justify-between">
           <p className="text-white max-sm:font-semibold  max-sm:text-lg max-sm:mb-1 sm:text-3xl sm:mb-2">
             Review your order
           </p>
 
-          <div className="container max-sm:gap-3 flex sm:gap-5 max-sm:flex-col">
+          <div className="container max-sm:gap-3 flex sm:gap-5 max-sm:flex-col justify-center">
             <div className="demographic-info flex flex-col max-sm:gap-2 justify-center items-center  sm:gap-3 ">
               <AddressForm />
 
