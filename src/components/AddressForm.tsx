@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import { checkoutActions } from "../Redux/Slices/checkoutSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import DropDown from "./DropDown";
@@ -6,8 +7,23 @@ import Input from "./Input";
 const AddressForm = () => {
   const dispatch = useAppDispatch();
 
-  const { address, name, phn } = useAppSelector((state) => state.checkout);
+  const checkoutData = useAppSelector((state) => state.checkout);
   const userData = useAppSelector((state) => state.authentication);
+
+  useLayoutEffect(() => {
+    if (userData) {
+      if (userData.address.length > 6 && checkoutData.address.length === 0) {
+        dispatch(checkoutActions.changeAddress(userData.address));
+      }
+      if (userData.name.length > 6 && checkoutData.name.length === 0) {
+        dispatch(checkoutActions.changeName(userData.name));
+      }
+      if (userData.phone.length > 6 && checkoutData.phn.length === 0) {
+        dispatch(checkoutActions.changePhn(userData.phone));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checkoutData]);
 
   function handleAddress(e: React.ChangeEvent<HTMLTextAreaElement>) {
     dispatch(checkoutActions.changeAddress(e.target.value));
@@ -34,16 +50,20 @@ const AddressForm = () => {
             required
             name="address"
             id="address"
-            placeholder={address.length > 0 ? address : userData.address}
-            value={address}
+            placeholder={
+              checkoutData.address.length > 0
+                ? checkoutData.address
+                : userData.address
+            }
             className="bg-transparent border p-1  text-white border-white/60 rounded"
           ></textarea>
           <p className="text-white max-sm:text-sm  sm:text-lg font-semibold">
             *Name :
           </p>
           <Input
-            placeholder={name.length > 0 ? name : userData.name}
-            value={name}
+            placeholder={
+              checkoutData.name.length > 0 ? checkoutData.name : userData.name
+            }
             type={"text"}
             func={handleName}
           />
@@ -51,9 +71,10 @@ const AddressForm = () => {
             *Phn no :
           </p>
           <Input
-            placeholder={phn.length > 0 ? phn : userData.phone}
+            placeholder={
+              checkoutData.phn.length > 0 ? checkoutData.phn : userData.phone
+            }
             type="tel"
-            value={phn}
             func={handlePhn}
           />
         </div>

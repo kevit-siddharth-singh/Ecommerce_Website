@@ -65,9 +65,9 @@ const CheckOutPage = () => {
 
   const handleAddProduct = () => {
     if (
-      checkoutData.address.length > 10 &&
-      checkoutData.name.length > 6 &&
-      checkoutData.phn.length > 9 &&
+      checkoutData.address.length >= 10 &&
+      checkoutData.name.length >= 6 &&
+      checkoutData.phn.length >= 9 &&
       checkoutData.modeofpayment === "cod"
     ) {
       dispatch(
@@ -116,7 +116,6 @@ const CheckOutPage = () => {
           <div className="container max-sm:gap-3 flex sm:gap-5 max-sm:flex-col justify-center">
             <div className="demographic-info flex flex-col max-sm:gap-2 justify-center items-center  sm:gap-3 ">
               <AddressForm />
-
               <CheckoutItemDetails
                 data={productSelected}
                 AddProducts={AddProducts}
@@ -129,7 +128,7 @@ const CheckOutPage = () => {
               <p className="text-white  sm:hidden  sm:text-xl font-semibold sm:mb-2">
                 Order summary
               </p>
-              <OrderSummary data={data} />
+              <OrderSummary data={data} quantity={localProductQuantity} />
             </div>
           </div>
           <div className="flex  justify-center w-full  max-sm:gap-3 max-sm:mt-5 md:mt-4 md:gap-4  sm:gap-10 sm:mt-3">
