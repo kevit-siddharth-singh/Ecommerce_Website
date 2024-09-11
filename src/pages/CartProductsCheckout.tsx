@@ -1,16 +1,52 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import { checkoutActions } from "../Redux/Slices/checkoutSlice";
 import { useNavigate } from "react-router-dom";
+import { FaMinus, FaPlus } from "react-icons/fa6";
+import { cartActions } from "../Redux/Slices/cartSlice";
+import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
+import { FailedNotify, SuccessFullNotify } from "../utils/ToastNotify";
+import { ToastContainer } from "react-toastify";
 
 const CartProductsCheckout = () => {
+  const [isValidated, setIsValidated] = useState(false);
   const checkoutData = useAppSelector((state) => state.checkout);
   const cartData = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   console.log(checkoutData);
 
+  const handleAddProducts = () => {
+    if (
+      checkoutData.address.length > 10 &&
+      checkoutData.name.length > 6 &&
+      checkoutData.phn.length > 9 &&
+      checkoutData.modeofpayment === "cod"
+    ) {
+      cartData.items.map((item) => {
+        dispatch(
+          orderedProductsActions.addProduct({
+            id: item.id,
+            image: item.image,
+            price: item.price,
+            quantity: item.quantity,
+            title: item.name,
+          })
+        );
+        setIsValidated(true);
+      });
+
+      SuccessFullNotify("Orders placed successfully");
+    } else {
+      FailedNotify("Please fill all the details!");
+    }
+  };
+
   useLayoutEffect(() => {
+    if (cartData.items.length === 0) {
+      navigate("/product");
+    }
+
     dispatch(checkoutActions.reset());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -30,6 +66,20 @@ const CartProductsCheckout = () => {
 
   return (
     <div className="CartProductsCheckout flex  w-full py-5">
+      {/* Toast */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
       <div className="wrapper flex flex-col justify-center items-center  w-full gap-4">
         <div>
           <h1 className="text-orange-500 max-sm:text-2xl max-sm:my-3 sm:text-5xl font-semibold tracking-wide ">
@@ -89,12 +139,12 @@ const CartProductsCheckout = () => {
               </div>
               <div className="overflow-hidden">
                 <p className="text-3xl text-white">Product Selected</p>
-                <div className=" h-[15rem] border rounded p-2 flex flex-col gap-2  overflow-hidden overflow-y-scroll ">
+                <div className=" h-[15rem] border rounded p-2 flex flex-col gap-5  overflow-hidden overflow-y-scroll ">
                   {cartData.items.map((item) => (
                     <div key={item.id} className="flex gap-3">
                       <div
                         onClick={() => navigate("/product/" + item.id)}
-                        className="w-[4.5rem] h-[4.5rem] cursor-pointer bg-white rounded overflow-hidden"
+                        className="  w-[7rem] h-[7rem] cursor-pointer bg-white rounded overflow-hidden"
                       >
                         <img
                           className="object-cover"
@@ -103,7 +153,7 @@ const CartProductsCheckout = () => {
                           title={item.name}
                         />
                       </div>
-                      <div className="text-sm">
+                      <div className="text-md flex flex-col gap-1">
                         <p className="font-medium text-white ">
                           Name :
                           <span className=" text-orange-400"> {item.name}</span>
@@ -129,6 +179,32 @@ const CartProductsCheckout = () => {
                             {item.quantity * item.price}
                           </span>
                         </p>
+                        <div className="flex gap-3 justify-start items-center text-white font-medium">
+                          <button
+                            onClick={() =>
+                              dispatch(cartActions.removeItemFromCart(item.id))
+                            }
+                            className="bg-red-500 p-1 px-3 rounded"
+                          >
+                            <FaMinus />
+                          </button>
+                          <button
+                            onClick={() =>
+                              dispatch(
+                                cartActions.addItemToCart({
+                                  id: item.id,
+                                  image: item.image,
+                                  name: item.name,
+                                  price: item.price,
+                                  quantity: item.quantity,
+                                })
+                              )
+                            }
+                            className="bg-blue-500 p-1 px-3 rounded"
+                          >
+                            <FaPlus />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -193,8 +269,19 @@ const CartProductsCheckout = () => {
           >
             Go to products
           </button>
-          <button className="bg-orange-500 active:bg-orange-600 p-3 rounded text-white font-semibold ">
-            Order now
+          <button
+            onClick={handleAddProducts}
+            className="bg-orange-500 active:bg-orange-600 p-3 rounded text-white font-semibold "
+          >
+            Buy now
+          </button>
+          <button
+            onClick={() => navigate("/order")}
+            className={`bg-emerald-500 active:bg-emerald-600 p-3 rounded text-white font-semibold ${
+              isValidated ? "undefined" : "hidden"
+            }`}
+          >
+            Go to Orders
           </button>
         </div>
       </div>
