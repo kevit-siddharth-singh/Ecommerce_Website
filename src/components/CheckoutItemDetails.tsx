@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { ProductType } from "../utils/ProductFetch";
+import { useAppSelector } from "../Redux/store";
 
 const CheckoutItemDetails: React.FC<{
   data: ProductType;
   localProductQuantity: number;
   AddProducts: () => void;
   RemoveProducts: () => void;
-}> = ({ data, RemoveProducts, AddProducts, localProductQuantity }) => {
+  CustomProduct: (itemQuantity: number) => void;
+}> = ({
+  data,
+  RemoveProducts,
+  AddProducts,
+  CustomProduct,
+  localProductQuantity,
+}) => {
   let content = <p>Loading product details...</p>;
+
+  const allCartsItem = useAppSelector((state) => state.cart.items);
+
+  // Logic For Finding Item
+  useEffect(() => {
+    const selectedItem = allCartsItem.find((item) => item.id === data.id);
+    if (selectedItem?.quantity !== undefined) {
+      CustomProduct(selectedItem?.quantity);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (data) {
     content = (

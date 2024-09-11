@@ -14,9 +14,12 @@ import { FailedNotify, SuccessFullNotify } from "../utils/ToastNotify";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 
 const CheckOutPage = () => {
+  let productSelected = null;
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const allCartItems = useAppSelector((state) => state.cart.items);
+  // console.log({ allCartItems });
   const checkoutData = useAppSelector((state) => state.checkout);
 
   // Local State
@@ -34,6 +37,12 @@ const CheckOutPage = () => {
       setLocalProductQuantity((state) => (state -= 1));
     }
   }
+  function CustomProduct(itemQuantity: number) {
+    if (itemQuantity < 10 || itemQuantity > 0) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      setLocalProductQuantity((state) => (state = itemQuantity));
+    }
+  }
 
   // Custom hook for Auth Check
   useAuthCheckerHook();
@@ -47,6 +56,12 @@ const CheckOutPage = () => {
     queryFn: () => getProductDetail(Pid!),
   });
 
+  if (Pid === "all") {
+    productSelected = allCartItems;
+  } else {
+    productSelected = data;
+  }
+
   // Handler to add product to order
 
   const handleAddProduct = () => {
@@ -58,11 +73,11 @@ const CheckOutPage = () => {
     ) {
       dispatch(
         orderedProductsActions.addProduct({
-          id: data.id,
-          image: data.image,
-          price: data.price,
+          id: productSelected.id,
+          image: productSelected.image,
+          price: productSelected.price,
           quantity: localProductQuantity,
-          title: data.title, // Assuming title is also needed
+          title: productSelected.title, // Assuming title is also needed
         })
       );
       setIsSuccessfullorder(true);
@@ -104,9 +119,10 @@ const CheckOutPage = () => {
               <AddressForm />
 
               <CheckoutItemDetails
-                data={data}
+                data={productSelected}
                 AddProducts={AddProducts}
                 RemoveProducts={RemoveProducts}
+                CustomProduct={CustomProduct}
                 localProductQuantity={localProductQuantity}
               />
             </div>

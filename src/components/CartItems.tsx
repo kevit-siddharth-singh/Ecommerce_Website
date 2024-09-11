@@ -93,6 +93,12 @@ const CartItems: React.FC<{
             >
               Empty Cart
             </button>
+            <button
+              onClick={() => navigate("/checkout/all")}
+              className="max-sm:hidden border border-yellow-600 rounded   sm:p-3 text-yellow-500   hover:bg-yellow-500 hover:text-white  "
+            >
+              Buy all
+            </button>
 
             <div className="text-center">
               <p className="text-white font-semibold">Total Quantity</p>
