@@ -13,6 +13,7 @@ const EmptyOrderPage = () => {
           alt="Cute Doggy"
         />
       </div>
+
       <p className="text-white max-sm:text-3xl sm:text-5xl tracking-widest font-medium">
         No orders yet
       </p>

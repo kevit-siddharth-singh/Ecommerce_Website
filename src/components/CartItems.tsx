@@ -95,9 +95,9 @@ const CartItems: React.FC<{
             </button>
 
             <div className="text-center">
-              <p className="text-white font-semibold">Total Quantity</p>
+              <p className="text-white font-semibold ">Total Quantity</p>
               <p className="text-emerald-500 font-semibold max-sm:text-start">
-                {totalQuantity} {totalQuantity !== 1 ? "Items" : "Item"}
+                {totalQuantity} {totalQuantity !== 1 ? "Items" : "Item"} {  totalQuantity }
               </p>
             </div>
             <div className="text-right">

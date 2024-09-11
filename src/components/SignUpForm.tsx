@@ -125,7 +125,6 @@ const SignUpForm: React.FC = () => {
           </label>
           <input
             type="email"
-            id="Email"
             name="email"
             value={formValues.email}
             onChange={handleChange}

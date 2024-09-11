@@ -5,7 +5,7 @@ const BreadCrumbs: React.FC<{ product: string }> = ({ product }) => {
   return (
     <>
       <div className=" md:text-md  max-md:m-4  max-md:py-1  max-md:px-4 w-full ">
-        <div className="w-full truncate   flex gap-2">
+        <div className="w-full truncate   flex gap-2  sm:pr-5">
           <p className="cursor-pointer hover:text-white">Home</p>
           <span>&gt;</span>
           <a

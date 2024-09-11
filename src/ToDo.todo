@@ -17,14 +17,14 @@
 
 7. Make All Routes Protected -- Done
 
-8. Profile Page -- [Partially Done]
+8. Profile Page -- [Done]
  -> Name
- -> profile Pic -- [Find a way to store img in redux store]
+ -> profile Pic -- [Find a way to store img in redux store -- Done]
  -> Add address, telephone 
  -> validation --Done
 
 
- 9. Checkout Page UI -- Currently working... 
+ 9. Checkout Page UI -- Done  
  
 
  10. Product Detail Page : Carousel -- Done
@@ -38,9 +38,7 @@
 
 14.Chore : Add a remove button for every product in Cart Page so by clicking on it removes all its Quantity.
 
-15.Chore : Add Address, telephone , name in orderSlice.
-
- # There's issue in the header Profile section fix it , Today ! ASAP -- Tried
+15.Chore : Add Address, telephone , name in orderSlice -- Done 
 
 
 
