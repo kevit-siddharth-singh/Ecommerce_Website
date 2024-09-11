@@ -93,12 +93,6 @@ const CartItems: React.FC<{
             >
               Empty Cart
             </button>
-            <button
-              onClick={() => navigate("/checkout/all")}
-              className="max-sm:hidden border border-yellow-600 rounded   sm:p-3 text-yellow-500   hover:bg-yellow-500 hover:text-white  "
-            >
-              Buy all
-            </button>
 
             <div className="text-center">
               <p className="text-white font-semibold">Total Quantity</p>
@@ -108,10 +102,16 @@ const CartItems: React.FC<{
             </div>
             <div className="text-right">
               <p className="text-white font-semibold">Total Amount</p>
-              <p className="text-emerald-500 font-semibold">
+              <p className="text-emerald-500 text-center font-semibold">
                 ₹ {totalAmount.toFixed(2)}
               </p>
             </div>
+            <button
+              onClick={() => navigate("/checkout/all")}
+              className="max-sm:hidden border border-yellow-600 rounded   sm:p-3 sm:px-4 text-yellow-500   hover:bg-yellow-500 hover:text-white  "
+            >
+              Buy all
+            </button>
           </div>
           <button
             onClick={() => dispatch(cartActions.clearCart())}

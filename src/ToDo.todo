@@ -1,6 +1,6 @@
 <---- ToDo ---->  
 
-1.Pagination Feature --  : write logic for handling  pagination with infinite scroll...
+1.Pagination Feature --remaining
 
 2.Search Feature -- Done ,But need more optimization like when users stop typing then it will start searching till than show Loading Screen .
 -> Add Debouncing  -- Done
@@ -21,7 +21,7 @@
  -> Name
  -> profile Pic -- [Find a way to store img in redux store]
  -> Add address, telephone 
- -> validation
+ -> validation --Done
 
 
  9. Checkout Page UI -- Currently working... 
