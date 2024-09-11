@@ -7,16 +7,28 @@ import { SuccessFullNotify } from "../utils/ToastNotify";
 const ProfileForm = () => {
   const dispatch = useAppDispatch();
 
-  const { name: username } = useAppSelector((state) => state.authentication);
+  const {
+    name: username,
+    address,
+    phone,
+  } = useAppSelector((state) => state.authentication);
 
   const [localUsername, setLocalUsername] = useState("");
+  const [localaddress, setLocalAddress] = useState("");
+  const [localPhn, setLocalPhn] = useState("");
 
   const [isError, setIsError] = useState(false);
 
   // Name Validation
-  function usernameValidation() {
-    if (localUsername.length >= 6) {
+  function Validation() {
+    if (
+      localUsername.length >= 6 &&
+      localaddress.length >= 6 &&
+      localPhn.length >= 6
+    ) {
       dispatch(authActions.setName(localUsername));
+      dispatch(authActions.setAddress(localaddress));
+      dispatch(authActions.setPhn(localPhn));
       SuccessFullNotify("username changed");
     } else {
       console.log("Error");
@@ -83,8 +95,97 @@ const ProfileForm = () => {
                 Invalid username
               </span>
             )}
+            <div>
+              <label htmlFor="address" className="sr-only sm:">
+                Address
+              </label>
+
+              <div className="relative">
+                <input
+                  onChange={(e) => {
+                    setIsError(false);
+                    setLocalAddress(e.target.value);
+                  }}
+                  id="name"
+                  type="text"
+                  className={`w-full rounded-lg border ${
+                    isError ? "border-red-500" : "border-transparent "
+                  } max-sm:p-2 sm:p-4 pe-12  sm:text-md shadow-sm`}
+                  placeholder={
+                    address !== undefined ? address : "Enter your address"
+                  }
+                />
+
+                <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="size-4 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            {isError && (
+              <span className="error-area  sm:p-1 text-red-500 text-md">
+                Invalid username
+              </span>
+            )}
+            <div>
+              <label htmlFor="phone" className="sr-only sm:">
+                Phone number
+              </label>
+
+              <div className="relative">
+                <input
+                  onChange={(e) => {
+                    setIsError(false);
+                    setLocalPhn(e.target.value);
+                  }}
+                  id="name"
+                  type="text"
+                  className={`w-full rounded-lg border ${
+                    isError ? "border-red-500" : "border-transparent "
+                  } max-sm:p-2 sm:p-4 pe-12  sm:text-md shadow-sm`}
+                  placeholder={
+                    phone !== undefined ? phone : "Enter your phone no"
+                  }
+                />
+
+                <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="size-4 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            {isError && (
+              <span className="error-area  sm:p-1 text-red-500 text-md">
+                Invalid Phone number
+              </span>
+            )}
+
             <button
-              onClick={usernameValidation}
+              onClick={Validation}
               type="button"
               className={` block w-full rounded-lg bg-indigo-600 max-sm:px-2 max-sm:py-2    sm:px-5 sm:py-3 text-sm font-medium text-white select-none  ${
                 localUsername.length === 0 ? "cursor-not-allowed " : "undefined"
@@ -94,7 +195,6 @@ const ProfileForm = () => {
               Change
             </button>
             <div className="flex justify-center">
-              {" "}
               {localUsername.length > 1 ? "Tap anywhere to exit" : ""}
             </div>
           </form>

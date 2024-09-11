@@ -7,22 +7,42 @@ import { cartActions } from "../Redux/Slices/cartSlice";
 import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
 import { FailedNotify, SuccessFullNotify } from "../utils/ToastNotify";
 import { ToastContainer } from "react-toastify";
+import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 
 const CartProductsCheckout = () => {
   const [isValidated, setIsValidated] = useState(false);
+
+  useTitleChangeHook({ title: "Checkout" });
+
   const checkoutData = useAppSelector((state) => state.checkout);
   const cartData = useAppSelector((state) => state.cart);
+  const userData = useAppSelector((state) => state.authentication);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  console.log(checkoutData);
+
+  useLayoutEffect(() => {
+    if (userData) {
+      if (userData.address.length > 6 && checkoutData.address.length === 0) {
+        dispatch(checkoutActions.changeAddress(userData.address));
+      }
+      if (userData.name.length > 6 && checkoutData.name.length === 0) {
+        dispatch(checkoutActions.changeName(userData.name));
+      }
+      if (userData.phone.length > 6 && checkoutData.phn.length === 0) {
+        dispatch(checkoutActions.changePhn(userData.phone));
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checkoutData]);
 
   const handleAddProducts = () => {
     if (
-      checkoutData.address.length > 10 &&
-      checkoutData.name.length > 6 &&
-      checkoutData.phn.length > 9 &&
+      checkoutData.address.length >= 10 &&
+      checkoutData.name.length >= 6 &&
+      checkoutData.phn.length >= 9 &&
       checkoutData.modeofpayment === "cod"
     ) {
+      console.log(checkoutData);
       cartData.items.map((item) => {
         dispatch(
           orderedProductsActions.addProduct({
@@ -33,9 +53,8 @@ const CartProductsCheckout = () => {
             title: item.name,
           })
         );
-        setIsValidated(true);
       });
-
+      setIsValidated(true);
       SuccessFullNotify("Orders placed successfully");
     } else {
       FailedNotify("Please fill all the details!");
@@ -97,13 +116,15 @@ const CartProductsCheckout = () => {
                   </label>
                   <textarea
                     onChange={handleAddress}
-                    className="bg-transparent border rounded"
+                    className="bg-transparent border rounded p-1"
+                    placeholder={userData.address}
                     id="address"
                   />
                   <label className="address text-white font-semibold">
                     *Name :
                   </label>
                   <input
+                    placeholder={userData.name}
                     onChange={handleName}
                     type="text"
                     className="bg-transparent border rounded p-2"
@@ -112,6 +133,7 @@ const CartProductsCheckout = () => {
                     *Phn no :
                   </label>
                   <input
+                    placeholder={userData.phone}
                     onChange={handlePhn}
                     type="tel"
                     className="bg-transparent border rounded p-2"
@@ -214,27 +236,35 @@ const CartProductsCheckout = () => {
             <div className="w-1/5 overflow-hidden ">
               <p className="text-3xl text-white">Order summary</p>
               <div className="flex flex-col gap-4 border rounded p-2 ">
-                <p className="text-white font-semibold">
+                <div className="text-white font-semibold">
                   {cartData.items.length > 1 ? "Items : " : "Item : "}
                   {cartData.items.map((item) => (
-                    <div>
+                    <div key={item.id}>
                       <span className="text-xs font-normal">{item.name}</span>
                       <br />
                     </div>
                   ))}
-                </p>
+                </div>
                 <p className="text-white font-semibold">
                   Name :{" "}
-                  <span className="text-orange-400">{checkoutData.name}</span>
+                  <span className="text-orange-400">
+                    {checkoutData.name.length > 0
+                      ? checkoutData.name
+                      : userData.address}
+                  </span>
                 </p>
                 <p className="text-white font-semibold">
                   Phn no :{" "}
-                  <span className="text-orange-400">{checkoutData.phn}</span>
+                  <span className="text-orange-400">
+                    {checkoutData.phn ? checkoutData.phn : userData.phone}
+                  </span>
                 </p>
                 <p className="text-white font-semibold text-wrap w-full">
                   Address :{" "}
                   <span className="text-orange-400 truncate">
-                    {checkoutData.address}
+                    {checkoutData.address
+                      ? checkoutData.address
+                      : userData.address}
                   </span>
                 </p>
                 <p className="text-white font-semibold">

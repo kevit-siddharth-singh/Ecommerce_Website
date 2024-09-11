@@ -8,6 +8,8 @@ export type AuthenticateState = {
   profile: string;
   password: string;
   signupsuccess: boolean;
+  address: string;
+  phone: string;
 };
 
 const initialState: AuthenticateState = {
@@ -16,6 +18,8 @@ const initialState: AuthenticateState = {
   email: "",
   profile: "",
   password: "",
+  address: "",
+  phone: "",
   signupsuccess: false,
 };
 
@@ -54,6 +58,12 @@ const authenticateSlice = createSlice({
     },
     setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
+    },
+    setAddress: (state, action: PayloadAction<string>) => {
+      state.address = action.payload;
+    },
+    setPhn: (state, action: PayloadAction<string>) => {
+      state.phone = action.payload;
     },
   },
 });

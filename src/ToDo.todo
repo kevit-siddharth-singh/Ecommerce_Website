@@ -17,10 +17,12 @@
 
 7. Make All Routes Protected -- Done
 
-8. Profile Page -- Done
+8. Profile Page -- [Partially Done]
  -> Name
  -> profile Pic -- [Find a way to store img in redux store]
+ -> Add address, telephone 
  -> validation
+
 
  9. Checkout Page UI -- Currently working... 
  

@@ -19,7 +19,6 @@ const CheckOutPage = () => {
   const dispatch = useAppDispatch();
 
   const allCartItems = useAppSelector((state) => state.cart.items);
-  // console.log({ allCartItems });
   const checkoutData = useAppSelector((state) => state.checkout);
 
   // Local State
