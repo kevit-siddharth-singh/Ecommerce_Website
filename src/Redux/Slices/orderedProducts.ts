@@ -8,6 +8,9 @@ interface Product {
   price: number;
   quantity: number;
   totalPrice: number;
+  buyerName: string;
+  address: string;
+  phn: string;
 }
 
 // Define a type for the slice state

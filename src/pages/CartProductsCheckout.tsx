@@ -51,6 +51,9 @@ const CartProductsCheckout = () => {
             price: item.price,
             quantity: item.quantity,
             title: item.name,
+            address: checkoutData.address,
+            buyerName: checkoutData.name,
+            phn: checkoutData.phn,
           })
         );
       });

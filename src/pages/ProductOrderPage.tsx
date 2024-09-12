@@ -40,15 +40,31 @@ const ProductOrderPage = () => {
                   {product.title}
                 </p>
                 <p className="font-semibold max-sm:text-sm  max-sm:hidden">
+                  <span>
+                    Name :{" "}
+                    <span className="text-white">{product.buyerName} | </span>{" "}
+                  </span>
                   Price :
                   <span className="text-emerald-400"> ₹{product.price}</span>
                 </p>
                 <p className="max-sm:text-sm  font-semibold ">
+                  
+                  <span>
+                    Phn : <span className="text-white">{product.phn} | </span>{" "}
+                  </span>
+                  <br className="sm:hidden"/>
+
                   Total items :
                   <span className="text-emerald-400"> {product.quantity}</span>
                 </p>
 
                 <p className="max-sm:text-sm font-semibold ">
+                  <span>
+                    Addr :{" "}
+                    <span className="text-white">{product.address} | </span>{" "}
+                  </span>
+                  <br className="sm:hidden"/>
+
                   Total Price :
                   <span className="text-emerald-400">
                     {" "}

@@ -62,8 +62,9 @@ const CheckOutPage = () => {
   }
 
   // Handler to add product to order
-
+console.log(checkoutData)
   const handleAddProduct = () => {
+    console.log(checkoutData);
     if (
       checkoutData.address.length >= 10 &&
       checkoutData.name.length >= 6 &&
@@ -77,6 +78,9 @@ const CheckOutPage = () => {
           price: productSelected.price,
           quantity: localProductQuantity,
           title: productSelected.title, // Assuming title is also needed
+          address: checkoutData.address,
+          buyerName: checkoutData.name,
+          phn: checkoutData.phn,
         })
       );
       setIsSuccessfullorder(true);
