@@ -1,23 +1,23 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../Redux/store";
-import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "./../components/Sidebar";
-import Product from "./../components/Product";
-import { fetchProduct, ProductType } from "../utils/ProductFetch";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../components/Loading";
-import NoProductFoundImg from "/noproductfound.png";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { searchActions } from "../Redux/Slices/SearchSlice";
+import { useAppDispatch, useAppSelector } from "../Redux/store";
+import Header from "../components/Header";
+import Loading from "../components/Loading";
 import PaginationComponent from "../components/PaginationComponent";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
+import { fetchProduct } from "../utils/ProductFetch";
+import Product from "./../components/Product";
+import Sidebar from "./../components/Sidebar";
+import NoProductFoundImg from "/noproductfound.png";
 
 const ProductList = () => {
   // Custom Hook For Changing Title
   useTitleChangeHook({ title: "S K Y - S H O P" });
   const currentPage = useAppSelector((state) => state.pagination.currentPage);
 
-  const { data } = useQuery({
+  const { data = [] } = useQuery({
     queryKey: ["products", currentPage],
     queryFn: () => fetchProduct(currentPage),
   });
@@ -31,7 +31,7 @@ const ProductList = () => {
   const dispatch = useAppDispatch();
 
   // Logic for Filtering Products based on Selected Category and Search Term
-  const filteredData = data?.filter((product: ProductType) => {
+  const filteredData = data.filter((product) => {
     // Check if the product's category matches the selected categories (if any)
     const matchesCategory =
       selectedCategory.length === 0 ||
@@ -57,7 +57,7 @@ const ProductList = () => {
   if (filteredData && filteredData.length > 0) {
     content = (
       <div className="flex flex-wrap md:gap-10 max-sm:gap-10 gap-14 w-full my-5 justify-center items-center">
-        {filteredData.map((product: ProductType) => (
+        {filteredData.map((product) => (
           <Product key={product.id} product={product} />
         ))}
       </div>
@@ -113,7 +113,7 @@ const ProductList = () => {
               {content}
             </div>
             <div className="w-full max-sm:h-[37%] max-sm:py-1 flex justify-center items-center max-sm:items-start ">
-              {search.length === 0 ? <PaginationComponent /> : undefined}
+              {search.length === 0 && <PaginationComponent />}
             </div>
           </div>
         )}

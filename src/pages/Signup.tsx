@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import SignUpForm from "../components/SignUpForm.tsx";
-import { useAppSelector } from "../Redux/store.ts";
 import { useNavigate } from "react-router-dom";
+import SignUpForm from "../components/SignUpForm.tsx";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook.ts";
+import { useAppSelector } from "../Redux/store.ts";
 
 const Signup = () => {
   // Custom Hook For Changing Title

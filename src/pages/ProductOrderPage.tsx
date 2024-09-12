@@ -48,12 +48,10 @@ const ProductOrderPage = () => {
                   <span className="text-emerald-400"> ₹{product.price}</span>
                 </p>
                 <p className="max-sm:text-sm  font-semibold ">
-                  
                   <span>
                     Phn : <span className="text-white">{product.phn} | </span>{" "}
                   </span>
-                  <br className="sm:hidden"/>
-
+                  <br className="sm:hidden" />
                   Total items :
                   <span className="text-emerald-400"> {product.quantity}</span>
                 </p>
@@ -63,8 +61,7 @@ const ProductOrderPage = () => {
                     Addr :{" "}
                     <span className="text-white">{product.address} | </span>{" "}
                   </span>
-                  <br className="sm:hidden"/>
-
+                  <br className="sm:hidden" />
                   Total Price :
                   <span className="text-emerald-400">
                     {" "}

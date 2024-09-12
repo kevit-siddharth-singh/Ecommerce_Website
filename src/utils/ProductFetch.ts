@@ -11,7 +11,7 @@ export type ProductType = {
 };
 
 export async function fetchProduct(currentPage: number) {
-  const res = await axios.get(
+  const res = await axios.get<ProductType[]>(
     `https://fakestoreapi.com/products?limit=${currentPage * 5}`
   );
 
@@ -22,6 +22,6 @@ export async function fetchProduct(currentPage: number) {
   }
   if (res.status !== 200) {
     const error = new Error("An Error occurred !");
-    return error;
+    console.log(error);
   }
 }
