@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { cartActions } from "../Redux/Slices/cartSlice";
 import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
-import { FailedNotify, SuccessFullNotify } from "../utils/ToastNotify";
+import { FailedNotify } from "../utils/ToastNotify";
 import { ToastContainer } from "react-toastify";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 
@@ -58,7 +58,10 @@ const CartProductsCheckout = () => {
         );
       });
       setIsValidated(true);
-      SuccessFullNotify("Orders placed successfully");
+      dispatch(orderedProductsActions.setIsSuccessfullOrder(true));
+      setTimeout(() => {
+        navigate("/product");
+      }, 2000);
     } else {
       FailedNotify("Please fill all the details!");
     }

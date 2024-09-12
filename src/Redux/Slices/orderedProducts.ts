@@ -18,13 +18,14 @@ interface OrderedProductsState {
   products: Product[];
   totalQuantity: number;
   totalPrice: number;
+  isOrderSuccess: boolean;
 }
 
-// Define the initial state using that type
 const initialState: OrderedProductsState = {
   products: [],
   totalQuantity: 0,
   totalPrice: 0,
+  isOrderSuccess: false,
 };
 
 const orderedProductsSlice = createSlice({
@@ -89,6 +90,9 @@ const orderedProductsSlice = createSlice({
       state.products = [];
       state.totalQuantity = 0;
       state.totalPrice = 0;
+    },
+    setIsSuccessfullOrder: (state, action: PayloadAction<boolean>) => {
+      state.isOrderSuccess = action.payload;
     },
   },
 });
