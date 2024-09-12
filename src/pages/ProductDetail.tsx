@@ -7,14 +7,13 @@ import Rating from "../components/Rating";
 import CartActionBtns from "../components/CartActionBtns";
 import { FiShoppingCart } from "react-icons/fi";
 import ProductCarousel from "../components/ProductCarousel";
-
-import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
+import { useAppSelector } from "../Redux/store";
 
 const ProductDetail = () => {
-  // Custom hook For Auth Check
-  useAuthCheckerHook();
-
   const { id } = useParams();
+  const isAuthenticate = useAppSelector(
+    (state) => state.authentication.isAuthenticate
+  );
   const navigate = useNavigate();
   const { data } = useQuery({
     queryKey: ["products", { productId: id }],
@@ -25,6 +24,14 @@ const ProductDetail = () => {
     document.title = data.title;
   }
 
+  function GoToCart() {
+    if (isAuthenticate) {
+      navigate("/product/cart");
+    } else {
+      navigate("/login");
+    }
+  }
+
   return data ? (
     <div className="w-full h-full   max-md:p-2 max-md:flex-col  md:p-2 lg:p-10 flex justify-center md:gap-5  lg:gap-5 xl:gap-24   max-md:items-center   max-md:overflow-hidden ">
       <div className=" md:hidden my-2 mb-5 w-full  flex flex-col-reverse justify-between items-center ">
@@ -32,7 +39,7 @@ const ProductDetail = () => {
         <div className="flex justify-between  items-center w-full px-5">
           <p className="text-2xl font-semibold">SKY SHOP</p>
           <button
-            onClick={() => navigate("/product/cart")}
+            onClick={GoToCart}
             className="text-white text-2xl  bg-red-500 p-2 px-4  max-md:p-3  active:bg-red-600 rounded"
           >
             <FiShoppingCart className="max-md:h-5 max-md:w-5  " />
@@ -51,7 +58,7 @@ const ProductDetail = () => {
           <BreadCrumbs product={data.title} />
           <button
             title="Go to cart"
-            onClick={() => navigate("/product/cart")}
+            onClick={GoToCart}
             className="text-white text-2xl  bg-red-500 md:px-3 md:py-2 lg:p-2 lg:px-4  active:bg-red-600 rounded"
           >
             <FiShoppingCart className="md:h-5 lg:h-6" />

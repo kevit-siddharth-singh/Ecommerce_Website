@@ -105,7 +105,7 @@ const LoginForm: React.FC = () => {
           })
         );
         // Navigate to /product on successful login
-        navigate("/product", { replace: true });
+        navigate("/product");
       }
     } else {
       setErrors(validationErrors);

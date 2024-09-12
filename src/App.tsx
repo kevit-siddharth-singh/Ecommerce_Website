@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Signup />} />
+        <Route path="/" element={<ProductList />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/product" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductDetail />} />
@@ -23,7 +23,7 @@ function App() {
         <Route path="/checkout/:Pid" element={<CheckOutPage />} />
         <Route path="/checkout/all" element={<CartProductsCheckout />} />
         <Route path="/order" element={<ProductOrderPage />} />
-        <Route path="" element={""} />
+        <Route path="/error" element={<ErrorPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

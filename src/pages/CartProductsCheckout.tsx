@@ -8,9 +8,12 @@ import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
 import { FailedNotify } from "../utils/ToastNotify";
 import { ToastContainer } from "react-toastify";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
+import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 
 const CartProductsCheckout = () => {
   const [isValidated, setIsValidated] = useState(false);
+
+  useAuthCheckerHook();
 
   useTitleChangeHook({ title: "Checkout" });
 

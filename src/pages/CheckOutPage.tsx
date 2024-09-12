@@ -18,6 +18,8 @@ const CheckOutPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  useAuthCheckerHook();
+
   const allCartItems = useAppSelector((state) => state.cart.items);
   const checkoutData = useAppSelector((state) => state.checkout);
 
@@ -42,11 +44,12 @@ const CheckOutPage = () => {
       setLocalProductQuantity((state) => (state = itemQuantity));
     }
   }
-
   // Custom hook for Auth Check
   useAuthCheckerHook();
   // Custom hook for Title Change
   useTitleChangeHook({ title: "checkout page" });
+
+  let content = <Loading />;
 
   const { Pid } = useParams();
 
@@ -62,7 +65,6 @@ const CheckOutPage = () => {
   }
 
   // Handler to add product to order
-console.log(checkoutData)
   const handleAddProduct = () => {
     console.log(checkoutData);
     if (
@@ -89,8 +91,6 @@ console.log(checkoutData)
       FailedNotify("Please fill all the details!");
     }
   };
-
-  let content = <Loading />;
 
   if (data) {
     content = (

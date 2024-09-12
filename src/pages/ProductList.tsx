@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { searchActions } from "../Redux/Slices/SearchSlice";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import Header from "../components/Header";
@@ -85,16 +84,11 @@ const ProductList = () => {
     );
   }
 
-  const navigate = useNavigate();
-  const isAuthenticate = useAppSelector(
-    (state) => state.authentication.isAuthenticate
-  );
-
-  useEffect(() => {
-    if (!isAuthenticate) {
-      navigate("/login");
-    }
-  });
+  // useEffect(() => {
+  //   if (!isAuthenticate) {
+  //     navigate("/login");
+  //   }
+  // });
 
   return (
     <div className="w-full sm:h-screen max-sm:h-screen h-full overflow-hidden  ">

@@ -10,6 +10,44 @@ const Header = () => {
   const profile = useAppSelector((state) => state.authentication.profile);
   const searchTerm = useAppSelector((state) => state.search.search);
 
+  const isAuthenticate = useAppSelector(
+    (state) => state.authentication.isAuthenticate
+  );
+
+  function GoToCart() {
+    if (isAuthenticate) {
+      navigate("/product/cart");
+    } else {
+      navigate("/login");
+    }
+  }
+
+  function GoToOrder() {
+    if (isAuthenticate) {
+      navigate("/order");
+    } else {
+      navigate("/login");
+    }
+  }
+  function LoginHandler() {
+    if (isAuthenticate) {
+      dispatch(authActions.setLogout());
+      navigate("/login");
+    } else {
+      navigate("/login");
+    }
+  }
+  function HandleProfile() {
+    if (isAuthenticate) {
+      const dialog: HTMLDialogElement = document.getElementById(
+        "my_modal_2"
+      ) as HTMLDialogElement;
+      dialog.showModal();
+    } else {
+      navigate("/login");
+    }
+  }
+
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
   const dispatch = useAppDispatch();
@@ -79,7 +117,7 @@ const Header = () => {
                   />
                 </svg>
                 <span className="badge badge-xs indicator-item ">
-                  {totalQuantity}
+                  {isAuthenticate ? totalQuantity : 0}
                 </span>
               </div>
             </div>
@@ -90,14 +128,14 @@ const Header = () => {
             >
               <div className="card-body bg-base-300 rounded-box">
                 <span className="text-lg font-bold text-white">
-                  {totalQuantity} Items
+                  {isAuthenticate ? totalQuantity : 0} Items
                 </span>
                 <span className="text-info">
-                  Subtotal : ₹{totalAmount.toFixed(2)}{" "}
+                  Subtotal : ₹{isAuthenticate ? totalAmount.toFixed(2) : 0}{" "}
                 </span>
                 <div className="card-actions">
                   <button
-                    onClick={() => navigate("/product/cart")}
+                    onClick={GoToCart}
                     className="btn btn-primary text-white btn-block"
                   >
                     View cart
@@ -128,15 +166,7 @@ const Header = () => {
               className="menu menu-sm dropdown-content bg-base-300  rounded-box z-[1] mt-3 mr-1 w-52 p-2 shadow-[0_10px_20px_rgba(0,_0,_0,_0.7)]"
             >
               <li className="hover:text-emerald-400">
-                <a
-                  className="justify-between"
-                  onClick={() => {
-                    const dialog: HTMLDialogElement = document.getElementById(
-                      "my_modal_2"
-                    ) as HTMLDialogElement;
-                    dialog.showModal();
-                  }}
-                >
+                <a className="justify-between" onClick={HandleProfile}>
                   Profile
                   <span className="badge text-emerald-400 bg-slate-700">
                     New
@@ -144,10 +174,12 @@ const Header = () => {
                 </a>
               </li>
               <li className="hover:text-emerald-400">
-                <a onClick={() => navigate("/order")}>Orders</a>
+                <a onClick={GoToOrder}>Orders</a>
               </li>
               <li className="hover:text-emerald-400">
-                <a onClick={() => dispatch(authActions.setLogout())}>Logout</a>
+                <a onClick={LoginHandler}>
+                  {isAuthenticate ? "Logout" : "Login"}
+                </a>
               </li>
             </ul>
           </div>

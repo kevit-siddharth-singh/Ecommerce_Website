@@ -3,7 +3,7 @@ import { authActions } from "../Redux/Slices/authenticateSlice";
 import { useAppDispatch } from "../Redux/store";
 import { useNavigate } from "react-router-dom";
 
-const SignUpForm = () => {
+const SignUpForm: React.FC = () => {
   // State to store form values
   const [formValues, setFormValues] = useState({
     firstName: "",

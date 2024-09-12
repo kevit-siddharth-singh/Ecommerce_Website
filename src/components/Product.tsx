@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ProductType } from "../utils/ProductFetch";
 import Rating from "./Rating.tsx";
-import { useAppDispatch } from "../Redux/store.ts";
+import { useAppDispatch, useAppSelector } from "../Redux/store.ts";
 import { cartActions } from "../Redux/Slices/cartSlice.ts";
 
 // React Toast import
@@ -13,6 +13,35 @@ import { notify } from "../utils/ToastNotify.ts";
 
 const Product: React.FC<{ product: ProductType }> = (props) => {
   const navigate = useNavigate();
+  const isAuthenticate = useAppSelector(
+    (state) => state.authentication.isAuthenticate
+  );
+
+  function AddToCart() {
+    if (isAuthenticate) {
+      dispatch(
+        cartActions.addItemToCart({
+          id: props.product.id,
+          name: props.product.title,
+          price: props.product.price,
+          image: props.product.image,
+          quantity: 1,
+        })
+      );
+      notify();
+    } else {
+      navigate("/login");
+    }
+  }
+
+  function buy() {
+    if (isAuthenticate) {
+      navigate(`/checkout/${props.product.id}`);
+    } else {
+      navigate("/login");
+    }
+  }
+
   const dispatch = useAppDispatch();
 
   return (
@@ -64,16 +93,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            notify();
-            dispatch(
-              cartActions.addItemToCart({
-                id: props.product.id,
-                name: props.product.title,
-                price: props.product.price,
-                image: props.product.image,
-                quantity: 1,
-              })
-            );
+            AddToCart();
           }}
           className="bg-green-500 w-2/4 p-[0.37rem] rounded-md text-white transition ease-in-out hover:bg-green-600 "
         >
@@ -86,7 +106,7 @@ const Product: React.FC<{ product: ProductType }> = (props) => {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            navigate(`/checkout/${props.product.id}`);
+            buy();
           }}
           className="flex justify-center bg-orange-500 w-1/4   p-[0.35rem] px-10 rounded-md text-white  transition ease-in-out hover:bg-orange-600 "
         >
