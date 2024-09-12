@@ -102,17 +102,17 @@ const ProductList = () => {
       <div
         className={`flex ${isRelative} max-sm:justify-between   max-md:flex-col h-full w-full `}
       >
-        <div className="sidebar-wrapper max-sm:w-full  max-sm:h-1/3 md:w-1/6 w-full sm:flex">
+        <div className="sidebar-wrapper max-sm:w-full  max-sm:h-[20%] md:w-1/6 w-full sm:flex">
           <Sidebar />
         </div>
         {search === "" && !data ? (
           <Loading />
         ) : (
           <div className="product-wrapper flex flex-col md:w-5/6 w-full h-full  items-center sm:gap-5   ">
-            <div className="w-full flex items-start  md:h-[80%] max-sm:h-2/3  overflow-y-scroll  ">
+            <div className="w-full flex items-start  md:h-[80%] max-sm:h-[58%]  overflow-y-scroll  ">
               {content}
             </div>
-            <div className="w-full max-sm:h-1/3   flex justify-center items-center">
+            <div className="w-full max-sm:h-[37%] max-sm:py-1 flex justify-center items-center max-sm:items-start ">
               {search.length === 0 ? <PaginationComponent /> : undefined}
             </div>
           </div>

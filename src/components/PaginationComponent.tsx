@@ -18,7 +18,7 @@ const PaginationComponent = () => {
   }
 
   return (
-    <div className="join  flex justify-center my-2 max-sm:mt-5 max-sm:w-1/2  max-sm:h-full  sm:w-[20%] ">
+    <div className="join     flex justify-center sm:my-2 max-sm:w-1/2  h-2/3  sm:w-[20%] ">
       <button
         onClick={handlePrev}
         className={`join-item btn  w-1/3 bg-blue-500 hover:bg-blue-600 text-white  ${
