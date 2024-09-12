@@ -32,6 +32,8 @@ const CartProductsCheckout = () => {
         dispatch(checkoutActions.changePhn(userData.phone));
       }
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkoutData]);
 
   const handleAddProducts = () => {
@@ -86,7 +88,6 @@ const CartProductsCheckout = () => {
     <div className="CartProductsCheckout flex flex-col w-full py-5 px-4 md:px-8 lg:px-12">
       {/* Toast */}
       <ToastContainer
-        className={"max-sm:hidden"}
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
