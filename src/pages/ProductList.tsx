@@ -1,14 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-
-import { useAppSelector } from "../Redux/store";
-import Header from "../components/Header";
-import Loading from "../components/Loading";
-import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
-import { fetchProduct } from "../utils/ProductFetch";
-import Product from "./../components/Product";
-import Sidebar from "./../components/Sidebar";
-import NoProductFound from "../components/NoProductFound";
-import ProductPageContent from "../components/ProductPageContent";
+import {
+  useQuery,
+  useAppSelector,
+  Header,
+  Loading,
+  useTitleChangeHook,
+  fetchProduct,
+  Product,
+  Sidebar,
+  NoProductFound,
+  ProductPageContent,
+} from "../Imports/ProductListImport";
 
 const ProductList = () => {
   // Custom Hook For Changing Title

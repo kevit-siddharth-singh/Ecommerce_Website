@@ -1,7 +1,10 @@
 import axios from "axios";
+import { ProductType } from "./ProductFetch";
 
 export async function getProductDetail(id: string) {
-  const res = await axios.get("https://fakestoreapi.com/products/" + id);
+  const res = await axios.get<ProductType>(
+    "https://fakestoreapi.com/products/" + id
+  );
 
   if (res.status === 200) {
     const { data } = res;
@@ -11,6 +14,7 @@ export async function getProductDetail(id: string) {
   }
   if (res.status !== 200) {
     const error = new Error("An Error occurred !");
-    return error;
+
+    console.log(error);
   }
 }
