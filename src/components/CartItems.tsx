@@ -2,6 +2,7 @@
 import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
+import { MdDeleteOutline } from "react-icons/md";
 import { cartActions, CartItem } from "../Redux/Slices/cartSlice";
 import EmptyCartCard from "./EmptyCartCard";
 import { useAppDispatch } from "../Redux/store";
@@ -69,12 +70,22 @@ const CartItems: React.FC<{
                         <FaPlus />
                       </button>
                     </div>
-                    <button
-                      onClick={() => navigate("/checkout/" + item.id)}
-                      className="max-sm:my-1 max-sm:text-sm max-sm:px-3  sm:my-2 bg-blue-500 font-semibold text-white  sm:p-1 sm:w-[9.5rem] rounded active:bg-blue-600"
-                    >
-                      Buy
-                    </button>
+                    <div className="flex justify-between">
+                      <button
+                        onClick={() => navigate("/checkout/" + item.id)}
+                        className="max-sm:my-1 max-sm:text-sm max-sm:px-3  sm:my-2 bg-blue-500 font-semibold text-white  sm:p-1 sm:w-[9.5rem] rounded active:bg-blue-600"
+                      >
+                        Buy
+                      </button>
+                      <button
+                        onClick={() =>
+                          dispatch(cartActions.deleteItemFromCart(item.id))
+                        }
+                        className="flex justify-center items-center max-sm:my-1 max-sm:text-sm max-sm:px-1  sm:my-2 bg-red-500 font-semibold text-white  sm:p-1 sm:w-[2rem] rounded active:bg-red-600"
+                      >
+                        <MdDeleteOutline className="" />
+                      </button>
+                    </div>
                   </div>
                   <p className="text-right text-yellow-300">
                     ₹ {item.price}{" "}
@@ -97,7 +108,8 @@ const CartItems: React.FC<{
             <div className="text-center">
               <p className="text-white font-semibold ">Total Quantity</p>
               <p className="text-emerald-500 font-semibold max-sm:text-start">
-                {totalQuantity} {totalQuantity !== 1 ? "Items" : "Item"} {  totalQuantity }
+                {totalQuantity} {totalQuantity !== 1 ? "Items" : "Item"}{" "}
+                {totalQuantity}
               </p>
             </div>
             <div className="text-right">
