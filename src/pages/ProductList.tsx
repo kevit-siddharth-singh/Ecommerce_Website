@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { searchActions } from "../Redux/Slices/SearchSlice";
-import { useAppDispatch, useAppSelector } from "../Redux/store";
+import { useAppSelector } from "../Redux/store";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
-import PaginationComponent from "../components/PaginationComponent";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 import { fetchProduct } from "../utils/ProductFetch";
 import Product from "./../components/Product";
 import Sidebar from "./../components/Sidebar";
-import NoProductFoundImg from "/noproductfound.png";
+import NoProductFound from "../components/NoProductFound";
+import ProductPageContent from "../components/ProductPageContent";
 
 const ProductList = () => {
   // Custom Hook For Changing Title
@@ -26,8 +25,6 @@ const ProductList = () => {
   );
 
   const search = useAppSelector((state) => state.search.search);
-
-  const dispatch = useAppDispatch();
 
   // Logic for Filtering Products based on Selected Category and Search Term
   const filteredData = data.filter((product) => {
@@ -62,33 +59,8 @@ const ProductList = () => {
       </div>
     );
   } else {
-    content = (
-      <div className="flex flex-col w-full h-full overflow-hidden  justify-center items-center max-sm:gap-4 ">
-        <div className="img md:w-1/4  max-sm:w-4/5 ">
-          <img
-            className="w-full cover"
-            src={NoProductFoundImg}
-            alt="No Product Found"
-          />
-        </div>
-        <p className="text-orange-500 text-center md:text-3xl  sm:shrink-0">
-          No products found matching "{search}".
-        </p>
-        <button
-          onClick={() => dispatch(searchActions.setSearchTerm(""))}
-          className="m-2 border  border-purple-500 rounded p-2 text-purple-400 hover:bg-purple-500 hover:text-white shrink-0"
-        >
-          Clear Result
-        </button>
-      </div>
-    );
+    content = <NoProductFound search={search} />;
   }
-
-  // useEffect(() => {
-  //   if (!isAuthenticate) {
-  //     navigate("/login");
-  //   }
-  // });
 
   return (
     <div className="w-full sm:h-screen max-sm:h-screen h-full overflow-hidden  ">
@@ -102,14 +74,7 @@ const ProductList = () => {
         {search === "" && !data ? (
           <Loading />
         ) : (
-          <div className="product-wrapper flex flex-col md:w-5/6 w-full h-full  items-center sm:gap-5   ">
-            <div className="w-full flex items-start  md:h-[80%] max-sm:h-[58%]  overflow-y-scroll  ">
-              {content}
-            </div>
-            <div className="w-full max-sm:h-[37%] max-sm:py-1 flex justify-center items-center max-sm:items-start ">
-              {search.length === 0 && <PaginationComponent />}
-            </div>
-          </div>
+          <ProductPageContent content={content} search={search} />
         )}
       </div>
     </div>

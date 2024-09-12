@@ -112,7 +112,7 @@ const ProfileForm = () => {
                     isError ? "border-red-500" : "border-transparent "
                   } max-sm:p-2 sm:p-4 pe-12  sm:text-md shadow-sm`}
                   placeholder={
-                    address !== undefined ? address : "Enter your address"
+                    address.length > 0 ? address : "Enter your address"
                   }
                 />
 
@@ -155,9 +155,7 @@ const ProfileForm = () => {
                   className={`w-full rounded-lg border ${
                     isError ? "border-red-500" : "border-transparent "
                   } max-sm:p-2 sm:p-4 pe-12  sm:text-md shadow-sm`}
-                  placeholder={
-                    phone !== undefined ? phone : "Enter your phone no"
-                  }
+                  placeholder={phone.length > 0 ? phone : "Enter your phone no"}
                 />
 
                 <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
