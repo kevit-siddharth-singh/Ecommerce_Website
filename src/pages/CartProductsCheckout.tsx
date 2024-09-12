@@ -32,7 +32,6 @@ const CartProductsCheckout = () => {
         dispatch(checkoutActions.changePhn(userData.phone));
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkoutData]);
 
   const handleAddProducts = () => {
@@ -42,8 +41,7 @@ const CartProductsCheckout = () => {
       checkoutData.phn.length >= 9 &&
       checkoutData.modeofpayment === "cod"
     ) {
-      console.log(checkoutData);
-      cartData.items.map((item) => {
+      cartData.items.forEach((item) => {
         dispatch(
           orderedProductsActions.addProduct({
             id: item.id,
@@ -67,6 +65,7 @@ const CartProductsCheckout = () => {
     }
 
     dispatch(checkoutActions.reset());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -84,7 +83,7 @@ const CartProductsCheckout = () => {
   }
 
   return (
-    <div className="CartProductsCheckout flex  w-full py-5">
+    <div className="CartProductsCheckout flex flex-col w-full py-5 px-4 md:px-8 lg:px-12">
       {/* Toast */}
       <ToastContainer
         position="top-right"
@@ -99,217 +98,216 @@ const CartProductsCheckout = () => {
         theme="light"
       />
 
-      <div className="wrapper flex flex-col justify-center items-center  w-full gap-4">
+      <div className="wrapper flex flex-col justify-center items-center w-full gap-4">
         <div>
-          <h1 className="text-orange-500 max-sm:text-2xl max-sm:my-3 sm:text-5xl font-semibold tracking-wide ">
+          <h1 className="text-orange-500 text-2xl sm:text-4xl lg:text-5xl font-semibold tracking-wide my-3 sm:my-5">
             CHECKOUT - PAGE
           </h1>
         </div>
-        <div className="w-full ">
-          <div className="flex justify-center w-full gap-5 overflow-hidden">
-            <div className="flex flex-col w-2/5 gap-5 ">
-              <div className="">
-                <p className="text-3xl text-white">Review</p>
-                <div className=" flex flex-col gap-2 border rounded p-5">
-                  <label className="address text-white font-semibold">
-                    *Shipping address :
-                  </label>
-                  <textarea
-                    onChange={handleAddress}
-                    className="bg-transparent border rounded p-1"
-                    placeholder={userData.address}
-                    id="address"
-                  />
-                  <label className="address text-white font-semibold">
-                    *Name :
-                  </label>
-                  <input
-                    placeholder={userData.name}
-                    onChange={handleName}
-                    type="text"
-                    className="bg-transparent border rounded p-2"
-                  />
-                  <label className="address text-white font-semibold">
-                    *Phn no :
-                  </label>
-                  <input
-                    placeholder={userData.phone}
-                    onChange={handlePhn}
-                    type="tel"
-                    className="bg-transparent border rounded p-2"
-                  />
-                  <label
-                    htmlFor="modeofpyament"
-                    className="address text-orange-500 font-semibold"
-                  >
-                    *Select mode of payment :
-                  </label>
-                  <select
-                    onChange={handleModeOfPayment}
-                    className="bg-transparent p-2 text-white border rounded border-orange-400"
-                    name="mode of payment"
-                    id="modeofpyament"
-                  >
-                    <option className="bg-black" value="cod">
-                      Please Select
-                    </option>
-                    <option className="bg-black" value="cod">
-                      Cash on delivery
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div className="overflow-hidden">
-                <p className="text-3xl text-white">Product Selected</p>
-                <div className=" h-[15rem] border rounded p-2 flex flex-col gap-5  overflow-hidden overflow-y-scroll ">
-                  {cartData.items.map((item) => (
-                    <div key={item.id} className="flex gap-3">
-                      <div
-                        onClick={() => navigate("/product/" + item.id)}
-                        className="  w-[7rem] h-[7rem] cursor-pointer bg-white rounded overflow-hidden"
-                      >
-                        <img
-                          className="object-cover"
-                          src={item.image}
-                          alt={item.name}
-                          title={item.name}
-                        />
-                      </div>
-                      <div className="text-md flex flex-col gap-1">
-                        <p className="font-medium text-white ">
-                          Name :
-                          <span className=" text-orange-400"> {item.name}</span>
-                        </p>
-                        <p className="font-medium text-white">
-                          Price : ₹
-                          <span className="text-emerald-500">
-                            {" "}
-                            {item.price}
-                          </span>
-                        </p>
-                        <p className="font-medium text-white">
-                          Quantity :
-                          <span className="text-emerald-500">
-                            {" "}
-                            {item.quantity}
-                          </span>
-                        </p>
-                        <p className="font-medium text-white">
-                          Total price : ₹
-                          <span className="text-emerald-500">
-                            {" "}
-                            {item.quantity * item.price}
-                          </span>
-                        </p>
-                        <div className="flex gap-3 justify-start items-center text-white font-medium">
-                          <button
-                            onClick={() =>
-                              dispatch(cartActions.removeItemFromCart(item.id))
-                            }
-                            className="bg-red-500 p-1 px-3 rounded"
-                          >
-                            <FaMinus />
-                          </button>
-                          <button
-                            onClick={() =>
-                              dispatch(
-                                cartActions.addItemToCart({
-                                  id: item.id,
-                                  image: item.image,
-                                  name: item.name,
-                                  price: item.price,
-                                  quantity: item.quantity,
-                                })
-                              )
-                            }
-                            className="bg-blue-500 p-1 px-3 rounded"
-                          >
-                            <FaPlus />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+        <div className="w-full flex flex-col lg:flex-row justify-center gap-5 overflow-hidden">
+          <div className="flex flex-col w-full lg:w-3/5 gap-5  ">
+            <div>
+              <p className="text-2xl sm:text-3xl text-white">Review</p>
+              <div className="flex flex-col gap-2 border rounded p-5 ">
+                {/* Address, Name, Phone Input */}
+                <label className="address text-white font-semibold">
+                  *Shipping address:
+                </label>
+                <textarea
+                  onChange={handleAddress}
+                  className="bg-transparent border rounded p-1"
+                  placeholder={userData.address}
+                  id="address"
+                />
+                <label className="address text-white font-semibold">
+                  *Name:
+                </label>
+                <input
+                  placeholder={userData.name}
+                  onChange={handleName}
+                  type="text"
+                  className="bg-transparent border rounded p-2"
+                />
+                <label className="address text-white font-semibold">
+                  *Phone No:
+                </label>
+                <input
+                  placeholder={userData.phone}
+                  onChange={handlePhn}
+                  type="tel"
+                  className="bg-transparent border rounded p-2"
+                />
+                {/* Payment Method Select */}
+                <label
+                  htmlFor="modeofpyament"
+                  className="address text-orange-500 font-semibold"
+                >
+                  *Select mode of payment:
+                </label>
+                <select
+                  onChange={handleModeOfPayment}
+                  className="bg-transparent p-2 text-white border rounded border-orange-400"
+                  name="mode of payment"
+                  id="modeofpyament"
+                >
+                  <option className="bg-black" value="cod">
+                    Please Select
+                  </option>
+                  <option className="bg-black" value="cod">
+                    Cash on delivery
+                  </option>
+                </select>
               </div>
             </div>
-            <div className="w-1/5 overflow-hidden ">
-              <p className="text-3xl text-white">Order summary</p>
-              <div className="flex flex-col gap-4 border rounded p-2 ">
-                <div className="text-white font-semibold">
-                  {cartData.items.length > 1 ? "Items : " : "Item : "}
-                  {cartData.items.map((item) => (
-                    <div key={item.id}>
-                      <span className="text-xs font-normal">{item.name}</span>
-                      <br />
+            {/* Products Review Section */}
+            <div>
+              <p className="text-2xl sm:text-3xl text-white">
+                Product Selected
+              </p>
+              <div className="max-h-64 border rounded p-2 flex flex-col gap-5 overflow-hidden overflow-y-auto">
+                {cartData.items.map((item) => (
+                  <div key={item.id} className="flex gap-3">
+                    <div
+                      onClick={() => navigate("/product/" + item.id)}
+                      className="w-20 h-20 cursor-pointer bg-white rounded overflow-hidden"
+                    >
+                      <img
+                        className="object-cover w-full h-full"
+                        src={item.image}
+                        alt={item.name}
+                        title={item.name}
+                      />
                     </div>
-                  ))}
-                </div>
-                <p className="text-white font-semibold">
-                  Name :{" "}
-                  <span className="text-orange-400">
-                    {checkoutData.name.length > 0
-                      ? checkoutData.name
-                      : userData.address}
-                  </span>
-                </p>
-                <p className="text-white font-semibold">
-                  Phn no :{" "}
-                  <span className="text-orange-400">
-                    {checkoutData.phn ? checkoutData.phn : userData.phone}
-                  </span>
-                </p>
-                <p className="text-white font-semibold text-wrap w-full">
-                  Address :{" "}
-                  <span className="text-orange-400 truncate">
-                    {checkoutData.address
-                      ? checkoutData.address
-                      : userData.address}
-                  </span>
-                </p>
-                <p className="text-white font-semibold">
-                  Mode of Payment :{" "}
-                  <span className="text-orange-400">
-                    {checkoutData.modeofpayment}
-                  </span>
-                </p>
-                <p className="text-white font-semibold">
-                  Tax (GST / SGST) : <span className="text-red-500">18%</span>
-                </p>
-                <p className="text-white font-semibold">
-                  Total Quantity :{" "}
-                  <span className="text-orange-400">
-                    {cartData.totalQuantity}
-                  </span>
-                </p>
-                <p className="text-white font-semibold">
-                  Total amount :{" "}
-                  <span className="text-emerald-500">
-                    {cartData.totalAmount}
-                  </span>
-                </p>
+                    <div className="text-sm flex flex-col gap-1">
+                      <p className="font-medium text-white">
+                        Name:{" "}
+                        <span className="text-orange-400">{item.name}</span>
+                      </p>
+                      <p className="font-medium text-white">
+                        Price: ₹
+                        <span className="text-emerald-500">{item.price}</span>
+                      </p>
+                      <p className="font-medium text-white">
+                        Quantity:{" "}
+                        <span className="text-emerald-500">
+                          {item.quantity}
+                        </span>
+                      </p>
+                      <p className="font-medium text-white">
+                        Total price: ₹
+                        <span className="text-emerald-500">
+                          {item.quantity * item.price}
+                        </span>
+                      </p>
+                      {/* Product Quantity Buttons */}
+                      <div className="flex gap-3 justify-start items-center text-white font-medium">
+                        <button
+                          onClick={() =>
+                            dispatch(cartActions.removeItemFromCart(item.id))
+                          }
+                          className="bg-red-500 p-1 px-3 rounded"
+                        >
+                          <FaMinus />
+                        </button>
+                        <button
+                          onClick={() =>
+                            dispatch(
+                              cartActions.addItemToCart({
+                                id: item.id,
+                                image: item.image,
+                                name: item.name,
+                                price: item.price,
+                                quantity: item.quantity,
+                              })
+                            )
+                          }
+                          className="bg-blue-500 p-1 px-3 rounded"
+                        >
+                          <FaPlus />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
+          {/* Order Summary Section */}
+          <div className="w-full lg:w-2/5">
+            <p className="text-2xl sm:text-3xl text-white">Order summary</p>
+            <div className="flex flex-col gap-4 border rounded p-4">
+              <div className="text-white font-semibold">
+                {cartData.items.length > 1 ? "Items: " : "Item: "}
+                {cartData.items.map((item) => (
+                  <div key={item.id}>
+                    <span className="text-xs font-normal">{item.name}</span>
+                    <br />
+                  </div>
+                ))}
+              </div>
+              <p className="text-white font-semibold">
+                Name:{" "}
+                <span className="text-orange-400">
+                  {checkoutData.name.length > 0
+                    ? checkoutData.name
+                    : userData.name}
+                </span>
+              </p>
+              <p className="text-white font-semibold">
+                Phone No:{" "}
+                <span className="text-orange-400">
+                  {checkoutData.phn ? checkoutData.phn : userData.phone}
+                </span>
+              </p>
+              <p className="text-white font-semibold">
+                Address:{" "}
+                <span className="text-orange-400">
+                  {checkoutData.address
+                    ? checkoutData.address
+                    : userData.address}
+                </span>
+              </p>
+              <p className="text-white font-semibold">
+                Mode of Payment:{" "}
+                <span className="text-orange-400">
+                  {checkoutData.modeofpayment}
+                </span>
+              </p>
+              <p className="text-white font-semibold">
+                Tax (GST / SGST): <span className="text-red-500">18%</span>
+              </p>
+              <p className="text-white font-semibold">
+                Total Quantity:{" "}
+                <span className="text-orange-400">
+                  {cartData.totalQuantity}
+                </span>
+              </p>
+              <p className="text-white font-semibold">
+                Total amount:{" "}
+                <span className="text-emerald-500">{cartData.totalAmount}</span>
+              </p>
+            </div>
+          </div>
         </div>
-        <div className=" flex justify-center items-center gap-5">
+        {/* Buttons Section */}
+        <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-4">
           <button
             onClick={() => navigate("/product")}
-            className="bg-blue-500 active:bg-blue-600 p-3 rounded text-white font-semibold "
+            className="bg-blue-500 active:bg-blue-600 p-3 rounded text-white font-semibold w-full md:w-auto"
           >
             Go to products
           </button>
           <button
             onClick={handleAddProducts}
-            className="bg-orange-500 active:bg-orange-600 p-3 rounded text-white font-semibold "
+            className="bg-orange-500 active:bg-orange-600 p-3 rounded text-white font-semibold w-full md:w-auto"
           >
             Buy now
           </button>
           <button
             onClick={() => navigate("/order")}
             className={`bg-emerald-500 active:bg-emerald-600 p-3 rounded text-white font-semibold ${
-              isValidated ? "undefined" : "hidden"
-            }`}
+              isValidated ? "block" : "hidden"
+            } w-full md:w-auto`}
           >
             Go to Orders
           </button>
