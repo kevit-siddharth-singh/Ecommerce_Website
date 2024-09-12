@@ -13,7 +13,8 @@ import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 const CartProductsCheckout = () => {
   const [isValidated, setIsValidated] = useState(false);
 
-  useAuthCheckerHook();
+
+useAuthCheckerHook()
 
   useTitleChangeHook({ title: "Checkout" });
 

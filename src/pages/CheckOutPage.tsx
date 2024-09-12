@@ -1,21 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import AddressForm from "../components/AddressForm";
-import CheckoutItemDetails from "../components/CheckoutItemDetails";
-import OrderSummary from "../components/OrderSummary";
 import { useAppDispatch, useAppSelector } from "../Redux/store";
 import { getProductDetail } from "../utils/getProductDetail";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import useAuthCheckerHook from "../custom hooks/useAuthCheckerHook";
 import { orderedProductsActions } from "../Redux/Slices/orderedProducts";
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
 import { FailedNotify, SuccessFullNotify } from "../utils/ToastNotify";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
+import CheckOutPageContent from "../components/CheckOutPageContent";
 
 const CheckOutPage = () => {
   let productSelected = null;
-  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
 
   useAuthCheckerHook();
@@ -50,9 +47,7 @@ const CheckOutPage = () => {
   useTitleChangeHook({ title: "checkout page" });
 
   let content = <Loading />;
-
   const { Pid } = useParams();
-
   const { data } = useQuery({
     queryKey: ["Checkout", { productId: Pid }],
     queryFn: () => getProductDetail(Pid!),
@@ -63,10 +58,8 @@ const CheckOutPage = () => {
   } else {
     productSelected = data;
   }
-
   // Handler to add product to order
   const handleAddProduct = () => {
-    console.log(checkoutData);
     if (
       checkoutData.address.length >= 10 &&
       checkoutData.name.length >= 6 &&
@@ -78,8 +71,8 @@ const CheckOutPage = () => {
           id: productSelected.id,
           image: productSelected.image,
           price: productSelected.price,
+          title: productSelected.title,
           quantity: localProductQuantity,
-          title: productSelected.title, // Assuming title is also needed
           address: checkoutData.address,
           buyerName: checkoutData.name,
           phn: checkoutData.phn,
@@ -94,75 +87,17 @@ const CheckOutPage = () => {
 
   if (data) {
     content = (
-      <div className="flex flex-col  items-center h-full w-full max-sm:justify-center max-sm:px-4 sm:px-4 sm:py-1 ">
-        {/* React Toast Component */}
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        <h1 className="text-orange-500 max-sm:text-2xl max-sm:my-3 sm:text-5xl font-semibold tracking-wide sm:mt-[2rem] sm:mb-[3rem] ">
-          CHECKOUT - PAGE
-        </h1>
-
-        <div className="reviewProduct w-full  flex flex-col items-center    justify-between">
-          <p className="text-white max-sm:font-semibold  max-sm:text-lg max-sm:mb-1 sm:text-3xl sm:mb-2">
-            Review your order
-          </p>
-
-          <div className="container max-sm:gap-3 flex sm:gap-5 max-sm:flex-col justify-center">
-            <div className="demographic-info flex flex-col max-sm:gap-2 justify-center items-center  sm:gap-3 ">
-              <AddressForm />
-              <CheckoutItemDetails
-                data={productSelected}
-                AddProducts={AddProducts}
-                RemoveProducts={RemoveProducts}
-                CustomProduct={CustomProduct}
-                localProductQuantity={localProductQuantity}
-              />
-            </div>
-            <div className="ProductDetail  ">
-              <p className="text-white  sm:hidden  sm:text-xl font-semibold sm:mb-2">
-                Order summary
-              </p>
-              <OrderSummary data={data} quantity={localProductQuantity} />
-            </div>
-          </div>
-          <div className="flex  justify-center w-full  max-sm:gap-3 max-sm:mt-5 md:mt-4 md:gap-4  sm:gap-10 sm:mt-3">
-            <button
-              onClick={() => {
-                navigate("/product");
-              }}
-              className="bg-blue-500 text-white max-sm:text-sm max-sm:p-1  font-semibold sm:p-3  rounded active:bg-blue-600"
-            >
-              Go to products
-            </button>
-            <button
-              onClick={() => {
-                handleAddProduct();
-              }}
-              className="bg-orange-500 text-white max-sm:text-sm max-sm:p-1 font-semibold sm:p-3  rounded active:bg-orange-600"
-            >
-              Order now
-            </button>
-            {issuccessfullorder && (
-              <button
-                onClick={() => navigate("/order")}
-                className="bg-emerald-500 text-white max-sm:text-sm max-sm:p-1 font-semibold sm:p-3  rounded active:bg-emerald-600"
-              >
-                Go to orders
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
+      <CheckOutPageContent
+        data={data}
+        handleAddProduct={handleAddProduct}
+        AddProducts={AddProducts}
+        CustomProduct={CustomProduct}
+        issuccessfullorder={issuccessfullorder}
+        RemoveProducts={RemoveProducts}
+        localProductQuantity={localProductQuantity}
+        productSelected={productSelected}
+        setIsSuccessfullorder={setIsSuccessfullorder}
+      />
     );
   }
 
