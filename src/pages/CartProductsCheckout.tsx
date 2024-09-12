@@ -86,6 +86,7 @@ const CartProductsCheckout = () => {
     <div className="CartProductsCheckout flex flex-col w-full py-5 px-4 md:px-8 lg:px-12">
       {/* Toast */}
       <ToastContainer
+        className={"max-sm:hidden"}
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -162,7 +163,7 @@ const CartProductsCheckout = () => {
             {/* Products Review Section */}
             <div>
               <p className="text-2xl sm:text-3xl text-white">
-                Product Selected
+                Products Selected
               </p>
               <div className="max-h-64 border rounded p-2 flex flex-col gap-5 overflow-hidden overflow-y-auto">
                 {cartData.items.map((item) => (
@@ -290,22 +291,22 @@ const CartProductsCheckout = () => {
           </div>
         </div>
         {/* Buttons Section */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-4">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-5 mt-4 max-sm:flex-row ">
           <button
             onClick={() => navigate("/product")}
-            className="bg-blue-500 active:bg-blue-600 p-3 rounded text-white font-semibold w-full md:w-auto"
+            className="bg-blue-500 active:bg-blue-600 max-sm:p-1 max-sm:px-2 max-sm:text-sm p-3 rounded text-white font-semibold w-full md:w-auto"
           >
             Go to products
           </button>
           <button
             onClick={handleAddProducts}
-            className="bg-orange-500 active:bg-orange-600 p-3 rounded text-white font-semibold w-full md:w-auto"
+            className="bg-orange-500 active:bg-orange-600  max-sm:py-3 max-sm:px-2 max-sm:text-md p-3 rounded text-white font-semibold w-full md:w-auto"
           >
             Buy now
           </button>
           <button
             onClick={() => navigate("/order")}
-            className={`bg-emerald-500 active:bg-emerald-600 p-3 rounded text-white font-semibold ${
+            className={`bg-emerald-500 active:bg-emerald-600 max-sm:p-1 max-sm:px-2 max-sm:text-sm p-3 rounded text-white font-semibold ${
               isValidated ? "block" : "hidden"
             } w-full md:w-auto`}
           >
