@@ -77,7 +77,7 @@ const CartItems: React.FC<{
                       <button
                         title="Buy now"
                         onClick={() => navigate("/checkout/" + item.id)}
-                        className="max-sm:my-1 max-sm:text-sm max-sm:px-3  sm:my-2 bg-blue-500 font-semibold text-white  sm:p-1 sm:w-[9.5rem] rounded active:bg-blue-600"
+                        className="max-sm:my-1 max-sm:text-sm max-sm:py-1 max-sm:px-7   sm:my-2 bg-blue-500 font-semibold text-white  sm:p-1 sm:w-[9.5rem] rounded active:bg-blue-600"
                       >
                         Buy
                       </button>
@@ -130,12 +130,20 @@ const CartItems: React.FC<{
               Buy all
             </button>
           </div>
-          <button
-            onClick={() => dispatch(cartActions.clearCart())}
-            className="border  mx-4 py-1 text-md font-semibold sm:hidden border-red-600 rounded text-red-500   hover:bg-red-500 hover:text-white  "
-          >
-            Empty Cart
-          </button>
+          <div className="sm:hidden flex  justify-center items-center gap-3 mb-2 mt-2">
+            <button
+              onClick={() => dispatch(cartActions.clearCart())}
+              className="border  mx-4 px-5 py-2 text-md font-semibold  border-red-600 rounded text-red-500   hover:bg-red-500 hover:text-white  "
+            >
+              Empty Cart
+            </button>
+            <button
+              onClick={() => navigate("/checkout/all")}
+              className="border px-5  py-2 text-md font-semibold  border-yellow-600 rounded    text-yellow-500   hover:bg-yellow-500 hover:text-white  "
+            >
+              Buy all
+            </button>
+          </div>
         </ul>
       ) : (
         <EmptyCartCard />
