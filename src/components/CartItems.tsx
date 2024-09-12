@@ -30,6 +30,7 @@ const CartItems: React.FC<{
             <li key={item.id} className="flex flex-col    ">
               <div className="flex  max-sm:p-3 max-sm:gap-2 sm:gap-10">
                 <img
+                  title={item.name}
                   onClick={() => navigate("/product/" + item.id)}
                   className="max-sm:w-[4rem] max-sm:h-[4.5rem] object-fill   sm:w-[5rem] sm:h-[6rem] cursor-pointer rounded hover:scale-105 transition-all ease-in-out"
                   src={item.image}
@@ -43,6 +44,7 @@ const CartItems: React.FC<{
                   <div className="btn-grp">
                     <div className="flex items-center sm:gap-3 max-sm:gap-2">
                       <button
+                        title="remove -1"
                         onClick={() =>
                           dispatch(cartActions.removeItemFromCart(item.id))
                         }
@@ -54,6 +56,7 @@ const CartItems: React.FC<{
                         {item.quantity}
                       </button>
                       <button
+                        title="add +1"
                         onClick={() =>
                           dispatch(
                             cartActions.addItemToCart({
@@ -72,12 +75,14 @@ const CartItems: React.FC<{
                     </div>
                     <div className="flex justify-between">
                       <button
+                        title="Buy now"
                         onClick={() => navigate("/checkout/" + item.id)}
                         className="max-sm:my-1 max-sm:text-sm max-sm:px-3  sm:my-2 bg-blue-500 font-semibold text-white  sm:p-1 sm:w-[9.5rem] rounded active:bg-blue-600"
                       >
                         Buy
                       </button>
                       <button
+                        title="Delete this item from your cart"
                         onClick={() =>
                           dispatch(cartActions.deleteItemFromCart(item.id))
                         }
