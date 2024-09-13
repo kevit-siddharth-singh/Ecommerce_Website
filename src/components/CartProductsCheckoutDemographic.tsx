@@ -51,7 +51,7 @@ const CartProductsCheckoutDemographic: React.FC<CheckoutDemographicType> = ({
       newErrors.address = "Address is required.";
     if (!debouncedValue.name.trim()) newErrors.name = "Name is required.";
     if (!debouncedValue.phone.trim())
-      newErrors.phone = "Phone number is requsired.";
+      newErrors.phone = "Phone number is required.";
     if (!debouncedValue.modeOfPayment.trim())
       newErrors.modeOfPayment = "Please select a payment method.";
 
