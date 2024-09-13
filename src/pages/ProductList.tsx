@@ -64,7 +64,7 @@ const ProductList = () => {
       content = <NoProductFound search={search} />;
     } else {
       content = (
-        <p className="flex items-center justify-center h-screen w-screen text-2xl">
+        <p className="flex items-center justify-center h-screen w-screen text-">
           Loading...
         </p>
       );
