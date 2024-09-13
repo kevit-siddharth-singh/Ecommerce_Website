@@ -38,8 +38,7 @@ const CheckOutPage = () => {
   }
   function CustomProduct(itemQuantity: number) {
     if (itemQuantity < 10 || itemQuantity > 0) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      setLocalProductQuantity((state) => (state = itemQuantity));
+      setLocalProductQuantity(itemQuantity);
     }
   }
   // Custom hook for Auth Check
