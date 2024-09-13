@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for a product
-interface Product {
+export interface Product {
   id: number;
   title: string;
   image: string; // URL or path to the product image
