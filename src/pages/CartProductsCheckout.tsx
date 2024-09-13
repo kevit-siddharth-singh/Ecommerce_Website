@@ -147,7 +147,10 @@ const CartProductsCheckout = () => {
       </div>
     );
   } else {
-    return <Redirect />;
+    if (isValidatedding q) {
+      return <Redirect />;
+    }
+    return <Loading />;
   }
 
   return content;
