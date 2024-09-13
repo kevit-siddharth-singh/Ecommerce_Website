@@ -9,6 +9,7 @@ import { useState } from "react";
 import { FailedNotify, SuccessFullNotify } from "../utils/ToastNotify";
 import useTitleChangeHook from "../custom hooks/useTitleChangeHook";
 import CheckOutPageContent from "../components/CheckOutPageContent";
+import Redirect from "../components/Redirect";
 
 const CheckOutPage = () => {
   let productSelected = null;
@@ -85,7 +86,7 @@ const CheckOutPage = () => {
     }
   };
 
-  if (data) {
+  if (data && !issuccessfullorder) {
     content = (
       <CheckOutPageContent
         data={data}
@@ -99,6 +100,11 @@ const CheckOutPage = () => {
         setIsSuccessfullorder={setIsSuccessfullorder}
       />
     );
+  } else {
+    if (issuccessfullorder) {
+      return <Redirect />;
+    }
+    return <Loading />;
   }
 
   return content;

@@ -11,10 +11,11 @@ import CartProductsCheckoutDemographic from "../components/CartProductsCheckoutD
 import ProductReview from "../components/ProductReview";
 import CheckoutOrderSummary from "../components/CheckoutOrderSummary";
 import { ProductsCheckoutBtn } from "../components/ProductsCheckoutBtn";
+import Loading from "../components/Loading";
+import Redirect from "../components/Redirect";
 
 const CartProductsCheckout = () => {
   const [isValidated, setIsValidated] = useState(false);
-
   useAuthCheckerHook();
   useTitleChangeHook({ title: "Checkout" });
   const {
@@ -92,56 +93,64 @@ const CartProductsCheckout = () => {
     dispatch(checkoutActions.changeModeOfPayment(e.target.value));
   }
 
-  return (
-    <div className="CartProductsCheckout flex flex-col w-full py-5 px-4 md:px-8 lg:px-12">
-      {/* Toast */}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+  let content = <Loading />;
 
-      <div className="wrapper flex flex-col justify-center items-center w-full gap-4">
-        <div>
-          <h1 className="text-orange-500 text-2xl sm:text-4xl lg:text-5xl font-semibold tracking-wide my-3 sm:my-5">
-            CHECKOUT - PAGE
-          </h1>
-        </div>
-        <div className="w-full flex flex-col lg:flex-row justify-center gap-5 overflow-hidden">
-          <div className="flex flex-col w-full lg:w-3/5 gap-5  ">
-            {/* CartProductsCheckoutDemoGraphic Section */}
-            <CartProductsCheckoutDemographic
-              handleAddress={handleAddress}
-              handleModeOfPayment={handleModeOfPayment}
-              handleName={handleName}
-              handlePhn={handlePhn}
+  if (userData && !isValidated) {
+    content = (
+      <div className="CartProductsCheckout flex flex-col w-full py-5 px-4 md:px-8 lg:px-12">
+        {/* Toast */}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+
+        <div className="wrapper flex flex-col justify-center items-center w-full gap-4">
+          <div>
+            <h1 className="text-orange-500 text-2xl sm:text-4xl lg:text-5xl font-semibold tracking-wide my-3 sm:my-5">
+              CHECKOUT - PAGE
+            </h1>
+          </div>
+          <div className="w-full flex flex-col lg:flex-row justify-center gap-5 overflow-hidden">
+            <div className="flex flex-col w-full lg:w-3/5 gap-5  ">
+              {/* CartProductsCheckoutDemoGraphic Section */}
+              <CartProductsCheckoutDemographic
+                handleAddress={handleAddress}
+                handleModeOfPayment={handleModeOfPayment}
+                handleName={handleName}
+                handlePhn={handlePhn}
+                userData={userData}
+              />
+              {/* Products Review Section */}
+              <ProductReview cartData={cartData} />
+            </div>
+            {/* Order Summary Section */}
+            <CheckoutOrderSummary
+              cartData={cartData}
+              checkoutData={checkoutData}
               userData={userData}
             />
-            {/* Products Review Section */}
-            <ProductReview cartData={cartData} />
           </div>
-          {/* Order Summary Section */}
-          <CheckoutOrderSummary
-            cartData={cartData}
-            checkoutData={checkoutData}
-            userData={userData}
+          {/* Buttons Section */}
+          <ProductsCheckoutBtn
+            handleAddProducts={handleAddProducts}
+            isValidated={isValidated}
           />
         </div>
-        {/* Buttons Section */}
-        <ProductsCheckoutBtn
-          handleAddProducts={handleAddProducts}
-          isValidated={isValidated}
-        />
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <Redirect />;
+  }
+
+  return content;
 };
 
 export default CartProductsCheckout;
