@@ -7,12 +7,17 @@ import { searchActions } from "../Redux/Slices/SearchSlice";
 
 const Header = () => {
   const { totalQuantity, totalAmount } = useAppSelector((state) => state.cart);
-  const profile = useAppSelector((state) => state.authentication.profile);
+  let profile = useAppSelector((state) => state.authentication.profile);
   const searchTerm = useAppSelector((state) => state.search.search);
 
   const isAuthenticate = useAppSelector(
     (state) => state.authentication.isAuthenticate
   );
+
+  if (!isAuthenticate) {
+    profile =
+      "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp";
+  }
 
   function GoToCart() {
     if (isAuthenticate) {
