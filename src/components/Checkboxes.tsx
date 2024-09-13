@@ -24,16 +24,16 @@ const Checkboxes: React.FC<{ category: string }> = ({ category }) => {
   };
 
   return (
-    <div className=" max-sm:p-2 md:p-2 text-white">
+    <div className=" max-sm:p-1 md:p-2 text-white">
       <fieldset>
         <legend className="sr-only">Checkboxes</legend>
 
-        <div className="space-y-2  ">
+        <div className="space-y-2   ">
           <label
             htmlFor={category}
-            className="flex max-sm:p-1 max-sm:gap-1  max-sm:items-center max-sm:justify-center  cursor-pointer items-center sm:gap-4 rounded-lg border sm:p-4 transition hover:bg-slate-900/100 has-[:checked]:text-white"
+            className="flex max-sm:p-1 max-sm:gap-1  max-sm:items-center max-sm:justify-center  cursor-pointer items-center sm:gap-4 rounded-lg sm:border sm:p-4 transition hover:bg-slate-900/100 has-[:checked]:text-white"
           >
-            <div className="flex items-center ">
+            <div className="flex items-center">
               &#8203;
               <input
                 type="checkbox"
@@ -45,7 +45,7 @@ const Checkboxes: React.FC<{ category: string }> = ({ category }) => {
             </div>
 
             <div>
-              <strong className=" flex font-medium max-sm:text-xs   ">
+              <strong className=" flex font-medium max-sm:text-md    ">
                 {category}
               </strong>
             </div>
