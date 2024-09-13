@@ -60,7 +60,15 @@ const ProductList = () => {
       </div>
     );
   } else {
-    content = <NoProductFound search={search} />;
+    if (search.length > 0) {
+      content = <NoProductFound search={search} />;
+    } else {
+      content = (
+        <p className="flex items-center justify-center h-screen w-screen text-2xl">
+          Loading...
+        </p>
+      );
+    }
   }
 
   return (
