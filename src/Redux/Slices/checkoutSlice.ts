@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface checkoutType {
+export interface checkoutType {
   name: string;
   phn: string;
   address: string;
